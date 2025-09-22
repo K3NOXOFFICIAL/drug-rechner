@@ -247,17 +247,37 @@
             left: 50%;
             transform: translateX(-50%);
             background: var(--background-card);
-            min-width: 280px;
+            min-width: 320px;
+            max-width: 400px;
             border-radius: var(--radius-xl);
             box-shadow: var(--shadow-lg);
             border: 1px solid var(--border-color);
-            padding: 0.5rem;
+            padding: 0.75rem;
             z-index: 1000;
             animation: slideDown 0.2s ease;
         }
         
         .dose-menu.show {
             display: block;
+        }
+        
+        .dose-category {
+            margin-bottom: 0.75rem;
+        }
+        
+        .dose-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .dose-category-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 0.75rem 0.25rem;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 0.25rem;
         }
         
         @keyframes slideDown {
@@ -507,25 +527,31 @@
             background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
             border: 1px solid rgba(239, 68, 68, 0.3);
             border-radius: var(--radius-xl);
-            padding: 2.5rem;
-            margin-bottom: 3rem;
+            padding: 2rem;
+            margin: 2rem 0 3rem 0;
             color: var(--text-primary);
             box-shadow: var(--shadow-sm);
         }
         
         .disclaimer h4 {
             color: var(--danger-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
         }
         
         .disclaimer h4::before {
             content: "⚠️";
-            font-size: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .disclaimer p {
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text-secondary);
         }
         
         /* Scientific Note */
@@ -937,17 +963,32 @@
                     <span class="dropdown-arrow">▼</span>
                 </button>
                 <div class="dose-menu" id="dose-menu">
-                    <button class="dose-menu-item" onclick="selectDoseCalculator('mdma')">💊 MDMA</button>
-                    <button class="dose-menu-item" onclick="selectDoseCalculator('lsd')">🌈 LSD</button>
-                    <button class="dose-menu-item" onclick="selectDoseCalculator('ketamine')">🧠 Ketamine</button>
-                    <button class="dose-menu-item" onclick="selectDoseCalculator('ghb')">🥤 GHB/GBL</button>
-                    <button class="dose-menu-item" onclick="selectDoseCalculator('amphetamines')">⚡ Amphetamines</button>
-                    <button class="dose-menu-item" onclick="selectDoseCalculator('cocaine')">❄️ Cocaine</button>
-                    <button class="dose-menu-item" onclick="selectDoseCalculator('4mmc')">🔥 4-MMC</button>
+                    <div class="dose-category">
+                        <div class="dose-category-title">💊 Entactogens/Empathogens</div>
+                        <button class="dose-menu-item" onclick="selectDoseCalculator('mdma')">💊 MDMA (Ecstasy/Molly)</button>
+                        <button class="dose-menu-item" onclick="selectDoseCalculator('4mmc')">🔥 4-MMC (Mephedrone)</button>
+                    </div>
+                    <div class="dose-category">
+                        <div class="dose-category-title">🌈 Psychedelics</div>
+                        <button class="dose-menu-item" onclick="selectDoseCalculator('lsd')">🌈 LSD (Acid)</button>
+                    </div>
+                    <div class="dose-category">
+                        <div class="dose-category-title">🧠 Dissociatives</div>
+                        <button class="dose-menu-item" onclick="selectDoseCalculator('ketamine')">� Ketamine (Special K)</button>
+                    </div>
+                    <div class="dose-category">
+                        <div class="dose-category-title">⚡ Stimulants</div>
+                        <button class="dose-menu-item" onclick="selectDoseCalculator('amphetamines')">⚡ Amphetamines (Speed)</button>
+                        <button class="dose-menu-item" onclick="selectDoseCalculator('cocaine')">❄️ Cocaine</button>
+                    </div>
+                    <div class="dose-category">
+                        <div class="dose-category-title">🥤 Depressants</div>
+                        <button class="dose-menu-item" onclick="selectDoseCalculator('ghb')">🥤 GHB/GBL</button>
+                    </div>
                 </div>
             </div>
             
-            <button class="tab-btn" onclick="showCalculator('tolerance')">⚖️ General Tolerance</button>
+            <button class="tab-btn" onclick="showCalculator('tolerance')">⚖️ Tolerance Calculator</button>
         </div>
 
         <!-- Mobile overlay -->
@@ -991,7 +1032,7 @@
         <!-- MDMA Calculator -->
         <div id="mdma" class="calculator-section">
             <h2>💊 MDMA Dose Calculator</h2>
-            <p>Calculate MDMA dosage based on body weight and desired intensity</p>
+            <p>Calculate MDMA dosage based on body weight, experience, and individual factors with enhanced safety considerations</p>
 
             <div class="form-grid">
                 <div class="input-group">
@@ -1005,16 +1046,17 @@
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
+                        <option value="other">Other/Prefer not to say</option>
                     </select>
                 </div>
 
                 <div class="input-group">
-                    <label for="mdma-experience" class="tooltip" data-tooltip="Your experience level with MDMA">Experience Level:</label>
+                    <label for="mdma-experience" class="tooltip" data-tooltip="Your experience level with MDMA affects recommended dosage">Experience Level:</label>
                     <select id="mdma-experience">
                         <option value="">Select Experience</option>
-                        <option value="beginner">Beginner</option>
-                        <option value="experienced">Experienced</option>
-                        <option value="expert">Expert</option>
+                        <option value="beginner">Beginner (0-2 times)</option>
+                        <option value="experienced">Experienced (3-10 times)</option>
+                        <option value="expert">Expert (10+ times)</option>
                     </select>
                 </div>
 
@@ -1022,10 +1064,26 @@
                     <label for="mdma-intensity">Desired Intensity:</label>
                     <select id="mdma-intensity">
                         <option value="">Select Intensity</option>
-                        <option value="threshold">Threshold (mild)</option>
-                        <option value="light">Light</option>
-                        <option value="common">Common</option>
-                        <option value="strong">Strong</option>
+                        <option value="threshold">Threshold (mild effects)</option>
+                        <option value="light">Light (noticeable effects)</option>
+                        <option value="common">Common (full experience)</option>
+                        <option value="strong">Strong (intense experience)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="mdma-last-use" class="tooltip" data-tooltip="Time since last MDMA use affects tolerance and safety">Days since last MDMA use:</label>
+                    <input type="number" id="mdma-last-use" placeholder="e.g., 90" min="0" value="90">
+                </div>
+
+                <div class="input-group">
+                    <label for="mdma-setting">Setting/Environment:</label>
+                    <select id="mdma-setting">
+                        <option value="">Select Setting</option>
+                        <option value="home">Home/Private setting</option>
+                        <option value="club">Club/Rave</option>
+                        <option value="festival">Festival/Outdoor</option>
+                        <option value="therapy">Therapeutic setting</option>
                     </select>
                 </div>
             </div>
@@ -1039,10 +1097,10 @@
             </div>
         </div>
 
-        <!-- LSD Calculator -->
+        <!-- Enhanced LSD Calculator -->
         <div id="lsd" class="calculator-section">
             <h2>🌈 LSD Dose Calculator</h2>
-            <p>Calculate LSD dosage based on body weight, gender, and desired intensity</p>
+            <p>Calculate LSD dosage with enhanced safety considerations and detailed experience information</p>
 
             <div class="form-grid">
                 <div class="input-group">
@@ -1056,16 +1114,17 @@
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
+                        <option value="other">Other/Prefer not to say</option>
                     </select>
                 </div>
 
                 <div class="input-group">
-                    <label for="lsd-experience">Experience Level:</label>
+                    <label for="lsd-experience">Psychedelic Experience:</label>
                     <select id="lsd-experience">
                         <option value="">Select Experience</option>
-                        <option value="beginner">Beginner</option>
-                        <option value="experienced">Experienced</option>
-                        <option value="expert">Expert</option>
+                        <option value="beginner">Beginner (0-2 psychedelic experiences)</option>
+                        <option value="experienced">Experienced (3-15 experiences)</option>
+                        <option value="expert">Expert (15+ experiences)</option>
                     </select>
                 </div>
 
@@ -1073,12 +1132,28 @@
                     <label for="lsd-intensity">Desired Intensity:</label>
                     <select id="lsd-intensity">
                         <option value="">Select Intensity</option>
-                        <option value="microdose">Microdose</option>
-                        <option value="threshold">Threshold</option>
-                        <option value="light">Light</option>
-                        <option value="common">Common</option>
-                        <option value="strong">Strong</option>
-                        <option value="heavy">Heavy</option>
+                        <option value="microdose">Microdose (sub-perceptual)</option>
+                        <option value="threshold">Threshold (barely perceptible)</option>
+                        <option value="light">Light (clear effects)</option>
+                        <option value="common">Common (full experience)</option>
+                        <option value="strong">Strong (intense experience)</option>
+                        <option value="heavy">Heavy (overwhelming intensity)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="lsd-last-psychedelic" class="tooltip" data-tooltip="Time since last psychedelic use affects tolerance">Days since last psychedelic:</label>
+                    <input type="number" id="lsd-last-psychedelic" placeholder="e.g., 14" min="0" value="14">
+                </div>
+
+                <div class="input-group">
+                    <label for="lsd-setting">Setting/Environment:</label>
+                    <select id="lsd-setting">
+                        <option value="">Select Setting</option>
+                        <option value="home">Home/Safe indoor space</option>
+                        <option value="nature">Nature/Outdoor setting</option>
+                        <option value="controlled">Controlled/Therapeutic setting</option>
+                        <option value="festival">Festival/Social gathering</option>
                     </select>
                 </div>
             </div>
@@ -1324,9 +1399,9 @@
             </div>
         </div>
 
-        <!-- General Tolerance Calculator -->
+        <!-- Tolerance Calculator -->
         <div id="tolerance" class="calculator-section">
-            <h2>⚖️ General Tolerance Calculator</h2>
+            <h2>⚖️ Tolerance Calculator</h2>
             <p>Calculate how much you need to take for the same effect based on previous dose and time elapsed</p>
 
             <div class="form-grid">
@@ -1974,141 +2049,463 @@
             resultDiv.style.display = 'block';
         }
 
-        // MDMA calculator
+        // Enhanced MDMA calculator
         function calculateMDMA() {
             const weight = parseFloat(document.getElementById('mdma-weight').value);
             const gender = document.getElementById('mdma-gender').value;
             const experience = document.getElementById('mdma-experience').value;
             const intensity = document.getElementById('mdma-intensity').value;
+            const lastUse = parseFloat(document.getElementById('mdma-last-use').value) || 90;
+            const setting = document.getElementById('mdma-setting').value;
             const resultValue = document.getElementById('mdma-result-value');
             const resultDetails = document.getElementById('mdma-details');
             const resultDiv = document.getElementById('mdma-result');
 
-            if (!validateWeight(weight) || !gender || !experience || !intensity) {
+            if (!validateWeight(weight) || !gender || !experience || !intensity || !setting) {
                 resultValue.innerHTML = 'Please fill in all fields with valid values.';
                 resultDetails.innerHTML = '';
                 resultDiv.style.display = 'block';
                 return;
             }
 
+            // Enhanced dosage calculation based on research
             const intensityDoses = {
-                'threshold': { base: 0.8, max: 1.0 },
-                'light': { base: 1.0, max: 1.3 },
-                'common': { base: 1.3, max: 1.7 },
-                'strong': { base: 1.7, max: 2.5 }
+                'threshold': { base: 0.8, max: 1.0 },  // 56-70mg for 70kg
+                'light': { base: 1.0, max: 1.3 },      // 70-91mg for 70kg
+                'common': { base: 1.3, max: 1.7 },     // 91-119mg for 70kg
+                'strong': { base: 1.7, max: 2.2 }      // 119-154mg for 70kg
             };
 
             const experienceMultiplier = {
-                'beginner': 0.8,
-                'experienced': 1.0,
-                'expert': 1.1
+                'beginner': 0.75,     // Lower dose for safety
+                'experienced': 1.0,   // Standard dose
+                'expert': 1.1         // Slightly higher due to tolerance
             };
 
-            const genderMultiplier = getGenderMultiplier(gender, 'mdma');
-            const baseDose = weight * intensityDoses[intensity].base * genderMultiplier * experienceMultiplier[experience];
-            const maxDose = weight * intensityDoses[intensity].max * genderMultiplier * experienceMultiplier[experience];
+            // Gender-based metabolism differences
+            const genderMultiplier = {
+                'male': 1.0,
+                'female': 0.83,       // Lower dose due to typically lower body water content
+                'other': 0.9          // Conservative approach
+            };
 
-            // Safety caps
-            const absoluteMax = Math.min(200, weight * 2.5);
-            const safeDose = Math.min(baseDose, absoluteMax);
-            const safeMaxDose = Math.min(maxDose, absoluteMax);
+            // Setting-based adjustments for safety
+            const settingMultiplier = {
+                'home': 1.0,          // Safest environment
+                'therapy': 0.9,       // Therapeutic doses are typically lower
+                'club': 0.85,         // High-energy environment, risk of overheating
+                'festival': 0.8       // Outdoor, physical activity, dehydration risk
+            };
 
+            // Calculate base dose
+            let baseDose = weight * intensityDoses[intensity].base;
+            let maxDose = weight * intensityDoses[intensity].max;
+
+            // Apply multipliers
+            baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting];
+            maxDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting];
+
+            // Tolerance factor based on time since last use
+            let toleranceFactor = 1.0;
+            if (lastUse < 30) {
+                toleranceFactor = 1.4; // Significant tolerance
+            } else if (lastUse < 60) {
+                toleranceFactor = 1.2; // Moderate tolerance
+            } else if (lastUse < 90) {
+                toleranceFactor = 1.1; // Mild tolerance
+            }
+
+            baseDose *= toleranceFactor;
+            maxDose *= toleranceFactor;
+
+            // Safety caps (absolute maximum limits)
+            const absoluteMaxByWeight = Math.min(200, weight * 2.5);
+            const safeDose = Math.min(baseDose, absoluteMaxByWeight);
+            const safeMaxDose = Math.min(maxDose, absoluteMaxByWeight);
+
+            // Generate warnings based on multiple factors
             let warnings = '';
-            if (safeDose > 150) {
-                warnings += showWarning('High dose - exercise extreme caution! Consider reducing dose.', 'danger');
+            let riskLevel = 'low';
+
+            // Dose-based warnings
+            if (safeDose > 180) {
+                warnings += showWarning('EXTREMELY HIGH DOSE - Serious risk of hyperthermia, serotonin syndrome, and cardiovascular issues!', 'danger');
+                riskLevel = 'extreme';
+            } else if (safeDose > 150) {
+                warnings += showWarning('Very high dose - Exercise extreme caution! Have medical support available.', 'danger');
+                riskLevel = 'high';
             } else if (safeDose > 120) {
-                warnings += showWarning('Moderate-high dose - be careful and stay hydrated.');
+                warnings += showWarning('Moderate-high dose - Stay hydrated, monitor body temperature, have a sober friend present.');
+                riskLevel = 'moderate';
             }
 
+            // Experience-based warnings
             if (experience === 'beginner' && intensity === 'strong') {
-                warnings += showWarning('Strong doses not recommended for beginners. Consider starting with a lower intensity.');
+                warnings += showWarning('Strong doses not recommended for beginners. Consider starting with light or common intensity.');
             }
 
-            resultValue.innerHTML = `${Math.round(safeDose)} - ${Math.round(safeMaxDose)} mg`;
+            // Frequency-based warnings
+            if (lastUse < 30) {
+                warnings += showWarning('VERY RECENT USE - High risk of neurotoxicity and reduced effects. Wait at least 3 months between uses!', 'danger');
+            } else if (lastUse < 90) {
+                warnings += showWarning('Recent use detected - Consider waiting longer for full serotonin recovery (3+ months recommended).');
+            }
+
+            // Setting-based warnings
+            if (setting === 'club' || setting === 'festival') {
+                warnings += showWarning('High-energy environment - Extra attention to hydration, cooling, and electrolyte balance required.');
+            }
+
+            // Calculate redose recommendation
+            const redose = Math.round(safeDose * 0.4); // 40% of initial dose
+            const totalSessionDose = safeDose + redose;
+
+            // Duration and timeline information
+            const timeline = {
+                onset: '30-60 minutes',
+                peak: '1.5-2.5 hours after onset',
+                duration: '4-6 hours total',
+                redoseWindow: '1.5-2 hours after initial dose'
+            };
+
+            // Risk color coding
+            const riskColors = {
+                'low': '#10b981',      // Green
+                'moderate': '#f59e0b', // Orange
+                'high': '#ef4444',     // Red
+                'extreme': '#7c2d12'   // Dark red
+            };
+
+            resultValue.innerHTML = `<span style="color: ${riskColors[riskLevel]}">${Math.round(safeDose)}mg</span>`;
+            
             resultDetails.innerHTML = `
-                <p><strong>Initial dose:</strong> ${Math.round(safeDose)} mg</p>
-                <p><strong>Optional redose:</strong> ${Math.round(safeDose * 0.5)} mg (after 1.5-2 hours)</p>
-                <p><strong>Total session:</strong> ≤ ${Math.round(safeMaxDose)} mg</p>
-                <div class="scientific-note">
-                    <strong>Safety Guidelines:</strong><br>
-                    • Wait at least 3 months between uses<br>
-                    • Stay hydrated but don't overdrink<br>
-                    • Test your substance with reagents<br>
-                    • Have a trusted sober friend present
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">💊 Dosage Information</h4>
+                        <p><strong>Initial dose:</strong> ${Math.round(safeDose)}mg</p>
+                        <p><strong>Optional redose:</strong> ${redose}mg (if needed)</p>
+                        <p><strong>Max session total:</strong> ${Math.round(totalSessionDose)}mg</p>
+                        <p><strong>Dose per kg:</strong> ${(safeDose/weight).toFixed(1)}mg/kg</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">⏱️ Timeline</h4>
+                        <p><strong>Onset:</strong> ${timeline.onset}</p>
+                        <p><strong>Peak effects:</strong> ${timeline.peak}</p>
+                        <p><strong>Total duration:</strong> ${timeline.duration}</p>
+                        <p><strong>Redose window:</strong> ${timeline.redoseWindow}</p>
+                    </div>
                 </div>
+                
+                <div style="background: var(--background-secondary); padding: 1.25rem; border-radius: var(--radius-md); margin: 1.5rem 0;">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">🛡️ Safety Guidelines for ${setting.charAt(0).toUpperCase() + setting.slice(1)} Setting</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>Before:</strong><br>
+                            • Test your substance with reagents<br>
+                            • Eat a light meal 2-3 hours prior<br>
+                            • Get adequate sleep the night before<br>
+                            • Avoid alcohol and other drugs
+                        </div>
+                        <div>
+                            <strong>During:</strong><br>
+                            • Stay hydrated (but don't overdrink)<br>
+                            • Take breaks in cool areas<br>
+                            • Have a trusted sober friend present<br>
+                            • Monitor body temperature
+                        </div>
+                        <div>
+                            <strong>After:</strong><br>
+                            • Get plenty of rest<br>
+                            • Eat nutritious foods<br>
+                            • Consider 5-HTP supplementation<br>
+                            • Wait at least 3 months before next use
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scientific-note">
+                    <strong>Enhanced Calculation Factors:</strong><br>
+                    • Weight-based dosing: ${(intensityDoses[intensity].base).toFixed(1)}-${(intensityDoses[intensity].max).toFixed(1)}mg/kg base range<br>
+                    • Experience adjustment: ${(experienceMultiplier[experience] * 100).toFixed(0)}% of standard dose<br>
+                    • Gender metabolic factor: ${(genderMultiplier[gender] * 100).toFixed(0)}% adjustment<br>
+                    • Setting safety factor: ${(settingMultiplier[setting] * 100).toFixed(0)}% adjustment<br>
+                    • Tolerance consideration: ${(toleranceFactor * 100).toFixed(0)}% increase (${lastUse} days since last use)<br>
+                    • Risk level: <strong style="color: ${riskColors[riskLevel]}">${riskLevel.toUpperCase()}</strong>
+                </div>
+                
                 ${warnings}
             `;
             resultDiv.style.display = 'block';
         }
 
-        // LSD calculator
+        // Enhanced LSD calculator
         function calculateLSD() {
             const weight = parseFloat(document.getElementById('lsd-weight').value);
             const gender = document.getElementById('lsd-gender').value;
             const experience = document.getElementById('lsd-experience').value;
             const intensity = document.getElementById('lsd-intensity').value;
+            const lastPsychedelic = parseFloat(document.getElementById('lsd-last-psychedelic').value) || 14;
+            const setting = document.getElementById('lsd-setting').value;
             const resultValue = document.getElementById('lsd-result-value');
             const resultDetails = document.getElementById('lsd-details');
             const resultDiv = document.getElementById('lsd-result');
 
-            if (!validateWeight(weight) || !gender || !experience || !intensity) {
+            if (!validateWeight(weight) || !gender || !experience || !intensity || !setting) {
                 resultValue.innerHTML = 'Please fill in all fields with valid values.';
                 resultDetails.innerHTML = '';
                 resultDiv.style.display = 'block';
                 return;
             }
 
+            // Enhanced dosage calculation with more precise ranges
             const intensityDoses = {
-                'microdose': { dose: 10 },
-                'threshold': { dose: 25 },
-                'light': { dose: 50 },
-                'common': { dose: 100 },
-                'strong': { dose: 200 },
-                'heavy': { dose: 300 }
+                'microdose': { dose: 8, range: '5-12' },      // Sub-perceptual
+                'threshold': { dose: 25, range: '20-30' },    // Barely noticeable
+                'light': { dose: 50, range: '40-75' },        // Clear psychedelic effects
+                'common': { dose: 100, range: '75-150' },     // Full LSD experience
+                'strong': { dose: 200, range: '150-300' },    // Strong visuals and headspace
+                'heavy': { dose: 350, range: '300-500' }      // Overwhelming intensity
             };
 
             const experienceMultiplier = {
-                'beginner': 0.7,
-                'experienced': 1.0,
-                'expert': 1.2
+                'beginner': 0.7,      // Conservative for safety
+                'experienced': 1.0,   // Standard dosing
+                'expert': 1.15        // Can handle slightly higher doses
             };
 
-            const genderMultiplier = getGenderMultiplier(gender, 'lsd');
-            let dose = intensityDoses[intensity].dose * genderMultiplier * experienceMultiplier[experience];
+            // Gender-based sensitivity differences (minimal for LSD)
+            const genderMultiplier = {
+                'male': 1.0,
+                'female': 0.92,       // Slightly higher sensitivity reported
+                'other': 0.95         // Conservative approach
+            };
 
-            // Weight adjustment for LSD (minimal effect)
-            const weightFactor = weight / 70; // 70kg reference
-            dose *= Math.pow(weightFactor, 0.3); // Weak weight dependence
+            // Setting-based adjustments for safety and appropriateness
+            const settingMultiplier = {
+                'controlled': 1.0,    // Therapeutic/controlled setting
+                'home': 0.95,         // Safe but less controlled
+                'nature': 0.9,        // Beautiful but potentially challenging
+                'festival': 0.8       // Stimulating but potentially overwhelming
+            };
 
-            let warnings = '';
-            if (dose > 250) {
-                warnings += showWarning('Very high dose - serious psychological risks!', 'danger');
-            } else if (dose > 150) {
-                warnings += showWarning('High dose - ensure safe environment and experienced trip sitter.');
+            // Calculate base dose
+            let dose = intensityDoses[intensity].dose;
+
+            // Apply multipliers
+            dose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting];
+
+            // Minimal weight adjustment for LSD (weak correlation)
+            const weightFactor = Math.pow(weight / 70, 0.25); // Very weak weight dependence
+            dose *= weightFactor;
+
+            // Tolerance factor based on time since last psychedelic use
+            let toleranceFactor = 1.0;
+            if (lastPsychedelic < 3) {
+                toleranceFactor = 2.5;  // Very high tolerance
+            } else if (lastPsychedelic < 7) {
+                toleranceFactor = 1.8;  // High tolerance
+            } else if (lastPsychedelic < 14) {
+                toleranceFactor = 1.3;  // Moderate tolerance
             }
 
+            dose *= toleranceFactor;
+
+            // Safety caps
+            const maxSafeDose = intensity === 'microdose' ? 15 : 
+                               intensity === 'threshold' ? 40 :
+                               intensity === 'light' ? 100 :
+                               intensity === 'common' ? 200 :
+                               intensity === 'strong' ? 350 : 500;
+
+            dose = Math.min(dose, maxSafeDose);
+
+            // Generate warnings and risk assessment
+            let warnings = '';
+            let riskLevel = 'low';
+
+            // Dose-based warnings
+            if (dose > 300) {
+                warnings += showWarning('VERY HIGH DOSE - Risk of overwhelming experience, panic, and dangerous behavior!', 'danger');
+                riskLevel = 'extreme';
+            } else if (dose > 200) {
+                warnings += showWarning('High dose - Intense experience likely. Ensure experienced sitter present.', 'danger');
+                riskLevel = 'high';
+            } else if (dose > 150) {
+                warnings += showWarning('Strong dose - Significant psychedelic effects. Safe environment essential.');
+                riskLevel = 'moderate';
+            }
+
+            // Experience-based warnings
             if (experience === 'beginner' && ['strong', 'heavy'].includes(intensity)) {
                 warnings += showWarning('High doses not recommended for beginners. Start with threshold or light doses.');
             }
 
-            const duration = intensity === 'microdose' ? '4-6 hours' : 
-                           ['threshold', 'light'].includes(intensity) ? '8-10 hours' : '10-12 hours';
+            // Tolerance-based warnings
+            if (lastPsychedelic < 7) {
+                warnings += showWarning('VERY RECENT PSYCHEDELIC USE - Tolerance is likely very high. Effects may be minimal despite high dose!', 'danger');
+            } else if (lastPsychedelic < 14) {
+                warnings += showWarning('Recent psychedelic use - Tolerance may reduce effects. Consider waiting longer.');
+            }
 
-            resultValue.innerHTML = `${Math.round(dose)} µg`;
+            // Setting-based warnings
+            if (setting === 'festival' && ['common', 'strong', 'heavy'].includes(intensity)) {
+                warnings += showWarning('High doses in festival settings can be overwhelming. Consider lower dose or safer setting.');
+            }
+
+            // Experience timeline based on dose
+            const timeline = {
+                microdose: {
+                    onset: '60-90 minutes',
+                    peak: '3-5 hours',
+                    duration: '6-8 hours',
+                    afterglow: '1-2 days'
+                },
+                threshold: {
+                    onset: '45-75 minutes',
+                    peak: '2-4 hours',
+                    duration: '8-10 hours',
+                    afterglow: '1-2 days'
+                },
+                light: {
+                    onset: '30-60 minutes',
+                    peak: '2-4 hours',
+                    duration: '8-12 hours',
+                    afterglow: '1-3 days'
+                },
+                common: {
+                    onset: '30-60 minutes',
+                    peak: '3-5 hours',
+                    duration: '10-12 hours',
+                    afterglow: '2-4 days'
+                },
+                strong: {
+                    onset: '20-45 minutes',
+                    peak: '4-6 hours',
+                    duration: '12-16 hours',
+                    afterglow: '3-7 days'
+                },
+                heavy: {
+                    onset: '15-30 minutes',
+                    peak: '5-8 hours',
+                    duration: '14-18 hours',
+                    afterglow: '5-10 days'
+                }
+            };
+
+            const currentTimeline = timeline[intensity];
+
+            // Risk color coding
+            const riskColors = {
+                'low': '#10b981',
+                'moderate': '#f59e0b',
+                'high': '#ef4444',
+                'extreme': '#7c2d12'
+            };
+
+            resultValue.innerHTML = `<span style="color: ${riskColors[riskLevel]}">${Math.round(dose)} µg</span>`;
+
             resultDetails.innerHTML = `
-                <p><strong>Expected duration:</strong> ${duration}</p>
-                <p><strong>Onset:</strong> 30-90 minutes</p>
-                <p><strong>Peak:</strong> 2-4 hours after onset</p>
-                <div class="scientific-note">
-                    <strong>Safety Guidelines:</strong><br>
-                    • Use only in a safe, comfortable environment<br>
-                    • Have a trusted, sober trip sitter present<br>
-                    • Avoid mixing with other substances<br>
-                    • Wait at least 2 weeks between uses for tolerance reset
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">💊 Dosage Information</h4>
+                        <p><strong>Recommended dose:</strong> ${Math.round(dose)} µg</p>
+                        <p><strong>Typical range:</strong> ${intensityDoses[intensity].range} µg</p>
+                        <p><strong>Intensity level:</strong> ${intensity.charAt(0).toUpperCase() + intensity.slice(1)}</p>
+                        <p><strong>Risk level:</strong> <span style="color: ${riskColors[riskLevel]}">${riskLevel.toUpperCase()}</span></p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">⏱️ Timeline</h4>
+                        <p><strong>Onset:</strong> ${currentTimeline.onset}</p>
+                        <p><strong>Peak effects:</strong> ${currentTimeline.peak}</p>
+                        <p><strong>Total duration:</strong> ${currentTimeline.duration}</p>
+                        <p><strong>Afterglow:</strong> ${currentTimeline.afterglow}</p>
+                    </div>
                 </div>
+
+                <div style="background: var(--background-secondary); padding: 1.25rem; border-radius: var(--radius-md); margin: 1.5rem 0;">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🧠 Expected Effects for ${intensity.charAt(0).toUpperCase() + intensity.slice(1)} Dose</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        ${getExpectedEffects(intensity)}
+                    </div>
+                </div>
+                
+                <div style="background: var(--background-secondary); padding: 1.25rem; border-radius: var(--radius-md); margin: 1.5rem 0;">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">🛡️ Safety Guidelines for ${setting.charAt(0).toUpperCase() + setting.slice(1)} Setting</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>Preparation:</strong><br>
+                            • Clear schedule for next 24 hours<br>
+                            • Comfortable, safe environment<br>
+                            • Trusted, experienced trip sitter<br>
+                            • Emergency contacts ready
+                        </div>
+                        <div>
+                            <strong>During:</strong><br>
+                            • Stay hydrated with water<br>
+                            • Have light snacks available<br>
+                            • Avoid driving or dangerous activities<br>
+                            • Change setting if uncomfortable
+                        </div>
+                        <div>
+                            <strong>Integration:</strong><br>
+                            • Journal your experience<br>
+                            • Discuss insights with trusted friends<br>
+                            • Wait 2+ weeks before next psychedelic<br>
+                            • Consider therapy if processing is needed
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scientific-note">
+                    <strong>Enhanced Calculation Factors:</strong><br>
+                    • Base dose for ${intensity}: ${intensityDoses[intensity].dose} µg<br>
+                    • Experience adjustment: ${(experienceMultiplier[experience] * 100).toFixed(0)}% of standard dose<br>
+                    • Gender sensitivity factor: ${(genderMultiplier[gender] * 100).toFixed(0)}% adjustment<br>
+                    • Setting safety factor: ${(settingMultiplier[setting] * 100).toFixed(0)}% adjustment<br>
+                    • Weight correlation: ${(weightFactor * 100).toFixed(0)}% (minimal effect)<br>
+                    • Tolerance factor: ${(toleranceFactor * 100).toFixed(0)}% (${lastPsychedelic} days since last psychedelic)
+                </div>
+                
                 ${warnings}
             `;
             resultDiv.style.display = 'block';
+        }
+
+        // Helper function for expected effects
+        function getExpectedEffects(intensity) {
+            const effects = {
+                'microdose': `
+                    <div><strong>Physical:</strong><br>Slight energy increase, enhanced colors</div>
+                    <div><strong>Mental:</strong><br>Improved focus, slight mood lift</div>
+                    <div><strong>Visual:</strong><br>Subtle color enhancement</div>
+                `,
+                'threshold': `
+                    <div><strong>Physical:</strong><br>Light body sensations, mild euphoria</div>
+                    <div><strong>Mental:</strong><br>Slight thought changes, enhanced creativity</div>
+                    <div><strong>Visual:</strong><br>Mild breathing walls, color shifts</div>
+                `,
+                'light': `
+                    <div><strong>Physical:</strong><br>Clear body high, energy fluctuations</div>
+                    <div><strong>Mental:</strong><br>Noticeable thought patterns, mild confusion</div>
+                    <div><strong>Visual:</strong><br>Clear visual distortions, pattern recognition</div>
+                `,
+                'common': `
+                    <div><strong>Physical:</strong><br>Strong body sensations, possible nausea</div>
+                    <div><strong>Mental:</strong><br>Altered thinking, emotional intensity</div>
+                    <div><strong>Visual:</strong><br>Strong visuals, geometric patterns</div>
+                `,
+                'strong': `
+                    <div><strong>Physical:</strong><br>Intense body load, temperature changes</div>
+                    <div><strong>Mental:</strong><br>Deep introspection, ego dissolution</div>
+                    <div><strong>Visual:</strong><br>Complex visuals, reality distortion</div>
+                `,
+                'heavy': `
+                    <div><strong>Physical:</strong><br>Overwhelming sensations, motor impairment</div>
+                    <div><strong>Mental:</strong><br>Complete ego loss, mystical experiences</div>
+                    <div><strong>Visual:</strong><br>Total visual replacement, entity contact</div>
+                `
+            };
+            return effects[intensity] || '';
         }
 
         // Enhanced ketamine tolerance calculator
