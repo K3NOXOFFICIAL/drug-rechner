@@ -3,42 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XTCalc Enhanced - Drug Calculator Suite</title>
+    <title>K3NOX Drug Calc - Drug Calculator Suite</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Comprehensive drug calculator suite for harm reduction education and scientific research. Calculate dosages for MDMA, LSD, Ketamine, GHB, and more with advanced tolerance modeling and safety features.">
     <meta name="keywords" content="drug calculator, harm reduction, dosage calculator, tolerance calculator, MDMA calculator, LSD calculator, ketamine calculator, substance safety, pharmacology">
-    <meta name="author" content="XTCalc Enhanced">
+    <meta name="author" content="K3NOX Drug Calc">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-domain.com/">
-    <meta property="og:title" content="XTCalc Enhanced - Drug Calculator Suite">
+    <meta property="og:url" content="https://k3noxofficial.github.io/drug-rechner/">
+    <meta property="og:title" content="K3NOX Drug Calc - Drug Calculator Suite">
     <meta property="og:description" content="🧮 Comprehensive drug calculator suite for harm reduction education and scientific research. Features advanced tolerance modeling, safety warnings, and interactive graphs for 8+ substances.">
-    <meta property="og:image" content="https://your-domain.com/preview-image.png">
+    <meta property="og:image" content="https://k3noxofficial.github.io/drug-rechner/preview-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="XTCalc Enhanced">
+    <meta property="og:site_name" content="K3NOX Drug Calc">
     <meta property="og:locale" content="en_US">
     
     <!-- Twitter Card -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://your-domain.com/">
-    <meta property="twitter:title" content="XTCalc Enhanced - Drug Calculator Suite">
+    <meta property="twitter:url" content="https://k3noxofficial.github.io/drug-rechner/">
+    <meta property="twitter:title" content="K3NOX Drug Calc - Drug Calculator Suite">
     <meta property="twitter:description" content="🧮 Comprehensive drug calculator suite for harm reduction education and scientific research. Features advanced tolerance modeling, safety warnings, and interactive graphs for 8+ substances.">
-    <meta property="twitter:image" content="https://your-domain.com/preview-image.png">
-    <meta property="twitter:image:alt" content="XTCalc Enhanced - Drug Calculator Suite Interface">
+    <meta property="twitter:image" content="https://k3noxofficial.github.io/drug-rechner/preview-image.png">
+    <meta property="twitter:image:alt" content="K3NOX Drug Calc - Drug Calculator Suite Interface">
     
     <!-- WhatsApp / Telegram specific -->
-    <meta name="telegram:channel" content="@xtcalc">
+    <meta name="telegram:channel" content="@k3noxofficial">
     
     <!-- Additional Meta Tags -->
     <meta name="theme-color" content="#667eea">
     <meta name="msapplication-TileColor" content="#667eea">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="XTCalc Enhanced">
+    <meta name="apple-mobile-web-app-title" content="K3NOX Drug Calc">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
@@ -49,16 +49,16 @@
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "XTCalc Enhanced - Drug Calculator Suite",
+        "name": "K3NOX Drug Calc - Drug Calculator Suite",
         "description": "Comprehensive drug calculator suite for harm reduction education and scientific research with advanced tolerance modeling and safety features.",
-        "url": "https://your-domain.com/",
+        "url": "https://k3noxofficial.github.io/drug-rechner/",
         "applicationCategory": "HealthApplication",
         "operatingSystem": "Any",
         "permissions": "none",
         "isAccessibleForFree": true,
         "creator": {
             "@type": "Organization",
-            "name": "XTCalc Enhanced"
+            "name": "K3NOX Drug Calc"
         },
         "audience": {
             "@type": "Audience",
@@ -156,64 +156,128 @@
             box-shadow: 0 5px 15px rgba(255,107,107,0.4);
         }
         
-        .dropdown {
+        .dose-calculators {
             position: relative;
             display: inline-block;
             z-index: 9999;
         }
         
-        .dropdown-content {
+        .dose-menu {
             display: none;
             position: absolute;
             background: rgba(255,255,255,0.98);
             backdrop-filter: blur(15px);
-            min-width: 250px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            border-radius: 15px;
+            min-width: 280px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+            border-radius: 20px;
             z-index: 9999;
             top: 100%;
             left: 50%;
             transform: translateX(-50%);
-            margin-top: 10px;
-            border: 2px solid rgba(255,255,255,0.4);
-            max-height: 400px;
-            overflow-y: auto;
+            margin-top: 15px;
+            border: 2px solid rgba(255,255,255,0.5);
+            padding: 10px;
+            animation: slideDown 0.3s ease;
         }
         
-        .dropdown-content a {
+        .dose-menu.show {
+            display: block;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        
+        .dose-menu-item {
             color: #333;
-            padding: 12px 20px;
+            padding: 15px 20px;
             text-decoration: none;
             display: block;
             transition: all 0.3s ease;
-            border-radius: 10px;
-            margin: 5px;
+            border-radius: 12px;
+            margin: 3px 0;
             font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
         }
         
-        .dropdown-content a:hover {
+        .dose-menu-item:hover {
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-            transform: translateY(-1px);
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.3);
         }
         
-        .dropdown-content a.active {
+        .dose-menu-item.active {
             background: linear-gradient(45deg, #ff6b6b, #ee5a52);
             color: white;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
         }
         
-        .dropdown:hover .dropdown-content {
-            display: block;
-            animation: fadeIn 0.3s ease;
+        .dose-toggle {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .dose-toggle:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .dose-toggle.active {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            border-color: #ff6b6b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
         }
         
         .dropdown-arrow {
-            margin-left: 8px;
             transition: transform 0.3s ease;
+            font-size: 0.8rem;
         }
         
-        .dropdown:hover .dropdown-arrow {
+        .dose-calculators.open .dropdown-arrow {
             transform: rotate(180deg);
+        }
+        
+        /* Mobile overlay for better UX */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 9998;
+        }
+        
+        .mobile-overlay.show {
+            display: block;
         }
         
         .calculator-section {
@@ -413,30 +477,44 @@
             .nav-tabs {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
             }
             
-            .tab-btn {
-                width: 200px;
+            .tab-btn, .dose-toggle {
+                width: 220px;
                 text-align: center;
-                margin-bottom: 10px;
+                justify-content: center;
             }
             
-            .dropdown {
+            .dose-calculators {
                 width: 100%;
-            }
-            
-            .dropdown-content {
                 position: static;
-                display: none;
-                transform: none;
-                margin-top: 0;
-                width: 100%;
-                box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
-                background: rgba(255,255,255,0.9);
             }
             
-            .dropdown:hover .dropdown-content {
-                display: block;
+            .dose-menu {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                max-width: 350px;
+                margin-top: 0;
+                max-height: 60vh;
+                overflow-y: auto;
+                border-radius: 25px;
+                padding: 20px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            }
+            
+            .dose-menu-item {
+                padding: 18px 20px;
+                font-size: 1rem;
+                border-radius: 15px;
+                margin: 8px 0;
+            }
+            
+            .dose-menu-item:hover {
+                transform: none;
             }
             
             .form-grid {
@@ -445,6 +523,10 @@
             
             .calculator-section {
                 padding: 20px;
+            }
+            
+            .dropdown-arrow {
+                font-size: 1rem;
             }
         }
         
@@ -542,21 +624,27 @@
         <div class="nav-tabs">
             <button class="tab-btn active" onclick="showCalculator('liquid')">💧 Liquid Dosage</button>
             
-            <div class="dropdown">
-                <button class="tab-btn" id="dose-calc-btn">💊 Dose Calculator <span class="dropdown-arrow">▼</span></button>
-                <div class="dropdown-content">
-                    <a href="#" onclick="showCalculator('mdma'); return false;">💊 MDMA</a>
-                    <a href="#" onclick="showCalculator('lsd'); return false;">🌈 LSD</a>
-                    <a href="#" onclick="showCalculator('ketamine'); return false;">🧠 Ketamine</a>
-                    <a href="#" onclick="showCalculator('ghb'); return false;">🥤 GHB/GBL</a>
-                    <a href="#" onclick="showCalculator('amphetamines'); return false;">⚡ Amphetamines</a>
-                    <a href="#" onclick="showCalculator('cocaine'); return false;">❄️ Cocaine</a>
-                    <a href="#" onclick="showCalculator('4mmc'); return false;">🔥 4-MMC</a>
+            <div class="dose-calculators">
+                <button class="dose-toggle" id="dose-calc-btn" onclick="toggleDoseMenu()">
+                    💊 Dose Calculator 
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="dose-menu" id="dose-menu">
+                    <button class="dose-menu-item" onclick="selectDoseCalculator('mdma')">💊 MDMA</button>
+                    <button class="dose-menu-item" onclick="selectDoseCalculator('lsd')">🌈 LSD</button>
+                    <button class="dose-menu-item" onclick="selectDoseCalculator('ketamine')">🧠 Ketamine</button>
+                    <button class="dose-menu-item" onclick="selectDoseCalculator('ghb')">🥤 GHB/GBL</button>
+                    <button class="dose-menu-item" onclick="selectDoseCalculator('amphetamines')">⚡ Amphetamines</button>
+                    <button class="dose-menu-item" onclick="selectDoseCalculator('cocaine')">❄️ Cocaine</button>
+                    <button class="dose-menu-item" onclick="selectDoseCalculator('4mmc')">🔥 4-MMC</button>
                 </div>
             </div>
             
             <button class="tab-btn" onclick="showCalculator('tolerance')">⚖️ General Tolerance</button>
         </div>
+
+        <!-- Mobile overlay -->
+        <div class="mobile-overlay" id="mobile-overlay" onclick="closeDoseMenu()"></div>
 
         <!-- Liquid Dosage Calculator -->
         <div id="liquid" class="calculator-section active">
@@ -1063,7 +1151,10 @@
     </div>
 
     <script>
-        // Navigation functionality
+        // Global variables for dropdown state
+        let isDoseMenuOpen = false;
+        
+        // Enhanced navigation functionality
         function showCalculator(calculatorId) {
             // Hide all calculators
             const sections = document.querySelectorAll('.calculator-section');
@@ -1077,9 +1168,13 @@
                 tab.classList.remove('active');
             });
             
-            // Remove active class from all dropdown items
-            const dropdownItems = document.querySelectorAll('.dropdown-content a');
-            dropdownItems.forEach(item => {
+            // Remove active class from dose toggle
+            const doseToggle = document.getElementById('dose-calc-btn');
+            doseToggle.classList.remove('active');
+            
+            // Remove active class from all dose menu items
+            const doseMenuItems = document.querySelectorAll('.dose-menu-item');
+            doseMenuItems.forEach(item => {
                 item.classList.remove('active');
             });
             
@@ -1097,14 +1192,95 @@
                 document.querySelector('button[onclick="showCalculator(\'tolerance\')"]').classList.add('active');
             } else if (doseCalculators.includes(calculatorId)) {
                 // Activate dose calculator dropdown button
-                document.getElementById('dose-calc-btn').classList.add('active');
+                doseToggle.classList.add('active');
                 // Also activate the specific dropdown item
-                const dropdownItem = document.querySelector(`a[onclick="showCalculator('${calculatorId}'); return false;"]`);
-                if (dropdownItem) {
-                    dropdownItem.classList.add('active');
+                const activeMenuItem = document.querySelector(`button[onclick="selectDoseCalculator('${calculatorId}')"]`);
+                if (activeMenuItem) {
+                    activeMenuItem.classList.add('active');
                 }
             }
+            
+            // Close dose menu if open
+            closeDoseMenu();
         }
+        
+        // Toggle dose calculator menu
+        function toggleDoseMenu() {
+            const doseMenu = document.getElementById('dose-menu');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            const doseCalculators = document.querySelector('.dose-calculators');
+            
+            if (isDoseMenuOpen) {
+                closeDoseMenu();
+            } else {
+                openDoseMenu();
+            }
+        }
+        
+        // Open dose menu
+        function openDoseMenu() {
+            const doseMenu = document.getElementById('dose-menu');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            const doseCalculators = document.querySelector('.dose-calculators');
+            
+            doseMenu.classList.add('show');
+            doseCalculators.classList.add('open');
+            
+            // Show overlay on mobile
+            if (window.innerWidth <= 768) {
+                mobileOverlay.classList.add('show');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+            
+            isDoseMenuOpen = true;
+        }
+        
+        // Close dose menu
+        function closeDoseMenu() {
+            const doseMenu = document.getElementById('dose-menu');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            const doseCalculators = document.querySelector('.dose-calculators');
+            
+            doseMenu.classList.remove('show');
+            mobileOverlay.classList.remove('show');
+            doseCalculators.classList.remove('open');
+            document.body.style.overflow = ''; // Re-enable scrolling
+            
+            isDoseMenuOpen = false;
+        }
+        
+        // Select dose calculator from menu
+        function selectDoseCalculator(calculatorId) {
+            showCalculator(calculatorId);
+            closeDoseMenu();
+        }
+        
+        // Close menu when clicking outside (for desktop)
+        document.addEventListener('click', function(event) {
+            const doseCalculators = document.querySelector('.dose-calculators');
+            const isClickInside = doseCalculators.contains(event.target);
+            
+            if (!isClickInside && isDoseMenuOpen && window.innerWidth > 768) {
+                closeDoseMenu();
+            }
+        });
+        
+        // Handle escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && isDoseMenuOpen) {
+                closeDoseMenu();
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && isDoseMenuOpen) {
+                // Remove mobile overlay if window becomes larger
+                const mobileOverlay = document.getElementById('mobile-overlay');
+                mobileOverlay.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
 
         // Utility functions
         function showWarning(message, type = 'warning') {
