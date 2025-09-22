@@ -1045,6 +1045,16 @@
                 </div>
 
                 <div class="input-group">
+                    <label for="mdma-height" class="tooltip" data-tooltip="Height is used to calculate BMI for safer dosing">Height (cm) - Optional:</label>
+                    <input type="number" id="mdma-height" placeholder="e.g., 175" min="140" max="220">
+                </div>
+
+                <div class="input-group">
+                    <label for="mdma-age" class="tooltip" data-tooltip="Age affects metabolism and safety considerations">Age (years) - Optional:</label>
+                    <input type="number" id="mdma-age" placeholder="e.g., 25" min="18" max="80">
+                </div>
+
+                <div class="input-group">
                     <label for="mdma-gender">Gender:</label>
                     <select id="mdma-gender">
                         <option value="">Select Gender</option>
@@ -1088,6 +1098,23 @@
                         <option value="club">Club/Rave</option>
                         <option value="festival">Festival/Outdoor</option>
                         <option value="therapy">Therapeutic setting</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="mdma-medications" class="tooltip" data-tooltip="Current medications can interact dangerously with MDMA">Current Medications:</label>
+                    <select id="mdma-medications">
+                        <option value="">Select if taking medications</option>
+                        <option value="none">No medications</option>
+                        <option value="ssri">SSRI Antidepressants (Prozac, Zoloft, etc.)</option>
+                        <option value="snri">SNRI Antidepressants (Effexor, Cymbalta, etc.)</option>
+                        <option value="maoi">MAOI Antidepressants (Nardil, Parnate, etc.)</option>
+                        <option value="tricyclic">Tricyclic Antidepressants (Elavil, etc.)</option>
+                        <option value="lithium">Lithium (mood stabilizer)</option>
+                        <option value="tramadol">Tramadol (pain medication)</option>
+                        <option value="dxm">DXM (cough medicine)</option>
+                        <option value="other_serotonin">Other serotonergic medications</option>
+                        <option value="other">Other medications (specify in notes)</option>
                     </select>
                 </div>
             </div>
@@ -2298,6 +2325,184 @@
             return weight >= 40 && weight <= 150;
         }
 
+        function calculateBMI(weight, height) {
+            if (!height || height <= 0) return null;
+            return weight / ((height / 100) * (height / 100));
+        }
+
+        function getBMIMultiplier(bmi) {
+            if (!bmi) return 1.0;
+            
+            if (bmi < 16) {
+                return 0.7; // Severely underweight - reduce dose significantly
+            } else if (bmi < 18.5) {
+                return 0.85; // Underweight - reduce dose moderately
+            } else if (bmi >= 35) {
+                return 1.15; // Severely obese - may need slightly higher dose
+            } else if (bmi >= 30) {
+                return 1.05; // Obese - may need slightly higher dose
+            }
+            return 1.0; // Normal BMI range
+        }
+
+        function getBMIWarning(bmi) {
+            if (!bmi) return '';
+            
+            if (bmi < 16) {
+                return showWarning('Severely underweight BMI detected - doses reduced significantly. Consider medical consultation.', 'danger');
+            } else if (bmi < 18.5) {
+                return showWarning('Underweight BMI detected - doses reduced for safety.');
+            } else if (bmi >= 35) {
+                return showWarning('High BMI detected - metabolism may differ. Monitor effects carefully.');
+            } else if (bmi >= 30) {
+                return showWarning('Elevated BMI detected - body composition affects drug distribution.');
+            }
+            return '';
+        }
+
+        function checkMedicationInteractions(substance, medications) {
+            if (!medications || medications === 'none') return { blocked: false, warning: '' };
+            
+            const dangerousInteractions = {
+                'mdma': ['ssri', 'snri', 'maoi', 'tricyclic', 'lithium', 'tramadol', 'dxm', 'other_serotonin'],
+                '4mmc': ['ssri', 'snri', 'maoi', 'tricyclic', 'lithium', 'tramadol', 'dxm', 'other_serotonin'],
+                'amphetamines': ['maoi', 'tricyclic'],
+                'cocaine': ['maoi']
+            };
+            
+            const interactionMessages = {
+                'ssri': 'SSRI antidepressants block MDMA effects and increase serotonin syndrome risk',
+                'snri': 'SNRI antidepressants block MDMA effects and increase serotonin syndrome risk', 
+                'maoi': 'MAOI antidepressants cause LIFE-THREATENING interactions with most psychoactive substances',
+                'tricyclic': 'Tricyclic antidepressants can cause dangerous cardiovascular interactions',
+                'lithium': 'Lithium significantly increases seizure risk with serotonergic substances',
+                'tramadol': 'Tramadol combined with serotonergic substances causes severe serotonin syndrome',
+                'dxm': 'DXM has dangerous interactions with serotonergic substances',
+                'other_serotonin': 'Other serotonergic medications increase risk of serotonin syndrome'
+            };
+            
+            if (dangerousInteractions[substance] && dangerousInteractions[substance].includes(medications)) {
+                return {
+                    blocked: true,
+                    warning: interactionMessages[medications] || 'Dangerous medication interaction detected'
+                };
+            }
+            
+            return { blocked: false, warning: '' };
+        }
+
+        function getAgeMultiplier(age) {
+            if (!age || age < 18) return 1.0;
+            
+            if (age < 21) {
+                return 0.8; // Young adults - more conservative dosing
+            } else if (age >= 65) {
+                return 0.7; // Elderly - significantly reduced metabolism
+            } else if (age >= 50) {
+                return 0.85; // Middle-aged - somewhat reduced metabolism
+            }
+            return 1.0; // Normal adult range (21-49)
+        }
+
+        function getAgeWarning(age) {
+            if (!age || age < 18) return '';
+            
+            if (age < 21) {
+                return showWarning('Young adult (under 21) - brain still developing. Doses reduced for safety and reduced neurotoxicity risk.');
+            } else if (age >= 65) {
+                return showWarning('Elderly (65+) - significantly reduced metabolism and increased cardiovascular risk. Doses reduced substantially.', 'danger');
+            } else if (age >= 50) {
+                return showWarning('Middle-aged (50+) - metabolism slowing and increased health risks. Monitor carefully.');
+            }
+            return '';
+        }
+
+        function getCrossToleranceWarning(substance, lastUseDays) {
+            const crossToleranceGroups = {
+                'psychedelics': {
+                    substances: ['lsd', 'psilocybin', '2cb', 'mescaline'],
+                    warningDays: 14,
+                    message: 'Psychedelics have strong cross-tolerance. Recent use of other psychedelics may significantly reduce effects.'
+                },
+                'entactogens': {
+                    substances: ['mdma', 'mda', '4mmc', '6apb'],
+                    warningDays: 30,
+                    message: 'Entactogens deplete serotonin and have cross-tolerance. Recent use of MDMA/similar substances increases neurotoxicity risk.'
+                },
+                'stimulants': {
+                    substances: ['amphetamine', 'dextroamphetamine', 'methamphetamine', 'cocaine'],
+                    warningDays: 7,
+                    message: 'Stimulants have partial cross-tolerance and cumulative cardiovascular risks.'
+                },
+                'dissociatives': {
+                    substances: ['ketamine', 'dxm', 'pcp', '3meopcp'],
+                    warningDays: 10,
+                    message: 'Dissociatives have cross-tolerance and cumulative effects on bladder/urinary system.'
+                },
+                'depressants': {
+                    substances: ['ghb', 'gbl', 'phenibut', 'alcohol'],
+                    warningDays: 3,
+                    message: 'Depressants have dangerous cross-tolerance and respiratory depression risks.'
+                },
+                'opioids': {
+                    substances: ['morphine', 'oxycodone', 'tramadol', 'kratom'],
+                    warningDays: 7,
+                    message: 'Opioids have strong cross-tolerance and cumulative dependence risks.'
+                }
+            };
+
+            // Check if the substance belongs to any cross-tolerance group
+            for (const [groupName, group] of Object.entries(crossToleranceGroups)) {
+                if (group.substances.includes(substance) && lastUseDays < group.warningDays) {
+                    return showWarning(`Cross-tolerance warning: ${group.message}`, 'danger');
+                }
+            }
+
+            return '';
+        }
+
+        function getEmergencyProtocols(substance) {
+            const protocols = {
+                'mdma': {
+                    symptoms: 'Hyperthermia, rapid heartbeat, confusion, seizures, muscle rigidity',
+                    immediate: 'Cool the person down, remove excess clothing, apply cool water to skin',
+                    antidotes: 'No specific antidote - supportive care only',
+                    avoid: 'Do not give ice baths (too cold too fast), avoid more stimulants',
+                    call911: 'Temperature >103°F (39.4°C), seizures, unconsciousness, irregular heartbeat'
+                },
+                'lsd': {
+                    symptoms: 'Panic, anxiety, dangerous behavior, hyperthermia, seizures (rare)',
+                    immediate: 'Calm environment, reassurance, stay with person, prevent self-harm',
+                    antidotes: 'Benzodiazepines for severe anxiety/panic',
+                    avoid: 'Do not restrain unless absolutely necessary, avoid loud noises/bright lights',
+                    call911: 'Seizures, hyperthermia, violence toward self/others, medical complications'
+                },
+                'ketamine': {
+                    symptoms: 'Respiratory depression, loss of consciousness, vomiting, hypothermia',
+                    immediate: 'Recovery position if unconscious, ensure airway clear, monitor breathing',
+                    antidotes: 'No specific antidote - supportive care and oxygen',
+                    avoid: 'Do not leave person alone if unconscious, avoid stimulants',
+                    call911: 'Stopped/slow breathing, blue lips/fingernails, unresponsive, persistent vomiting'
+                },
+                'cocaine': {
+                    symptoms: 'Chest pain, irregular heartbeat, seizures, hyperthermia, stroke',
+                    immediate: 'Cool down, give aspirin if conscious and no bleeding, monitor vitals',
+                    antidotes: 'Benzodiazepines for agitation/seizures, aspirin for heart attack',
+                    avoid: 'Do not give beta-blockers, avoid ice baths',
+                    call911: 'Chest pain, difficulty breathing, seizures, stroke symptoms, unconsciousness'
+                },
+                'ghb': {
+                    symptoms: 'Respiratory depression, unconsciousness, vomiting, bradycardia',
+                    immediate: 'Recovery position, ensure airway clear, DO NOT induce vomiting',
+                    antidotes: 'No specific antidote - supportive care only',
+                    avoid: 'Do not give stimulants, do not leave alone if unconscious',
+                    call911: 'Unconsciousness, slow/stopped breathing, blue color, unresponsive'
+                }
+            };
+
+            return protocols[substance] || null;
+        }
+
         function getGenderMultiplier(gender, substance) {
             const multipliers = {
                 'mdma': { male: 1.0, female: 0.85 },
@@ -2333,11 +2538,14 @@
         // Enhanced MDMA calculator
         function calculateMDMA() {
             const weight = parseFloat(document.getElementById('mdma-weight').value);
+            const height = parseFloat(document.getElementById('mdma-height').value) || null;
+            const age = parseFloat(document.getElementById('mdma-age').value) || null;
             const gender = document.getElementById('mdma-gender').value;
             const experience = document.getElementById('mdma-experience').value;
             const intensity = document.getElementById('mdma-intensity').value;
             const lastUse = parseFloat(document.getElementById('mdma-last-use').value) || 90;
             const setting = document.getElementById('mdma-setting').value;
+            const medications = document.getElementById('mdma-medications').value;
             const resultValue = document.getElementById('mdma-result-value');
             const resultDetails = document.getElementById('mdma-details');
             const resultDiv = document.getElementById('mdma-result');
@@ -2348,6 +2556,35 @@
                 resultDiv.style.display = 'block';
                 return;
             }
+
+            // Check for dangerous medication interactions
+            const medicationCheck = checkMedicationInteractions('mdma', medications);
+            if (medicationCheck.blocked) {
+                resultValue.innerHTML = 'CONTRAINDICATED';
+                resultDetails.innerHTML = `
+                    <div style="background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(139, 69, 19, 0.1) 100%); border: 2px solid #8B4513; border-radius: var(--radius-lg); padding: 2rem; margin: 1rem 0; text-align: center;">
+                        <h3 style="color: #8B4513; margin-bottom: 1rem; font-size: 1.5rem;">⚠️ DANGEROUS MEDICATION INTERACTION ⚠️</h3>
+                        <p style="color: var(--text-primary); font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem;">
+                            MDMA + Current Medication = HIGH RISK
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                            ${medicationCheck.warning}
+                        </p>
+                        <p style="color: #8B4513; font-weight: bold;">
+                            Consult with medical professional about drug interactions
+                        </p>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            // Calculate BMI and age factors if provided
+            const bmi = height ? calculateBMI(weight, height) : null;
+            const bmiMultiplier = getBMIMultiplier(bmi);
+            const bmiWarning = getBMIWarning(bmi);
+            const ageMultiplier = getAgeMultiplier(age);
+            const ageWarning = getAgeWarning(age);
 
             // Enhanced dosage calculation based on research
             const intensityDoses = {
@@ -2383,8 +2620,8 @@
             let maxDose = weight * intensityDoses[intensity].max;
 
             // Apply multipliers
-            baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting];
-            maxDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting];
+            baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting] * bmiMultiplier * ageMultiplier;
+            maxDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting] * bmiMultiplier * ageMultiplier;
 
             // Tolerance factor based on time since last use
             let toleranceFactor = 1.0;
@@ -2432,6 +2669,12 @@
                 warnings += showWarning('Recent use detected - Consider waiting longer for full serotonin recovery (3+ months recommended).');
             }
 
+            // Cross-tolerance warning for entactogens
+            const crossToleranceWarning = getCrossToleranceWarning('mdma', lastUse);
+            if (crossToleranceWarning) {
+                warnings += crossToleranceWarning;
+            }
+
             // Setting-based warnings
             if (setting === 'club' || setting === 'festival') {
                 warnings += showWarning('High-energy environment - Extra attention to hydration, cooling, and electrolyte balance required.');
@@ -2448,6 +2691,9 @@
                 duration: '4-6 hours total',
                 redoseWindow: '1.5-2 hours after initial dose'
             };
+
+            // Get emergency protocols
+            const emergencyInfo = getEmergencyProtocols('mdma');
 
             // Risk color coding
             const riskColors = {
@@ -2504,17 +2750,49 @@
                     </div>
                 </div>
                 
+                ${emergencyInfo ? `
+                <div style="background: var(--background-secondary); padding: 1.25rem; border-radius: var(--radius-md); margin: 1.5rem 0; border-left: 4px solid #ef4444;">
+                    <h4 style="color: #ef4444; margin-bottom: 1rem;">🚨 Emergency Protocols for MDMA</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>Warning Signs:</strong><br>
+                            ${emergencyInfo.symptoms}
+                        </div>
+                        <div>
+                            <strong>Immediate Action:</strong><br>
+                            ${emergencyInfo.immediate}
+                        </div>
+                        <div>
+                            <strong>Medical Treatment:</strong><br>
+                            ${emergencyInfo.antidotes}
+                        </div>
+                        <div>
+                            <strong>NEVER Do:</strong><br>
+                            ${emergencyInfo.avoid}
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-sm);">
+                        <strong style="color: #ef4444;">🚨 Call 911 immediately if:</strong><br>
+                        ${emergencyInfo.call911}
+                    </div>
+                </div>
+                ` : ''}
+                
                 <div class="scientific-note">
                     <strong>Enhanced Calculation Factors:</strong><br>
                     • Weight-based dosing: ${(intensityDoses[intensity].base).toFixed(1)}-${(intensityDoses[intensity].max).toFixed(1)}mg/kg base range<br>
                     • Experience adjustment: ${(experienceMultiplier[experience] * 100).toFixed(0)}% of standard dose<br>
                     • Gender metabolic factor: ${(genderMultiplier[gender] * 100).toFixed(0)}% adjustment<br>
                     • Setting safety factor: ${(settingMultiplier[setting] * 100).toFixed(0)}% adjustment<br>
+                    ${bmi ? `• BMI safety factor: ${(bmiMultiplier * 100).toFixed(0)}% adjustment (BMI: ${bmi.toFixed(1)})<br>` : ''}
+                    ${age ? `• Age safety factor: ${(ageMultiplier * 100).toFixed(0)}% adjustment (Age: ${age})<br>` : ''}
                     • Tolerance consideration: ${(toleranceFactor * 100).toFixed(0)}% increase (${lastUse} days since last use)<br>
                     • Risk level: <strong style="color: ${riskColors[riskLevel]}">${riskLevel.toUpperCase()}</strong>
                 </div>
                 
                 ${warnings}
+                ${bmiWarning}
+                ${ageWarning}
             `;
             resultDiv.style.display = 'block';
         }
