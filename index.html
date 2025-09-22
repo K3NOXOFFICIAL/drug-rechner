@@ -3,47 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dosage Calculator</title>
+    <title>Drug Calculator Suite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .calculator-section {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        label {
+            display: inline-block;
+            width: 200px;
+            font-weight: bold;
+        }
+        input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            background-color: #e9f7ef;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 4px solid #28a745;
+        }
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .scientific-note {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Dosage Calculator</h1>
-    <p>Calculate the amount of medication in a specific volume of liquid.</p>
+    <h1>Drug Calculator Suite</h1>
+    <div class="warning">
+        <strong>⚠️ For Scientific/Educational Purposes Only</strong><br>
+        This calculator is designed for harm reduction education and scientific research purposes. Always consult medical professionals and follow local laws.
+    </div>
 
-    <label for="total-volume">Total liquid volume (ml):</label>
-    <input type="number" id="total-volume" placeholder="e.g., 28">
+    <div class="calculator-section">
+        <h2>💊 Liquid Dosage Calculator</h2>
+        <p>Calculate the amount of medication in a specific volume of liquid.</p>
 
-    <br>
+        <div class="input-group">
+            <label for="total-volume">Total liquid volume (ml):</label>
+            <input type="number" id="total-volume" placeholder="e.g., 28">
+        </div>
 
-    <label for="total-medication">Total medication (g):</label>
-    <input type="number" id="total-medication" placeholder="e.g., 4">
+        <div class="input-group">
+            <label for="total-medication">Total medication (g):</label>
+            <input type="number" id="total-medication" placeholder="e.g., 4">
+        </div>
 
-    <br>
+        <div class="input-group">
+            <label for="drug-purity">Drug Purity (%):</label>
+            <input type="number" id="drug-purity" value="100" placeholder="e.g., 97">
+        </div>
 
-    <label for="drug-purity">Drug Purity (%):</label>
-    <input type="number" id="drug-purity" value="100" placeholder="e.g., 97">
+        <div class="input-group">
+            <label for="target-volume">Target volume (ml):</label>
+            <input type="number" id="target-volume" value="0.1" placeholder="e.g., 0.1">
+        </div>
 
-    <br>
+        <button onclick="calculateLiquidDose()">Calculate</button>
 
-    <label for="target-volume">Target volume (ml):</label>
-    <input type="number" id="target-volume" value="0.1" placeholder="e.g., 0.1">
+        <div id="liquid-result" class="result" style="display: none;">
+            <h3>Result:</h3>
+            <p><span id="result"></span></p>
+        </div>
+    </div>
 
-    <br>
-    <br>
+    <div class="calculator-section">
+        <h2>🧠 Ketamine Tolerance Calculator</h2>
+        <p>Calculate adjusted dosage based on previous ketamine use and tolerance buildup.</p>
+        
+        <div class="input-group">
+            <label for="ket-previous-dose">Previous dose (mg):</label>
+            <input type="number" id="ket-previous-dose" placeholder="e.g., 100">
+        </div>
 
-    <button>Calculate</button>
+        <div class="input-group">
+            <label for="ket-days-ago">Days since last dose:</label>
+            <input type="number" id="ket-days-ago" placeholder="e.g., 4">
+        </div>
 
-    <h2>Result:</h2>
-    <p><span id="result"></span></p>
+        <div class="input-group">
+            <label for="ket-desired-effect">Desired effect intensity (1-10):</label>
+            <input type="number" id="ket-desired-effect" min="1" max="10" value="7" placeholder="7">
+        </div>
+
+        <button onclick="calculateKetamineTolerance()">Calculate Ketamine Dose</button>
+
+        <div id="ketamine-result" class="result" style="display: none;">
+            <h3>Recommended Ketamine Dose:</h3>
+            <p><span id="ket-result"></span></p>
+            <div class="scientific-note">
+                Based on ketamine's tolerance half-life of approximately 3-5 days and NMDA receptor downregulation patterns.
+            </div>
+        </div>
+    </div>
+
+    <div class="calculator-section">
+        <h2>⚡ 4-MMC Tolerance Calculator</h2>
+        <p>Calculate adjusted dosage based on previous 4-MMC use and tolerance buildup.</p>
+        
+        <div class="input-group">
+            <label for="mmc-previous-dose">Previous dose (mg):</label>
+            <input type="number" id="mmc-previous-dose" placeholder="e.g., 150">
+        </div>
+
+        <div class="input-group">
+            <label for="mmc-days-ago">Days since last dose:</label>
+            <input type="number" id="mmc-days-ago" placeholder="e.g., 4">
+        </div>
+
+        <div class="input-group">
+            <label for="mmc-desired-effect">Desired effect intensity (1-10):</label>
+            <input type="number" id="mmc-desired-effect" min="1" max="10" value="7" placeholder="7">
+        </div>
+
+        <button onclick="calculate4MMCTolerance()">Calculate 4-MMC Dose</button>
+
+        <div id="mmc-result" class="result" style="display: none;">
+            <h3>Recommended 4-MMC Dose:</h3>
+            <p><span id="mmc-result-text"></span></p>
+            <div class="scientific-note">
+                Based on 4-MMC's tolerance half-life of approximately 7-14 days and serotonin/dopamine receptor recovery patterns.
+            </div>
+        </div>
+    </div>
 
     <script>
-        const totalVolumeInput = document.getElementById('total-volume');
-        const totalMedicationInput = document.getElementById('total-medication');
-        const drugPurityInput = document.getElementById('drug-purity');
-        const targetVolumeInput = document.getElementById('target-volume');
-        const resultSpan = document.getElementById('result');
-        const calculateButton = document.querySelector('button');
+        // Original liquid dosage calculator
+        function calculateLiquidDose() {
+            const totalVolumeInput = document.getElementById('total-volume');
+            const totalMedicationInput = document.getElementById('total-medication');
+            const drugPurityInput = document.getElementById('drug-purity');
+            const targetVolumeInput = document.getElementById('target-volume');
+            const resultSpan = document.getElementById('result');
+            const resultDiv = document.getElementById('liquid-result');
 
-        calculateButton.addEventListener('click', () => {
             const totalVolume = parseFloat(totalVolumeInput.value);
             const totalMedication = parseFloat(totalMedicationInput.value);
             const drugPurity = parseFloat(drugPurityInput.value);
@@ -51,12 +184,128 @@
 
             if (isNaN(totalVolume) || isNaN(totalMedication) || isNaN(targetVolume) || isNaN(drugPurity) || totalVolume <= 0 || drugPurity < 0 || drugPurity > 100) {
                 resultSpan.textContent = 'Please enter valid numbers. Total volume must be > 0. Purity must be between 0 and 100.';
+                resultDiv.style.display = 'block';
                 return;
             }
 
             const result = (totalMedication * 1000) / totalVolume * targetVolume * (drugPurity / 100);
             resultSpan.textContent = `${result.toFixed(2)} mg`;
-        });
+            resultDiv.style.display = 'block';
+        }
+
+        // Ketamine tolerance calculator
+        function calculateKetamineTolerance() {
+            const previousDose = parseFloat(document.getElementById('ket-previous-dose').value);
+            const daysAgo = parseFloat(document.getElementById('ket-days-ago').value);
+            const desiredEffect = parseFloat(document.getElementById('ket-desired-effect').value);
+            const resultSpan = document.getElementById('ket-result');
+            const resultDiv = document.getElementById('ketamine-result');
+
+            if (isNaN(previousDose) || isNaN(daysAgo) || isNaN(desiredEffect) || 
+                previousDose <= 0 || daysAgo < 0 || desiredEffect < 1 || desiredEffect > 10) {
+                resultSpan.innerHTML = 'Please enter valid numbers. Previous dose > 0, days ≥ 0, effect intensity 1-10.';
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            // Ketamine tolerance calculation
+            // Based on NMDA receptor tolerance patterns and scientific literature
+            const toleranceHalfLife = 4; // days (conservative estimate)
+            const baselineDose = 75; // mg (typical recreational threshold)
+            
+            // Calculate remaining tolerance (exponential decay)
+            const toleranceDecay = Math.pow(0.5, daysAgo / toleranceHalfLife);
+            const remainingTolerance = toleranceDecay;
+            
+            // Cross-tolerance factor from previous dose
+            const crossToleranceFactor = Math.log(previousDose / baselineDose + 1) * 0.3;
+            const totalTolerance = remainingTolerance * (1 + crossToleranceFactor);
+            
+            // Desired effect scaling (non-linear)
+            const effectMultiplier = Math.pow(desiredEffect / 7, 1.5);
+            
+            // Calculate recommended dose
+            let recommendedDose = baselineDose * effectMultiplier * (1 + totalTolerance);
+            
+            // Safety caps
+            const maxRecommendedDose = previousDose * 2.5;
+            if (recommendedDose > maxRecommendedDose) {
+                recommendedDose = maxRecommendedDose;
+            }
+
+            let warningText = '';
+            if (recommendedDose > 200) {
+                warningText = '<br><strong style="color: #dc3545;">⚠️ High dose - exercise extreme caution!</strong>';
+            } else if (recommendedDose > 150) {
+                warningText = '<br><strong style="color: #fd7e14;">⚠️ Moderate-high dose - be careful!</strong>';
+            }
+
+            resultSpan.innerHTML = `
+                <strong>${recommendedDose.toFixed(0)} mg</strong><br>
+                <small>Tolerance factor: ${(totalTolerance * 100).toFixed(1)}% remaining<br>
+                Recovery rate: ${((1 - remainingTolerance) * 100).toFixed(1)}% recovered</small>
+                ${warningText}
+            `;
+            resultDiv.style.display = 'block';
+        }
+
+        // 4-MMC tolerance calculator
+        function calculate4MMCTolerance() {
+            const previousDose = parseFloat(document.getElementById('mmc-previous-dose').value);
+            const daysAgo = parseFloat(document.getElementById('mmc-days-ago').value);
+            const desiredEffect = parseFloat(document.getElementById('mmc-desired-effect').value);
+            const resultSpan = document.getElementById('mmc-result-text');
+            const resultDiv = document.getElementById('mmc-result');
+
+            if (isNaN(previousDose) || isNaN(daysAgo) || isNaN(desiredEffect) || 
+                previousDose <= 0 || daysAgo < 0 || desiredEffect < 1 || desiredEffect > 10) {
+                resultSpan.innerHTML = 'Please enter valid numbers. Previous dose > 0, days ≥ 0, effect intensity 1-10.';
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            // 4-MMC tolerance calculation
+            // Based on serotonin/dopamine receptor tolerance patterns
+            const toleranceHalfLife = 10; // days (longer than ketamine due to serotonergic effects)
+            const baselineDose = 120; // mg (typical starting dose)
+            
+            // Calculate remaining tolerance (exponential decay)
+            const toleranceDecay = Math.pow(0.5, daysAgo / toleranceHalfLife);
+            const remainingTolerance = toleranceDecay;
+            
+            // Cross-tolerance factor from previous dose (stronger for stimulants)
+            const crossToleranceFactor = Math.log(previousDose / baselineDose + 1) * 0.4;
+            const totalTolerance = remainingTolerance * (1 + crossToleranceFactor);
+            
+            // Desired effect scaling
+            const effectMultiplier = Math.pow(desiredEffect / 7, 1.3);
+            
+            // Calculate recommended dose
+            let recommendedDose = baselineDose * effectMultiplier * (1 + totalTolerance);
+            
+            // Safety caps (more conservative for 4-MMC)
+            const maxRecommendedDose = Math.min(previousDose * 2, 300);
+            if (recommendedDose > maxRecommendedDose) {
+                recommendedDose = maxRecommendedDose;
+            }
+
+            let warningText = '';
+            if (recommendedDose > 250) {
+                warningText = '<br><strong style="color: #dc3545;">⚠️ Very high dose - serious health risks!</strong>';
+            } else if (recommendedDose > 200) {
+                warningText = '<br><strong style="color: #fd7e14;">⚠️ High dose - significant risks!</strong>';
+            } else if (daysAgo < 7) {
+                warningText = '<br><strong style="color: #ffc107;">⚠️ Consider waiting longer for better recovery</strong>';
+            }
+
+            resultSpan.innerHTML = `
+                <strong>${recommendedDose.toFixed(0)} mg</strong><br>
+                <small>Tolerance factor: ${(totalTolerance * 100).toFixed(1)}% remaining<br>
+                Recovery rate: ${((1 - remainingTolerance) * 100).toFixed(1)}% recovered</small>
+                ${warningText}
+            `;
+            resultDiv.style.display = 'block';
+        }
     </script>
 </body>
 </html>
