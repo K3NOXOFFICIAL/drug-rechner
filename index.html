@@ -2810,13 +2810,13 @@
                 return;
             }
 
-            // Enhanced dosage calculation based on route and intensity
+            // CORRECTED dosage calculation based on route and intensity - FIXED DANGEROUS OVER-DOSING
             const intensityDoses = {
-                'threshold': { oral: 0.75, nasal: 0.5, sublingual: 0.6, intramuscular: 0.3, intravenous: 0.2 },
-                'light': { oral: 1.5, nasal: 1.0, sublingual: 1.2, intramuscular: 0.6, intravenous: 0.4 },
-                'common': { oral: 2.5, nasal: 1.8, sublingual: 2.0, intramuscular: 1.0, intravenous: 0.7 },
-                'strong': { oral: 4.0, nasal: 3.0, sublingual: 3.5, intramuscular: 1.5, intravenous: 1.0 },
-                'k-hole': { oral: 6.0, nasal: 4.5, sublingual: 5.0, intramuscular: 2.2, intravenous: 1.5 }
+                'threshold': { oral: 0.4, nasal: 0.25, sublingual: 0.3, intramuscular: 0.2, intravenous: 0.15 },
+                'light': { oral: 0.8, nasal: 0.5, sublingual: 0.6, intramuscular: 0.4, intravenous: 0.25 },
+                'common': { oral: 1.2, nasal: 0.8, sublingual: 1.0, intramuscular: 0.6, intravenous: 0.4 },
+                'strong': { oral: 1.8, nasal: 1.2, sublingual: 1.5, intramuscular: 0.9, intravenous: 0.6 },
+                'k-hole': { oral: 2.5, nasal: 1.8, sublingual: 2.2, intramuscular: 1.3, intravenous: 0.9 }
             };
 
             const experienceMultiplier = {
@@ -2840,12 +2840,12 @@
                 'club': 0.6           // High-stimulation environment, safety priority
             };
 
-            // Tolerance history adjustments
+            // Tolerance history adjustments - REDUCED to prevent dangerous stacking
             const toleranceMultiplier = {
                 'none': 1.0,          // No tolerance
-                'occasional': 1.15,   // Slight tolerance
-                'regular': 1.4,       // Moderate tolerance
-                'frequent': 1.8       // High tolerance
+                'occasional': 1.1,    // Slight tolerance - REDUCED from 1.15
+                'regular': 1.2,       // Moderate tolerance - REDUCED from 1.4
+                'frequent': 1.3       // High tolerance - REDUCED from 1.8
             };
 
             // Calculate base dose (mg/kg for route)
@@ -2854,26 +2854,34 @@
             // Apply all multipliers
             baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting];
 
-            // Recent use tolerance factor
+            // Recent use tolerance factor - REDUCED to prevent dangerous escalation
             let recentToleranceFactor = 1.0;
             if (lastUse < 2) {
-                recentToleranceFactor = 1.6; // High tolerance
+                recentToleranceFactor = 1.3; // High tolerance - REDUCED from 1.6
             } else if (lastUse < 5) {
-                recentToleranceFactor = 1.3; // Moderate tolerance
+                recentToleranceFactor = 1.15; // Moderate tolerance - REDUCED from 1.3
             } else if (lastUse < 10) {
-                recentToleranceFactor = 1.1; // Mild tolerance
+                recentToleranceFactor = 1.05; // Mild tolerance - REDUCED from 1.1
             }
 
-            // Apply tolerance factors
+            // Apply tolerance factors with safety cap to prevent dangerous escalation
             baseDose *= toleranceMultiplier[toleranceHistory] * recentToleranceFactor;
+            
+            // SAFETY CAP: Never recommend more than 2.5x base dose regardless of tolerance
+            const originalBaseDose = weight * intensityDoses[intensity][route];
+            const maxToleranceDose = originalBaseDose * 2.5;
+            if (baseDose > maxToleranceDose) {
+                baseDose = maxToleranceDose;
+                warnings += showWarning('Dose capped at 2.5x base due to safety concerns. Consider taking a longer break to reset tolerance.', 'danger');
+            }
 
-            // Safety caps by route
+            // Safety caps by route - REDUCED to safer levels
             const maxSafeDose = {
-                'oral': weight * 8,
-                'nasal': weight * 5,
-                'sublingual': weight * 6,
-                'intramuscular': weight * 3,
-                'intravenous': weight * 2
+                'oral': weight * 3,     // REDUCED from weight * 8
+                'nasal': weight * 2,    // REDUCED from weight * 5  
+                'sublingual': weight * 2.5, // REDUCED from weight * 6
+                'intramuscular': weight * 1.5, // REDUCED from weight * 3
+                'intravenous': weight * 1   // REDUCED from weight * 2
             };
 
             const safeDose = Math.min(baseDose, maxSafeDose[route]);
@@ -3294,31 +3302,31 @@
                 return;
             }
 
-            // Enhanced dosage calculation based on route and substance
+            // CORRECTED dosage calculation - FIXED DANGEROUS OVER-DOSING
             const intensityDoses = {
                 'threshold': { 
-                    'amphetamine': { oral: 0.1, nasal: 0.07, sublingual: 0.08, rectal: 0.08, intravenous: 0.05, smoked: 0.05 },
-                    'dextroamphetamine': { oral: 0.07, nasal: 0.05, sublingual: 0.06, rectal: 0.06, intravenous: 0.04, smoked: 0.04 },
-                    'methamphetamine': { oral: 0.05, nasal: 0.03, sublingual: 0.04, rectal: 0.04, intravenous: 0.02, smoked: 0.02 },
-                    'adderall': { oral: 0.08, nasal: 0.06, sublingual: 0.07, rectal: 0.07, intravenous: 0.04, smoked: 0.04 }
+                    'amphetamine': { oral: 0.04, nasal: 0.03, sublingual: 0.035, rectal: 0.035, intravenous: 0.02, smoked: 0.02 },
+                    'dextroamphetamine': { oral: 0.03, nasal: 0.02, sublingual: 0.025, rectal: 0.025, intravenous: 0.015, smoked: 0.015 },
+                    'methamphetamine': { oral: 0.02, nasal: 0.01, sublingual: 0.015, rectal: 0.015, intravenous: 0.008, smoked: 0.008 },
+                    'adderall': { oral: 0.035, nasal: 0.025, sublingual: 0.03, rectal: 0.03, intravenous: 0.018, smoked: 0.018 }
                 },
                 'light': {
-                    'amphetamine': { oral: 0.25, nasal: 0.18, sublingual: 0.2, rectal: 0.2, intravenous: 0.12, smoked: 0.12 },
-                    'dextroamphetamine': { oral: 0.18, nasal: 0.13, sublingual: 0.15, rectal: 0.15, intravenous: 0.09, smoked: 0.09 },
-                    'methamphetamine': { oral: 0.12, nasal: 0.08, sublingual: 0.1, rectal: 0.1, intravenous: 0.06, smoked: 0.06 },
-                    'adderall': { oral: 0.2, nasal: 0.15, sublingual: 0.17, rectal: 0.17, intravenous: 0.1, smoked: 0.1 }
+                    'amphetamine': { oral: 0.08, nasal: 0.06, sublingual: 0.07, rectal: 0.07, intravenous: 0.04, smoked: 0.04 },
+                    'dextroamphetamine': { oral: 0.06, nasal: 0.045, sublingual: 0.055, rectal: 0.055, intravenous: 0.03, smoked: 0.03 },
+                    'methamphetamine': { oral: 0.04, nasal: 0.03, sublingual: 0.035, rectal: 0.035, intravenous: 0.02, smoked: 0.02 },
+                    'adderall': { oral: 0.07, nasal: 0.05, sublingual: 0.06, rectal: 0.06, intravenous: 0.035, smoked: 0.035 }
                 },
                 'common': {
-                    'amphetamine': { oral: 0.5, nasal: 0.35, sublingual: 0.4, rectal: 0.4, intravenous: 0.25, smoked: 0.25 },
-                    'dextroamphetamine': { oral: 0.35, nasal: 0.25, sublingual: 0.3, rectal: 0.3, intravenous: 0.18, smoked: 0.18 },
-                    'methamphetamine': { oral: 0.25, nasal: 0.18, sublingual: 0.2, rectal: 0.2, intravenous: 0.12, smoked: 0.12 },
-                    'adderall': { oral: 0.4, nasal: 0.3, sublingual: 0.35, rectal: 0.35, intravenous: 0.2, smoked: 0.2 }
+                    'amphetamine': { oral: 0.15, nasal: 0.11, sublingual: 0.13, rectal: 0.13, intravenous: 0.08, smoked: 0.08 },
+                    'dextroamphetamine': { oral: 0.11, nasal: 0.08, sublingual: 0.095, rectal: 0.095, intravenous: 0.06, smoked: 0.06 },
+                    'methamphetamine': { oral: 0.08, nasal: 0.06, sublingual: 0.07, rectal: 0.07, intravenous: 0.04, smoked: 0.04 },
+                    'adderall': { oral: 0.13, nasal: 0.095, sublingual: 0.11, rectal: 0.11, intravenous: 0.07, smoked: 0.07 }
                 },
                 'strong': {
-                    'amphetamine': { oral: 0.8, nasal: 0.6, sublingual: 0.7, rectal: 0.7, intravenous: 0.4, smoked: 0.4 },
-                    'dextroamphetamine': { oral: 0.6, nasal: 0.45, sublingual: 0.5, rectal: 0.5, intravenous: 0.3, smoked: 0.3 },
-                    'methamphetamine': { oral: 0.4, nasal: 0.3, sublingual: 0.35, rectal: 0.35, intravenous: 0.2, smoked: 0.2 },
-                    'adderall': { oral: 0.7, nasal: 0.5, sublingual: 0.6, rectal: 0.6, intravenous: 0.35, smoked: 0.35 }
+                    'amphetamine': { oral: 0.25, nasal: 0.18, sublingual: 0.21, rectal: 0.21, intravenous: 0.13, smoked: 0.13 },
+                    'dextroamphetamine': { oral: 0.18, nasal: 0.13, sublingual: 0.15, rectal: 0.15, intravenous: 0.09, smoked: 0.09 },
+                    'methamphetamine': { oral: 0.13, nasal: 0.09, sublingual: 0.11, rectal: 0.11, intravenous: 0.07, smoked: 0.07 },
+                    'adderall': { oral: 0.21, nasal: 0.15, sublingual: 0.18, rectal: 0.18, intravenous: 0.11, smoked: 0.11 }
                 }
             };
 
@@ -3358,24 +3366,32 @@
             // Apply all multipliers
             baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting] * healthMultiplier[health];
 
-            // Tolerance factor based on recent use
+            // Tolerance factor based on recent use - REDUCED to prevent dangerous escalation
             let toleranceFactor = 1.0;
             if (lastUse < 1) {
-                toleranceFactor = 1.4; // High tolerance
+                toleranceFactor = 1.2; // High tolerance - REDUCED from 1.4
             } else if (lastUse < 3) {
-                toleranceFactor = 1.2; // Moderate tolerance
+                toleranceFactor = 1.1; // Moderate tolerance - REDUCED from 1.2
             } else if (lastUse < 7) {
-                toleranceFactor = 1.1; // Mild tolerance
+                toleranceFactor = 1.05; // Mild tolerance - REDUCED from 1.1
             }
 
             baseDose *= toleranceFactor;
 
-            // Safety caps by substance and route
+            // SAFETY CAP: Never recommend more than 2x base dose regardless of tolerance
+            const originalBaseDose = weight * intensityDoses[intensity][substance][route];
+            const maxToleranceDose = originalBaseDose * 2.0;
+            if (baseDose > maxToleranceDose) {
+                baseDose = maxToleranceDose;
+                warnings += showWarning('Dose capped at 2x base due to safety concerns. Consider taking a longer break to reset tolerance.', 'danger');
+            }
+
+            // Safety caps by substance and route - REDUCED to safer levels
             const maxSafeDose = {
-                'amphetamine': { oral: 80, nasal: 50, sublingual: 60, rectal: 60, intravenous: 30, smoked: 30 },
-                'dextroamphetamine': { oral: 60, nasal: 40, sublingual: 50, rectal: 50, intravenous: 25, smoked: 25 },
-                'methamphetamine': { oral: 40, nasal: 25, sublingual: 30, rectal: 30, intravenous: 15, smoked: 15 },
-                'adderall': { oral: 70, nasal: 45, sublingual: 55, rectal: 55, intravenous: 25, smoked: 25 }
+                'amphetamine': { oral: 35, nasal: 20, sublingual: 25, rectal: 25, intravenous: 12, smoked: 12 },
+                'dextroamphetamine': { oral: 25, nasal: 15, sublingual: 20, rectal: 20, intravenous: 10, smoked: 10 },
+                'methamphetamine': { oral: 18, nasal: 10, sublingual: 12, rectal: 12, intravenous: 6, smoked: 6 },
+                'adderall': { oral: 30, nasal: 18, sublingual: 22, rectal: 22, intravenous: 10, smoked: 10 }
             };
 
             const safeDose = Math.min(baseDose, maxSafeDose[substance][route]);
@@ -3584,12 +3600,12 @@
                 return;
             }
 
-            // Enhanced dosage calculation based on route and intensity
+            // CORRECTED dosage calculation - FIXED DANGEROUS OVER-DOSING
             const intensityDoses = {
-                'threshold': { nasal: 0.3, oral: 0.5, gums: 0.25, smoked: 0.15, intravenous: 0.1 },
-                'light': { nasal: 0.7, oral: 1.2, gums: 0.6, smoked: 0.35, intravenous: 0.25 },
-                'common': { nasal: 1.2, oral: 2.0, gums: 1.0, smoked: 0.6, intravenous: 0.4 },
-                'strong': { nasal: 2.0, oral: 3.5, gums: 1.7, smoked: 1.0, intravenous: 0.7 }
+                'threshold': { nasal: 0.12, oral: 0.2, gums: 0.1, smoked: 0.06, intravenous: 0.04 },
+                'light': { nasal: 0.25, oral: 0.4, gums: 0.2, smoked: 0.12, intravenous: 0.08 },
+                'common': { nasal: 0.5, oral: 0.8, gums: 0.4, smoked: 0.25, intravenous: 0.15 },
+                'strong': { nasal: 0.8, oral: 1.3, gums: 0.65, smoked: 0.4, intravenous: 0.25 }
             };
 
             const experienceMultiplier = {
@@ -3627,25 +3643,33 @@
             // Apply all safety multipliers
             baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting] * healthMultiplier[health];
 
-            // Tolerance factor (cocaine tolerance is rapid but short-lived)
+            // Tolerance factor (cocaine tolerance is rapid but short-lived) - REDUCED for safety
             let toleranceFactor = 1.0;
             if (lastUse < 1) {
-                toleranceFactor = 1.3; // Moderate tolerance
+                toleranceFactor = 1.15; // Moderate tolerance - REDUCED from 1.3
             } else if (lastUse < 3) {
-                toleranceFactor = 1.15; // Mild tolerance
+                toleranceFactor = 1.08; // Mild tolerance - REDUCED from 1.15
             } else if (lastUse < 7) {
-                toleranceFactor = 1.05; // Very mild tolerance
+                toleranceFactor = 1.03; // Very mild tolerance - REDUCED from 1.05
             }
 
             baseDose *= toleranceFactor;
 
-            // STRICT safety caps by route
+            // SAFETY CAP: Never recommend more than 2x base dose regardless of tolerance
+            const originalBaseDose = weight * intensityDoses[intensity][route];
+            const maxToleranceDose = originalBaseDose * 2.0;
+            if (baseDose > maxToleranceDose) {
+                baseDose = maxToleranceDose;
+                warnings += showWarning('Dose capped at 2x base due to safety concerns. Cocaine has severe cardiovascular risks.', 'danger');
+            }
+
+            // STRICT safety caps by route - REDUCED to safer levels
             const maxSafeDose = {
-                'nasal': 120,         // Nasal maximum
-                'oral': 200,          // Oral maximum
-                'gums': 100,          // Gums maximum
-                'smoked': 60,         // Smoking maximum
-                'intravenous': 40     // IV maximum (extreme risk)
+                'nasal': 50,         // Nasal maximum - REDUCED from 120
+                'oral': 80,          // Oral maximum - REDUCED from 200
+                'gums': 40,          // Gums maximum - REDUCED from 100
+                'smoked': 25,        // Smoking maximum - REDUCED from 60
+                'intravenous': 15    // IV maximum - REDUCED from 40
             };
 
             const safeDose = Math.min(baseDose, maxSafeDose[route]);
@@ -3840,12 +3864,12 @@
                 return;
             }
 
-            // Enhanced dosage calculation based on route and intensity
+            // CORRECTED dosage calculation - FIXED DANGEROUS OVER-DOSING
             const intensityDoses = {
-                'threshold': { oral: 1.0, nasal: 0.7, rectal: 0.8, intravenous: 0.4 },
-                'light': { oral: 1.8, nasal: 1.3, rectal: 1.5, intravenous: 0.8 },
-                'common': { oral: 2.8, nasal: 2.0, rectal: 2.3, intravenous: 1.3 },
-                'strong': { oral: 4.0, nasal: 2.8, rectal: 3.2, intravenous: 1.8 }
+                'threshold': { oral: 0.5, nasal: 0.35, rectal: 0.4, intravenous: 0.2 },
+                'light': { oral: 1.0, nasal: 0.7, rectal: 0.8, intravenous: 0.4 },
+                'common': { oral: 1.6, nasal: 1.1, rectal: 1.3, intravenous: 0.7 },
+                'strong': { oral: 2.4, nasal: 1.7, rectal: 2.0, intravenous: 1.0 }
             };
 
             const experienceMultiplier = {
@@ -3900,24 +3924,32 @@
                        settingMultiplier[setting] * healthMultiplier[cardiovascular] * 
                        temperatureMultiplier[temperature] * serotoninMultiplier[serotonin];
 
-            // Tolerance factor (4-MMC has rapid tolerance development)
+            // Tolerance factor (4-MMC has rapid tolerance development) - REDUCED for safety
             let toleranceFactor = 1.0;
             if (lastUse < 3) {
-                toleranceFactor = 1.5; // Significant tolerance
+                toleranceFactor = 1.25; // Significant tolerance - REDUCED from 1.5
             } else if (lastUse < 7) {
-                toleranceFactor = 1.25; // Moderate tolerance
+                toleranceFactor = 1.15; // Moderate tolerance - REDUCED from 1.25
             } else if (lastUse < 14) {
-                toleranceFactor = 1.1; // Mild tolerance
+                toleranceFactor = 1.05; // Mild tolerance - REDUCED from 1.1
             }
 
             baseDose *= toleranceFactor;
 
-            // STRICT safety caps by route
+            // SAFETY CAP: Never recommend more than 2x base dose regardless of tolerance
+            const originalBaseDose = weight * intensityDoses[intensity][route];
+            const maxToleranceDose = originalBaseDose * 2.0;
+            if (baseDose > maxToleranceDose) {
+                baseDose = maxToleranceDose;
+                warnings += showWarning('Dose capped at 2x base due to neurotoxicity concerns. 4-MMC is extremely dangerous with frequent use.', 'danger');
+            }
+
+            // STRICT safety caps by route - REDUCED to safer levels
             const maxSafeDose = {
-                'oral': 200,          // Oral maximum
-                'nasal': 150,         // Nasal maximum
-                'rectal': 180,        // Rectal maximum
-                'intravenous': 80     // IV maximum (extreme risk)
+                'oral': 100,          // Oral maximum - REDUCED from 200
+                'nasal': 75,          // Nasal maximum - REDUCED from 150
+                'rectal': 90,         // Rectal maximum - REDUCED from 180
+                'intravenous': 40     // IV maximum - REDUCED from 80
             };
 
             const safeDose = Math.min(baseDose, maxSafeDose[route]);
