@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dosage Calculator</title>
+</head>
+<body>
+    <h1>Dosage Calculator</h1>
+    <p>Calculate the amount of medication in a specific volume of liquid.</p>
+
+    <label for="total-volume">Total liquid volume (ml):</label>
+    <input type="number" id="total-volume" placeholder="e.g., 28">
+
+    <br>
+
+    <label for="total-medication">Total medication (g):</label>
+    <input type="number" id="total-medication" placeholder="e.g., 4">
+
+    <br>
+
+    <label for="target-volume">Target volume (ml):</label>
+    <input type="number" id="target-volume" value="0.1" placeholder="e.g., 0.1">
+
+    <br>
+    <br>
+
+    <button>Calculate</button>
+
+    <h2>Result:</h2>
+    <p><span id="result"></span></p>
+
+    <script>
+        const totalVolumeInput = document.getElementById('total-volume');
+        const totalMedicationInput = document.getElementById('total-medication');
+        const targetVolumeInput = document.getElementById('target-volume');
+        const resultSpan = document.getElementById('result');
+        const calculateButton = document.querySelector('button');
+
+        calculateButton.addEventListener('click', () => {
+            const totalVolume = parseFloat(totalVolumeInput.value);
+            const totalMedication = parseFloat(totalMedicationInput.value);
+            const targetVolume = parseFloat(targetVolumeInput.value);
+
+            if (isNaN(totalVolume) || isNaN(totalMedication) || isNaN(targetVolume) || totalVolume <= 0) {
+                resultSpan.textContent = 'Please enter valid numbers. Total volume must be greater than 0.';
+                return;
+            }
+
+            const result = (totalMedication * 1000) / totalVolume * targetVolume;
+            resultSpan.textContent = `${result.toFixed(2)} mg`;
+        });
+    </script>
+</body>
+</html>
