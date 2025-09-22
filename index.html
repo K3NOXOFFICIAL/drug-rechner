@@ -16,9 +16,11 @@
     <meta property="og:url" content="https://k3noxofficial.github.io/drug-rechner/">
     <meta property="og:title" content="K3NOX Drug Calc - Drug Calculator Suite">
     <meta property="og:description" content="🧮 Comprehensive drug calculator suite for harm reduction education and scientific research. Features advanced tolerance modeling, safety warnings, and interactive graphs for 8+ substances.">
-    <meta property="og:image" content="https://k3noxofficial.github.io/drug-rechner/preview-image.png">
+    <meta property="og:image" content="https://k3noxofficial.github.io/drug-rechner/preview-image.svg">
+    <meta property="og:image:type" content="image/svg+xml">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="K3NOX Drug Calc - Harm Reduction Calculator Suite with dose calculator, tolerance calculator, and liquid dosage tools">
     <meta property="og:site_name" content="K3NOX Drug Calc">
     <meta property="og:locale" content="en_US">
     
@@ -27,11 +29,13 @@
     <meta property="twitter:url" content="https://k3noxofficial.github.io/drug-rechner/">
     <meta property="twitter:title" content="K3NOX Drug Calc - Drug Calculator Suite">
     <meta property="twitter:description" content="🧮 Comprehensive drug calculator suite for harm reduction education and scientific research. Features advanced tolerance modeling, safety warnings, and interactive graphs for 8+ substances.">
-    <meta property="twitter:image" content="https://k3noxofficial.github.io/drug-rechner/preview-image.png">
+    <meta property="twitter:image" content="https://k3noxofficial.github.io/drug-rechner/preview-image.svg">
     <meta property="twitter:image:alt" content="K3NOX Drug Calc - Drug Calculator Suite Interface">
     
-    <!-- WhatsApp / Telegram specific -->
-    <meta name="telegram:channel" content="@k3noxofficial">
+    <!-- Telegram specific optimizations -->
+    <meta property="telegram:channel" content="@k3noxofficial">
+    <meta property="telegram:image" content="https://k3noxofficial.github.io/drug-rechner/preview-image.svg">
+    <meta name="format-detection" content="telephone=no">
     
     <!-- Additional Meta Tags -->
     <meta name="theme-color" content="#667eea">
@@ -1169,8 +1173,8 @@
 
         <!-- Ketamine Calculator (Enhanced) -->
         <div id="ketamine" class="calculator-section">
-            <h2>🧠 Ketamine Tolerance Calculator</h2>
-            <p>Calculate adjusted dosage based on previous ketamine use and tolerance buildup</p>
+            <h2>🧠 Ketamine Dose Calculator</h2>
+            <p>Calculate ketamine dosage with comprehensive safety considerations and tolerance modeling</p>
 
             <div class="form-grid">
                 <div class="input-group">
@@ -1179,22 +1183,78 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="ket-previous-dose">Previous dose (mg):</label>
-                    <input type="number" id="ket-previous-dose" placeholder="e.g., 100">
+                    <label for="ket-gender">Gender:</label>
+                    <select id="ket-gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other/Prefer not to say</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
-                    <label for="ket-days-ago">Days since last dose:</label>
-                    <input type="number" id="ket-days-ago" placeholder="e.g., 4" min="0">
+                    <label for="ket-experience" class="tooltip" data-tooltip="Your experience level with dissociatives affects recommended dosage">Experience Level:</label>
+                    <select id="ket-experience">
+                        <option value="">Select Experience</option>
+                        <option value="beginner">Beginner (0-3 times)</option>
+                        <option value="experienced">Experienced (4-15 times)</option>
+                        <option value="expert">Expert (15+ times)</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
-                    <label for="ket-desired-effect" class="tooltip" data-tooltip="1=threshold, 10=maximum safe intensity">Desired effect intensity (1-10):</label>
-                    <input type="number" id="ket-desired-effect" min="1" max="10" value="7" placeholder="7">
+                    <label for="ket-route">Route of Administration:</label>
+                    <select id="ket-route">
+                        <option value="">Select Route</option>
+                        <option value="oral">Oral</option>
+                        <option value="nasal">Nasal (insufflated)</option>
+                        <option value="sublingual">Sublingual</option>
+                        <option value="intramuscular">Intramuscular (IM)</option>
+                        <option value="intravenous">Intravenous (IV)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="ket-intensity">Desired Intensity:</label>
+                    <select id="ket-intensity">
+                        <option value="">Select Intensity</option>
+                        <option value="threshold">Threshold (mild dissociation)</option>
+                        <option value="light">Light (noticeable effects)</option>
+                        <option value="common">Common (full dissociative experience)</option>
+                        <option value="strong">Strong (intense dissociation)</option>
+                        <option value="k-hole">K-hole (complete dissociation)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="ket-last-use" class="tooltip" data-tooltip="Time since last ketamine/dissociative use affects tolerance">Days since last ketamine use:</label>
+                    <input type="number" id="ket-last-use" placeholder="e.g., 7" min="0" value="7">
+                </div>
+
+                <div class="input-group">
+                    <label for="ket-setting">Setting/Environment:</label>
+                    <select id="ket-setting">
+                        <option value="">Select Setting</option>
+                        <option value="home">Home/Safe indoor space</option>
+                        <option value="therapeutic">Therapeutic/Medical setting</option>
+                        <option value="party">Party/Social gathering</option>
+                        <option value="club">Club/Rave</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="ket-tolerance-history" class="tooltip" data-tooltip="How frequently have you used ketamine in the past 3 months?">Recent Usage Pattern:</label>
+                    <select id="ket-tolerance-history">
+                        <option value="">Select Pattern</option>
+                        <option value="none">No recent use (3+ months)</option>
+                        <option value="occasional">Occasional (1-3 times)</option>
+                        <option value="regular">Regular (4-10 times)</option>
+                        <option value="frequent">Frequent (10+ times)</option>
+                    </select>
                 </div>
             </div>
 
-            <button class="btn" onclick="calculateKetamineTolerance()">Calculate Ketamine Dose</button>
+            <button class="btn" onclick="calculateKetamine()">Calculate Ketamine Dose</button>
 
             <div id="ketamine-result" class="result" style="display: none;">
                 <h3>Recommended Ketamine Dose:</h3>
@@ -1209,7 +1269,7 @@
         <!-- GHB/GBL Calculator -->
         <div id="ghb" class="calculator-section">
             <h2>🥤 GHB/GBL Dose Calculator</h2>
-            <p>Calculate GHB or GBL dosage based on body weight and substance type</p>
+            <p>Calculate GHB or GBL dosage with comprehensive safety considerations and harm reduction factors</p>
 
             <div class="form-grid">
                 <div class="input-group">
@@ -1223,6 +1283,7 @@
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
+                        <option value="other">Other/Prefer not to say</option>
                     </select>
                 </div>
 
@@ -1237,13 +1298,59 @@
                 </div>
 
                 <div class="input-group">
+                    <label for="ghb-experience" class="tooltip" data-tooltip="Your experience level with GHB/depressants affects safety considerations">Experience Level:</label>
+                    <select id="ghb-experience">
+                        <option value="">Select Experience</option>
+                        <option value="beginner">Beginner (0-2 times)</option>
+                        <option value="experienced">Experienced (3-10 times)</option>
+                        <option value="expert">Expert (10+ times)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
                     <label for="ghb-intensity">Desired Intensity:</label>
                     <select id="ghb-intensity">
                         <option value="">Select Intensity</option>
-                        <option value="threshold">Threshold</option>
-                        <option value="light">Light</option>
-                        <option value="common">Common</option>
-                        <option value="strong">Strong</option>
+                        <option value="threshold">Threshold (mild relaxation)</option>
+                        <option value="light">Light (noticeable effects)</option>
+                        <option value="common">Common (full euphoric effects)</option>
+                        <option value="strong">Strong (intense sedation)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="ghb-last-use" class="tooltip" data-tooltip="Time since last GHB/depressant use affects tolerance">Days since last GHB use:</label>
+                    <input type="number" id="ghb-last-use" placeholder="e.g., 3" min="0" value="3">
+                </div>
+
+                <div class="input-group">
+                    <label for="ghb-stomach" class="tooltip" data-tooltip="Food in stomach significantly affects absorption and safety">Stomach Status:</label>
+                    <select id="ghb-stomach">
+                        <option value="">Select Status</option>
+                        <option value="empty">Empty stomach (4+ hours since food)</option>
+                        <option value="light">Light food (2-3 hours ago)</option>
+                        <option value="full">Full stomach (recent meal)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="ghb-setting">Setting/Environment:</label>
+                    <select id="ghb-setting">
+                        <option value="">Select Setting</option>
+                        <option value="home">Home/Safe indoor space</option>
+                        <option value="party">House party/Small gathering</option>
+                        <option value="club">Club/Rave</option>
+                        <option value="therapeutic">Therapeutic/Medical setting</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="ghb-alcohol" class="tooltip" data-tooltip="ANY alcohol consumption with GHB is extremely dangerous">Alcohol Consumption:</label>
+                    <select id="ghb-alcohol">
+                        <option value="">Select Status</option>
+                        <option value="none">No alcohol (past 12+ hours)</option>
+                        <option value="recent">Recent alcohol (within 12 hours)</option>
+                        <option value="current">Currently under alcohol influence</option>
                     </select>
                 </div>
             </div>
@@ -1260,7 +1367,7 @@
         <!-- Amphetamines Calculator -->
         <div id="amphetamines" class="calculator-section">
             <h2>⚡ Amphetamines Dose Calculator</h2>
-            <p>Calculate amphetamine dosage based on body weight and substance type</p>
+            <p>Calculate amphetamine dosage with comprehensive safety considerations and tolerance modeling</p>
 
             <div class="form-grid">
                 <div class="input-group">
@@ -1274,6 +1381,7 @@
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
+                        <option value="other">Other/Prefer not to say</option>
                     </select>
                 </div>
 
@@ -1289,13 +1397,64 @@
                 </div>
 
                 <div class="input-group">
+                    <label for="amp-experience" class="tooltip" data-tooltip="Your experience level with stimulants affects safety considerations">Experience Level:</label>
+                    <select id="amp-experience">
+                        <option value="">Select Experience</option>
+                        <option value="beginner">Beginner (0-3 times)</option>
+                        <option value="experienced">Experienced (4-20 times)</option>
+                        <option value="expert">Expert (20+ times)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="amp-route">Route of Administration:</label>
+                    <select id="amp-route">
+                        <option value="">Select Route</option>
+                        <option value="oral">Oral (swallowed)</option>
+                        <option value="nasal">Nasal (insufflated)</option>
+                        <option value="sublingual">Sublingual (under tongue)</option>
+                        <option value="rectal">Rectal (plugged)</option>
+                        <option value="intravenous">Intravenous (IV)</option>
+                        <option value="smoked">Smoked/Vaporized</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
                     <label for="amp-intensity">Desired Intensity:</label>
                     <select id="amp-intensity">
                         <option value="">Select Intensity</option>
-                        <option value="threshold">Threshold</option>
-                        <option value="light">Light</option>
-                        <option value="common">Common</option>
-                        <option value="strong">Strong</option>
+                        <option value="threshold">Threshold (mild stimulation)</option>
+                        <option value="light">Light (clear effects)</option>
+                        <option value="common">Common (full stimulation)</option>
+                        <option value="strong">Strong (intense effects)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="amp-last-use" class="tooltip" data-tooltip="Time since last stimulant use affects tolerance">Days since last stimulant use:</label>
+                    <input type="number" id="amp-last-use" placeholder="e.g., 7" min="0" value="7">
+                </div>
+
+                <div class="input-group">
+                    <label for="amp-setting">Setting/Environment:</label>
+                    <select id="amp-setting">
+                        <option value="">Select Setting</option>
+                        <option value="home">Home/Study environment</option>
+                        <option value="work">Work/Productivity setting</option>
+                        <option value="party">Party/Social gathering</option>
+                        <option value="club">Club/Rave</option>
+                        <option value="therapeutic">Therapeutic/Medical setting</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="amp-health" class="tooltip" data-tooltip="Cardiovascular conditions significantly affect stimulant safety">Cardiovascular Health:</label>
+                    <select id="amp-health">
+                        <option value="">Select Status</option>
+                        <option value="healthy">Healthy (no known issues)</option>
+                        <option value="minor">Minor issues (controlled)</option>
+                        <option value="moderate">Moderate cardiovascular concerns</option>
+                        <option value="serious">Serious heart/blood pressure issues</option>
                     </select>
                 </div>
             </div>
@@ -1312,7 +1471,7 @@
         <!-- Cocaine Calculator -->
         <div id="cocaine" class="calculator-section">
             <h2>❄️ Cocaine Dose Calculator</h2>
-            <p>Calculate cocaine dosage based on body weight and route of administration</p>
+            <p>Calculate cocaine dosage with comprehensive safety considerations and harm reduction factors</p>
 
             <div class="form-grid">
                 <div class="input-group">
@@ -1326,6 +1485,17 @@
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
+                        <option value="other">Other/Prefer not to say</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="coc-experience" class="tooltip" data-tooltip="Your experience level with stimulants affects safety considerations">Experience Level:</label>
+                    <select id="coc-experience">
+                        <option value="">Select Experience</option>
+                        <option value="beginner">Beginner (0-3 times)</option>
+                        <option value="experienced">Experienced (4-15 times)</option>
+                        <option value="expert">Expert (15+ times)</option>
                     </select>
                 </div>
 
@@ -1333,9 +1503,11 @@
                     <label for="coc-route">Route of Administration:</label>
                     <select id="coc-route">
                         <option value="">Select Route</option>
-                        <option value="nasal">Nasal (snorted)</option>
-                        <option value="oral">Oral</option>
-                        <option value="iv">Intravenous (IV)</option>
+                        <option value="nasal">Nasal (insufflated)</option>
+                        <option value="oral">Oral (swallowed)</option>
+                        <option value="gums">Gums (rubbed on gums)</option>
+                        <option value="smoked">Smoked (crack/freebase)</option>
+                        <option value="intravenous">Intravenous (IV)</option>
                     </select>
                 </div>
 
@@ -1343,10 +1515,47 @@
                     <label for="coc-intensity">Desired Intensity:</label>
                     <select id="coc-intensity">
                         <option value="">Select Intensity</option>
-                        <option value="threshold">Threshold</option>
-                        <option value="light">Light</option>
-                        <option value="common">Common</option>
-                        <option value="strong">Strong</option>
+                        <option value="threshold">Threshold (mild stimulation)</option>
+                        <option value="light">Light (clear effects)</option>
+                        <option value="common">Common (full stimulation)</option>
+                        <option value="strong">Strong (intense effects)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="coc-last-use" class="tooltip" data-tooltip="Time since last stimulant use affects tolerance">Days since last cocaine use:</label>
+                    <input type="number" id="coc-last-use" placeholder="e.g., 14" min="0" value="14">
+                </div>
+
+                <div class="input-group">
+                    <label for="coc-setting">Setting/Environment:</label>
+                    <select id="coc-setting">
+                        <option value="">Select Setting</option>
+                        <option value="home">Home/Private setting</option>
+                        <option value="party">Party/Social gathering</option>
+                        <option value="club">Club/Nightlife</option>
+                        <option value="public">Public/Outdoor setting</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="coc-health" class="tooltip" data-tooltip="Cardiovascular health is critical with cocaine use">Cardiovascular Health:</label>
+                    <select id="coc-health">
+                        <option value="">Select Status</option>
+                        <option value="healthy">Healthy (no known issues)</option>
+                        <option value="minor">Minor issues (controlled)</option>
+                        <option value="moderate">Moderate cardiovascular concerns</option>
+                        <option value="serious">Serious heart/blood pressure issues</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="coc-alcohol" class="tooltip" data-tooltip="Alcohol and cocaine create dangerous cocaethylene">Alcohol Consumption:</label>
+                    <select id="coc-alcohol">
+                        <option value="">Select Status</option>
+                        <option value="none">No alcohol (past 12+ hours)</option>
+                        <option value="recent">Recent alcohol (within 12 hours)</option>
+                        <option value="current">Currently under alcohol influence</option>
                     </select>
                 </div>
             </div>
@@ -1362,8 +1571,8 @@
 
         <!-- 4-MMC Calculator (Enhanced) -->
         <div id="4mmc" class="calculator-section">
-            <h2>🔥 4-MMC Tolerance Calculator</h2>
-            <p>Calculate adjusted 4-MMC dosage based on previous use and tolerance buildup</p>
+            <h2>🔥 4-MMC (Mephedrone) Calculator</h2>
+            <p>Calculate safe 4-MMC dosage with comprehensive harm reduction factors</p>
 
             <div class="form-grid">
                 <div class="input-group">
@@ -1372,30 +1581,102 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="mmc-previous-dose">Previous dose (mg):</label>
-                    <input type="number" id="mmc-previous-dose" placeholder="e.g., 150">
+                    <label for="mmc-gender">Gender:</label>
+                    <select id="mmc-gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other/Non-binary</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
-                    <label for="mmc-days-ago">Days since last dose:</label>
-                    <input type="number" id="mmc-days-ago" placeholder="e.g., 4" min="0">
+                    <label for="mmc-experience">Experience Level:</label>
+                    <select id="mmc-experience">
+                        <option value="">Select Experience</option>
+                        <option value="beginner">Beginner (No/Limited experience)</option>
+                        <option value="experienced">Experienced (Regular user)</option>
+                        <option value="expert">Expert (Extensive experience)</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
-                    <label for="mmc-desired-effect" class="tooltip" data-tooltip="1=threshold, 10=maximum safe intensity">Desired effect intensity (1-10):</label>
-                    <input type="number" id="mmc-desired-effect" min="1" max="10" value="7" placeholder="7">
+                    <label for="mmc-route">Route of Administration:</label>
+                    <select id="mmc-route">
+                        <option value="">Select Route</option>
+                        <option value="oral">Oral (Capsule/Bomb)</option>
+                        <option value="nasal">Nasal (Insufflation)</option>
+                        <option value="rectal">Rectal (Plugging)</option>
+                        <option value="intravenous">Intravenous (IV) - EXTREME RISK</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="mmc-intensity">Desired Intensity:</label>
+                    <select id="mmc-intensity">
+                        <option value="">Select Intensity</option>
+                        <option value="threshold">Threshold (Just noticeable)</option>
+                        <option value="light">Light (Mild effects)</option>
+                        <option value="common">Common (Moderate effects)</option>
+                        <option value="strong">Strong (Intense effects)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="mmc-last-use">Days Since Last 4-MMC Use:</label>
+                    <input type="number" id="mmc-last-use" placeholder="e.g., 14" min="0" max="365">
+                </div>
+
+                <div class="input-group">
+                    <label for="mmc-setting">Setting/Environment:</label>
+                    <select id="mmc-setting">
+                        <option value="">Select Setting</option>
+                        <option value="home">Home (Safe, controlled)</option>
+                        <option value="party">House Party (Social)</option>
+                        <option value="club">Club/Rave (High stimulation)</option>
+                        <option value="public">Public/Unknown (Higher risk)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="mmc-cardiovascular">Cardiovascular Health:</label>
+                    <select id="mmc-cardiovascular">
+                        <option value="">Select Health Status</option>
+                        <option value="healthy">Healthy (No issues)</option>
+                        <option value="minor">Minor concerns (Mild hypertension)</option>
+                        <option value="moderate">Moderate issues (Heart conditions)</option>
+                        <option value="serious">Serious conditions (Contraindicated)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="mmc-temperature">Temperature Management:</label>
+                    <select id="mmc-temperature">
+                        <option value="">Select Environment</option>
+                        <option value="cool">Cool environment (Good ventilation)</option>
+                        <option value="warm">Warm environment (Limited ventilation)</option>
+                        <option value="hot">Hot environment (Poor ventilation/crowds)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="mmc-serotonin">Recent Serotonergic Drug Use:</label>
+                    <select id="mmc-serotonin">
+                        <option value="">Select Recent Use</option>
+                        <option value="none">None in past 3 months</option>
+                        <option value="mdma">MDMA/MDA within 3 months</option>
+                        <option value="antidepressants">On antidepressants (SSRIs/SNRIs)</option>
+                        <option value="recent">Other serotonergic drugs recently</option>
+                    </select>
                 </div>
             </div>
 
-            <button class="btn" onclick="calculate4MMCTolerance()">Calculate 4-MMC Dose</button>
+            <button class="btn" onclick="calculate4MMC()">Calculate 4-MMC Dose</button>
 
             <div id="mmc-result" class="result" style="display: none;">
                 <h3>Recommended 4-MMC Dose:</h3>
                 <div class="result-value" id="mmc-result-value"></div>
                 <div id="mmc-details"></div>
-                <div class="scientific-note">
-                    Based on 4-MMC's tolerance half-life of approximately 7-14 days and serotonin/dopamine receptor recovery patterns.
-                </div>
             </div>
         </div>
 
@@ -2508,363 +2789,1264 @@
             return effects[intensity] || '';
         }
 
-        // Enhanced ketamine tolerance calculator
-        function calculateKetamineTolerance() {
+        // Enhanced ketamine calculator with comprehensive factors
+        function calculateKetamine() {
             const weight = parseFloat(document.getElementById('ket-weight').value);
-            const previousDose = parseFloat(document.getElementById('ket-previous-dose').value);
-            const daysAgo = parseFloat(document.getElementById('ket-days-ago').value);
-            const desiredEffect = parseFloat(document.getElementById('ket-desired-effect').value);
+            const gender = document.getElementById('ket-gender').value;
+            const experience = document.getElementById('ket-experience').value;
+            const route = document.getElementById('ket-route').value;
+            const intensity = document.getElementById('ket-intensity').value;
+            const lastUse = parseFloat(document.getElementById('ket-last-use').value) || 7;
+            const setting = document.getElementById('ket-setting').value;
+            const toleranceHistory = document.getElementById('ket-tolerance-history').value;
             const resultValue = document.getElementById('ket-result-value');
             const resultDetails = document.getElementById('ket-details');
             const resultDiv = document.getElementById('ketamine-result');
 
-            if (!validateWeight(weight) || isNaN(previousDose) || isNaN(daysAgo) || isNaN(desiredEffect) || 
-                previousDose <= 0 || daysAgo < 0 || desiredEffect < 1 || desiredEffect > 10) {
-                resultValue.innerHTML = 'Please enter valid numbers. Previous dose > 0, days ≥ 0, effect intensity 1-10.';
+            if (!validateWeight(weight) || !gender || !experience || !route || !intensity || !setting || !toleranceHistory) {
+                resultValue.innerHTML = 'Please fill in all fields with valid values.';
                 resultDetails.innerHTML = '';
                 resultDiv.style.display = 'block';
                 return;
             }
 
-            const toleranceHalfLife = 4; // days
-            const baselineDose = weight * 1.0; // 1mg/kg baseline
-            
-            // Calculate remaining tolerance
-            const toleranceDecay = Math.pow(0.5, daysAgo / toleranceHalfLife);
-            const remainingTolerance = toleranceDecay;
-            
-            // Cross-tolerance factor
-            const crossToleranceFactor = Math.log(previousDose / baselineDose + 1) * 0.3;
-            const totalTolerance = remainingTolerance * (1 + crossToleranceFactor);
-            
-            // Effect scaling
-            const effectMultiplier = Math.pow(desiredEffect / 7, 1.5);
-            
-            // Calculate dose
-            let recommendedDose = baselineDose * effectMultiplier * (1 + totalTolerance);
-            
-            // Safety caps
-            const maxRecommendedDose = Math.min(previousDose * 2.5, weight * 4);
-            if (recommendedDose > maxRecommendedDose) {
-                recommendedDose = maxRecommendedDose;
+            // Enhanced dosage calculation based on route and intensity
+            const intensityDoses = {
+                'threshold': { oral: 0.75, nasal: 0.5, sublingual: 0.6, intramuscular: 0.3, intravenous: 0.2 },
+                'light': { oral: 1.5, nasal: 1.0, sublingual: 1.2, intramuscular: 0.6, intravenous: 0.4 },
+                'common': { oral: 2.5, nasal: 1.8, sublingual: 2.0, intramuscular: 1.0, intravenous: 0.7 },
+                'strong': { oral: 4.0, nasal: 3.0, sublingual: 3.5, intramuscular: 1.5, intravenous: 1.0 },
+                'k-hole': { oral: 6.0, nasal: 4.5, sublingual: 5.0, intramuscular: 2.2, intravenous: 1.5 }
+            };
+
+            const experienceMultiplier = {
+                'beginner': 0.7,      // Conservative dosing for safety
+                'experienced': 1.0,   // Standard dosing
+                'expert': 1.2         // Can handle higher doses
+            };
+
+            // Gender-based metabolism differences (smaller than other substances)
+            const genderMultiplier = {
+                'male': 1.0,
+                'female': 0.85,       // Generally lower dose needed
+                'other': 0.9          // Conservative approach
+            };
+
+            // Setting-based safety adjustments
+            const settingMultiplier = {
+                'home': 1.0,          // Safest environment
+                'therapeutic': 0.8,   // Medical setting, lower recreational doses
+                'party': 0.7,         // Social setting, need to stay functional
+                'club': 0.6           // High-stimulation environment, safety priority
+            };
+
+            // Tolerance history adjustments
+            const toleranceMultiplier = {
+                'none': 1.0,          // No tolerance
+                'occasional': 1.15,   // Slight tolerance
+                'regular': 1.4,       // Moderate tolerance
+                'frequent': 1.8       // High tolerance
+            };
+
+            // Calculate base dose (mg/kg for route)
+            let baseDose = weight * intensityDoses[intensity][route];
+
+            // Apply all multipliers
+            baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting];
+
+            // Recent use tolerance factor
+            let recentToleranceFactor = 1.0;
+            if (lastUse < 2) {
+                recentToleranceFactor = 1.6; // High tolerance
+            } else if (lastUse < 5) {
+                recentToleranceFactor = 1.3; // Moderate tolerance
+            } else if (lastUse < 10) {
+                recentToleranceFactor = 1.1; // Mild tolerance
             }
 
+            // Apply tolerance factors
+            baseDose *= toleranceMultiplier[toleranceHistory] * recentToleranceFactor;
+
+            // Safety caps by route
+            const maxSafeDose = {
+                'oral': weight * 8,
+                'nasal': weight * 5,
+                'sublingual': weight * 6,
+                'intramuscular': weight * 3,
+                'intravenous': weight * 2
+            };
+
+            const safeDose = Math.min(baseDose, maxSafeDose[route]);
+
+            // Generate warnings based on multiple factors
             let warnings = '';
-            if (recommendedDose > weight * 3) {
-                warnings += showWarning('Very high dose relative to body weight!', 'danger');
-            } else if (recommendedDose > weight * 2.5) {
-                warnings += showWarning('High dose - exercise extreme caution!');
+            let riskLevel = 'low';
+
+            // Route-specific warnings
+            if (route === 'intravenous') {
+                warnings += showWarning('IV administration carries extreme risks! Medical supervision required. Risk of infection, overdose, and vascular damage.', 'danger');
+                riskLevel = 'extreme';
+            } else if (route === 'intramuscular') {
+                warnings += showWarning('IM injection requires sterile technique and medical knowledge. High risk if done improperly.', 'danger');
+                riskLevel = 'high';
             }
 
-            resultValue.innerHTML = `${Math.round(recommendedDose)} mg`;
+            // Dose-based warnings
+            if (safeDose > weight * 3 && !['intravenous', 'intramuscular'].includes(route)) {
+                warnings += showWarning('Very high dose - risk of prolonged dissociation and respiratory depression!', 'danger');
+                riskLevel = 'high';
+            } else if (safeDose > weight * 2 && !['intravenous', 'intramuscular'].includes(route)) {
+                warnings += showWarning('High dose - ensure experienced sitter present and safe environment.');
+                riskLevel = 'moderate';
+            }
+
+            // Experience vs intensity warnings
+            if (experience === 'beginner' && ['strong', 'k-hole'].includes(intensity)) {
+                warnings += showWarning('High-intensity experiences not recommended for beginners. Start with light or common doses.');
+            }
+
+            // Frequency warnings
+            if (toleranceHistory === 'frequent') {
+                warnings += showWarning('Frequent ketamine use can cause serious bladder damage and psychological dependence. Consider harm reduction resources.', 'danger');
+            } else if (toleranceHistory === 'regular') {
+                warnings += showWarning('Regular ketamine use increases risk of tolerance and urinary tract damage. Monitor usage frequency.');
+            }
+
+            // Recent use warnings
+            if (lastUse < 3) {
+                warnings += showWarning('Very recent use - high tolerance likely. Effects may be diminished despite increased dose.');
+            }
+
+            // K-hole specific warnings
+            if (intensity === 'k-hole') {
+                warnings += showWarning('K-hole doses cause complete dissociation. Experienced sitter essential. Risk of injury from inability to move.', 'danger');
+            }
+
+            // Timeline and duration info
+            const routeInfo = {
+                'oral': { onset: '45-90 minutes', peak: '1.5-3 hours', duration: '4-6 hours', bioavailability: '20-25%' },
+                'nasal': { onset: '10-20 minutes', peak: '30-60 minutes', duration: '2-3 hours', bioavailability: '45-50%' },
+                'sublingual': { onset: '15-30 minutes', peak: '45-90 minutes', duration: '2.5-4 hours', bioavailability: '30-35%' },
+                'intramuscular': { onset: '5-15 minutes', peak: '20-40 minutes', duration: '1.5-3 hours', bioavailability: '85-95%' },
+                'intravenous': { onset: '1-3 minutes', peak: '5-15 minutes', duration: '1-2 hours', bioavailability: '100%' }
+            };
+
+            const currentRoute = routeInfo[route];
+
+            // Risk color coding
+            const riskColors = {
+                'low': '#10b981',
+                'moderate': '#f59e0b',
+                'high': '#ef4444',
+                'extreme': '#7c2d12'
+            };
+
+            resultValue.innerHTML = `<span style="color: ${riskColors[riskLevel]}">${Math.round(safeDose)}mg</span>`;
+            
             resultDetails.innerHTML = `
-                <p><strong>Tolerance factor:</strong> ${(totalTolerance * 100).toFixed(1)}% remaining</p>
-                <p><strong>Recovery rate:</strong> ${((1 - remainingTolerance) * 100).toFixed(1)}% recovered</p>
-                <p><strong>Dose per kg:</strong> ${(recommendedDose / weight).toFixed(1)} mg/kg</p>
-                <div class="scientific-note">
-                    <strong>Route Guidelines:</strong><br>
-                    • Oral: Full dose, 45-90 min onset<br>
-                    • Nasal: 70% of dose, 10-20 min onset<br>
-                    • IM: 60% of dose, 5-15 min onset
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">💊 Dosage Information</h4>
+                        <p><strong>Recommended dose:</strong> ${Math.round(safeDose)}mg</p>
+                        <p><strong>Route:</strong> ${route.charAt(0).toUpperCase() + route.slice(1)}</p>
+                        <p><strong>Dose per kg:</strong> ${(safeDose/weight).toFixed(1)}mg/kg</p>
+                        <p><strong>Bioavailability:</strong> ${currentRoute.bioavailability}</p>
+                        <p><strong>Risk level:</strong> <span style="color: ${riskColors[riskLevel]}">${riskLevel.toUpperCase()}</span></p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">⏱️ ${route.charAt(0).toUpperCase() + route.slice(1)} Timeline</h4>
+                        <p><strong>Onset:</strong> ${currentRoute.onset}</p>
+                        <p><strong>Peak effects:</strong> ${currentRoute.peak}</p>
+                        <p><strong>Total duration:</strong> ${currentRoute.duration}</p>
+                        <p><strong>Intensity:</strong> ${intensity.charAt(0).toUpperCase() + intensity.slice(1)}</p>
+                    </div>
                 </div>
+                
+                <div style="background: var(--background-secondary); padding: 1.25rem; border-radius: var(--radius-md); margin: 1.5rem 0;">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">🛡️ Safety Guidelines for ${setting.charAt(0).toUpperCase() + setting.slice(1)} Setting</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>Before:</strong><br>
+                            • Test substance with reagents<br>
+                            • Ensure experienced sitter present<br>
+                            • Remove potential hazards from area<br>
+                            • Have emergency contacts ready
+                        </div>
+                        <div>
+                            <strong>During:</strong><br>
+                            • Stay in safe, comfortable position<br>
+                            • Avoid driving or dangerous activities<br>
+                            • Monitor breathing and consciousness<br>
+                            • Keep environment calm and safe
+                        </div>
+                        <div>
+                            <strong>After:</strong><br>
+                            • Allow full recovery before activity<br>
+                            • Hydrate and rest adequately<br>
+                            • Reflect on experience safely<br>
+                            • Wait appropriate time before next use
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scientific-note">
+                    <strong>Enhanced Calculation Factors:</strong><br>
+                    • Base dose (${route}): ${intensityDoses[intensity][route]}mg/kg for ${intensity} intensity<br>
+                    • Experience adjustment: ${(experienceMultiplier[experience] * 100).toFixed(0)}% of standard dose<br>
+                    • Gender factor: ${(genderMultiplier[gender] * 100).toFixed(0)}% adjustment<br>
+                    • Setting safety factor: ${(settingMultiplier[setting] * 100).toFixed(0)}% adjustment<br>
+                    • Tolerance history: ${(toleranceMultiplier[toleranceHistory] * 100).toFixed(0)}% increase<br>
+                    • Recent use factor: ${(recentToleranceFactor * 100).toFixed(0)}% (${lastUse} days ago)<br>
+                    Based on NMDA receptor tolerance patterns and route-specific pharmacokinetics.
+                </div>
+                
                 ${warnings}
             `;
             resultDiv.style.display = 'block';
         }
 
-        // GHB/GBL calculator
+        // Enhanced GHB/GBL calculator with comprehensive safety factors
         function calculateGHB() {
             const weight = parseFloat(document.getElementById('ghb-weight').value);
             const gender = document.getElementById('ghb-gender').value;
             const substance = document.getElementById('ghb-substance').value;
+            const experience = document.getElementById('ghb-experience').value;
             const intensity = document.getElementById('ghb-intensity').value;
+            const lastUse = parseFloat(document.getElementById('ghb-last-use').value) || 3;
+            const stomach = document.getElementById('ghb-stomach').value;
+            const setting = document.getElementById('ghb-setting').value;
+            const alcohol = document.getElementById('ghb-alcohol').value;
             const resultValue = document.getElementById('ghb-result-value');
             const resultDetails = document.getElementById('ghb-details');
             const resultDiv = document.getElementById('ghb-result');
 
-            if (!validateWeight(weight) || !gender || !substance || !intensity) {
+            if (!validateWeight(weight) || !gender || !substance || !experience || !intensity || !stomach || !setting || !alcohol) {
                 resultValue.innerHTML = 'Please fill in all fields with valid values.';
                 resultDetails.innerHTML = '';
                 resultDiv.style.display = 'block';
                 return;
             }
 
-            const intensityMultipliers = {
-                'threshold': 15,
-                'light': 25,
-                'common': 35,
-                'strong': 50
-            };
-
-            const substanceMultipliers = {
-                'ghb': 1.0,
-                'gbl': 0.7,  // GBL is more potent
-                'bdo': 1.2   // BDO is less potent
-            };
-
-            const genderMultiplier = getGenderMultiplier(gender, 'ghb');
-            let dose = (weight / 70) * intensityMultipliers[intensity] * genderMultiplier * substanceMultipliers[substance];
-
-            // Convert to ml for liquid substances
-            const density = substance === 'ghb' ? 1.0 : 1.1; // Approximate densities
-            const volumeMl = dose / density / 1000; // Convert mg to ml
-
-            let warnings = '';
-            if (dose > 60) {
-                warnings += showWarning('Very high dose - serious risk of unconsciousness and respiratory depression!', 'danger');
-            } else if (dose > 45) {
-                warnings += showWarning('High dose - significant risk of loss of consciousness!', 'danger');
+            // CRITICAL: Check for alcohol consumption first
+            if (alcohol !== 'none') {
+                resultValue.innerHTML = 'CONTRAINDICATED';
+                resultDetails.innerHTML = `
+                    <div style="background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(139, 69, 19, 0.1) 100%); border: 2px solid #8B4513; border-radius: var(--radius-lg); padding: 2rem; margin: 1rem 0; text-align: center;">
+                        <h3 style="color: #8B4513; margin-bottom: 1rem; font-size: 1.5rem;">⚠️ EXTREMELY DANGEROUS COMBINATION ⚠️</h3>
+                        <p style="color: var(--text-primary); font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem;">
+                            GHB/GBL + Alcohol = POTENTIALLY FATAL
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                            This combination causes severe respiratory depression, coma, and death. Wait at least 12-24 hours after any alcohol consumption before considering GHB/GBL use.
+                        </p>
+                        <p style="color: #8B4513; font-weight: bold;">
+                            NO SAFE DOSE EXISTS WITH ALCOHOL IN YOUR SYSTEM
+                        </p>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+                return;
             }
 
-            warnings += showWarning('Never mix with alcohol or other depressants - potentially fatal combination!', 'danger');
+            // Enhanced dosage calculation with safety factors
+            const intensityDoses = {
+                'threshold': { ghb: 0.5, gbl: 0.35, bdo: 0.6 },    // g/70kg
+                'light': { ghb: 1.0, gbl: 0.7, bdo: 1.2 },         // g/70kg
+                'common': { ghb: 1.75, gbl: 1.2, bdo: 2.1 },       // g/70kg
+                'strong': { ghb: 2.5, gbl: 1.75, bdo: 3.0 }        // g/70kg - DANGEROUS
+            };
 
-            const unit = substance === 'ghb' ? 'mg' : 'ml';
-            const displayValue = substance === 'ghb' ? Math.round(dose) : volumeMl.toFixed(2);
+            const experienceMultiplier = {
+                'beginner': 0.6,      // Much more conservative for safety
+                'experienced': 0.8,   // Still conservative
+                'expert': 1.0         // Standard dosing only for very experienced users
+            };
 
-            resultValue.innerHTML = `${displayValue} ${unit}`;
+            // Gender-based metabolism differences (significant for GHB)
+            const genderMultiplier = {
+                'male': 1.0,
+                'female': 0.75,       // Significantly lower due to metabolism differences
+                'other': 0.8          // Conservative approach
+            };
+
+            // Stomach status has major impact on absorption
+            const stomachMultiplier = {
+                'empty': 1.0,         // Fastest, most dangerous absorption
+                'light': 0.7,         // Slower absorption, safer
+                'full': 0.5           // Much slower absorption, much safer
+            };
+
+            // Setting-based safety adjustments
+            const settingMultiplier = {
+                'home': 1.0,          // Safest environment
+                'therapeutic': 0.6,   // Medical setting, very conservative
+                'party': 0.7,         // Need to stay functional and safe
+                'club': 0.6           // High-risk environment, very conservative
+            };
+
+            // Calculate base dose in grams
+            let baseDose = (weight / 70) * intensityDoses[intensity][substance];
+
+            // Apply all safety multipliers
+            baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * stomachMultiplier[stomach] * settingMultiplier[setting];
+
+            // Tolerance factor (GHB tolerance develops rapidly)
+            let toleranceFactor = 1.0;
+            if (lastUse < 1) {
+                toleranceFactor = 1.5; // Significant tolerance
+            } else if (lastUse < 3) {
+                toleranceFactor = 1.2; // Moderate tolerance
+            } else if (lastUse < 7) {
+                toleranceFactor = 1.1; // Mild tolerance
+            }
+
+            baseDose *= toleranceFactor;
+
+            // STRICT safety caps - GHB has very narrow therapeutic window
+            const absoluteMaxDose = {
+                'ghb': 3.5,      // Absolute maximum in grams
+                'gbl': 2.5,      // More potent
+                'bdo': 4.0       // Less potent but still dangerous
+            };
+
+            const safeDose = Math.min(baseDose, absoluteMaxDose[substance]);
+
+            // Convert to appropriate units and calculate volume for liquids
+            let displayValue, unit;
+            if (substance === 'ghb') {
+                displayValue = (safeDose * 1000).toFixed(0); // Convert to mg
+                unit = 'mg';
+            } else {
+                // For GBL/BDO, calculate volume (typical concentration ~1g/ml)
+                const volumeMl = safeDose; // Approximate 1:1 ratio for pure substances
+                displayValue = volumeMl.toFixed(2);
+                unit = 'ml';
+            }
+
+            // Generate comprehensive warnings
+            let warnings = '';
+            let riskLevel = 'extreme'; // GHB is always high risk
+
+            // Dose-based warnings
+            if (safeDose > absoluteMaxDose[substance] * 0.8) {
+                warnings += showWarning('EXTREMELY HIGH DOSE - Life-threatening risk of coma and respiratory failure!', 'danger');
+            } else if (safeDose > absoluteMaxDose[substance] * 0.6) {
+                warnings += showWarning('Very high dose - Serious risk of unconsciousness and breathing problems!', 'danger');
+            } else if (safeDose > absoluteMaxDose[substance] * 0.4) {
+                warnings += showWarning('High dose - Significant risk of loss of consciousness!', 'danger');
+            }
+
+            // Experience-based warnings
+            if (experience === 'beginner') {
+                warnings += showWarning('First time users should start with threshold doses and have experienced supervision.', 'danger');
+            }
+
+            // Frequency-based warnings
+            if (lastUse < 3) {
+                warnings += showWarning('Recent use detected - GHB tolerance develops rapidly and increases overdose risk!', 'danger');
+            }
+
+            // Stomach warnings
+            if (stomach === 'empty') {
+                warnings += showWarning('Empty stomach increases absorption speed and overdose risk. Consider eating something light first.');
+            }
+
+            // Setting warnings
+            if (['party', 'club'].includes(setting)) {
+                warnings += showWarning('Social settings increase risks due to distractions and peer pressure. Stay with trusted friends.');
+            }
+
+            // Universal GHB warnings
+            warnings += showWarning('GHB has an extremely narrow margin between active and dangerous doses. Start low and wait fully before any redose!', 'danger');
+            warnings += showWarning('Never combine with alcohol, benzodiazepines, opioids, or any other depressants - potentially fatal!', 'danger');
+
+            // Timeline and safety info
+            const substanceInfo = {
+                'ghb': {
+                    onset: stomach === 'empty' ? '15-30 minutes' : '30-60 minutes',
+                    peak: '45-90 minutes',
+                    duration: '2-4 hours',
+                    redoseWait: '3+ hours',
+                    name: 'GHB'
+                },
+                'gbl': {
+                    onset: stomach === 'empty' ? '10-20 minutes' : '20-45 minutes',
+                    peak: '30-75 minutes',
+                    duration: '2-3.5 hours',
+                    redoseWait: '3+ hours',
+                    name: 'GBL'
+                },
+                'bdo': {
+                    onset: stomach === 'empty' ? '30-60 minutes' : '60-120 minutes',
+                    peak: '1-2 hours',
+                    duration: '3-6 hours',
+                    redoseWait: '4+ hours',
+                    name: '1,4-BDO'
+                }
+            };
+
+            const currentSubstance = substanceInfo[substance];
+
+            resultValue.innerHTML = `<span style="color: #ef4444">${displayValue} ${unit}</span>`;
+            
             resultDetails.innerHTML = `
-                <p><strong>Onset:</strong> 15-45 minutes</p>
-                <p><strong>Duration:</strong> 2-4 hours</p>
-                <p><strong>Peak:</strong> 1-2 hours</p>
-                <div class="scientific-note">
-                    <strong>Critical Safety Information:</strong><br>
-                    • NEVER mix with alcohol or other depressants<br>
-                    • Wait at least 2-3 hours between doses<br>
-                    • Have a sober person monitor you<br>
-                    • Keep emergency contacts ready<br>
-                    • The margin between active and dangerous dose is very small
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">💊 Dosage Information</h4>
+                        <p><strong>Substance:</strong> ${currentSubstance.name}</p>
+                        <p><strong>Dose:</strong> ${displayValue} ${unit}</p>
+                        <p><strong>Dose (grams):</strong> ${safeDose.toFixed(2)}g</p>
+                        <p><strong>Intensity:</strong> ${intensity.charAt(0).toUpperCase() + intensity.slice(1)}</p>
+                        <p><strong>Risk level:</strong> <span style="color: #ef4444">EXTREME</span></p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">⏱️ Timeline (${stomach} stomach)</h4>
+                        <p><strong>Onset:</strong> ${currentSubstance.onset}</p>
+                        <p><strong>Peak effects:</strong> ${currentSubstance.peak}</p>
+                        <p><strong>Duration:</strong> ${currentSubstance.duration}</p>
+                        <p><strong>Minimum redose wait:</strong> ${currentSubstance.redoseWait}</p>
+                    </div>
                 </div>
+                
+                <div style="background: var(--background-secondary); padding: 1.25rem; border-radius: var(--radius-md); margin: 1.5rem 0;">
+                    <h4 style="color: #ef4444; margin-bottom: 1rem;">🚨 CRITICAL Safety Guidelines</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>Before:</strong><br>
+                            • ZERO alcohol for 12+ hours<br>
+                            • Have experienced sitter present<br>
+                            • Emergency contacts ready<br>
+                            • Remove all dangerous objects
+                        </div>
+                        <div>
+                            <strong>During:</strong><br>
+                            • Take dose ALL AT ONCE<br>
+                            • Set timer for redose safety<br>
+                            • Stay in safe position<br>
+                            • Monitor consciousness/breathing
+                        </div>
+                        <div>
+                            <strong>Emergency:</strong><br>
+                            • Call emergency services if unconscious<br>
+                            • Recovery position if vomiting<br>
+                            • Never leave person alone<br>
+                            • Be honest with medical staff
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scientific-note">
+                    <strong>Enhanced Calculation Factors:</strong><br>
+                    • Base dose: ${intensityDoses[intensity][substance]}g/70kg for ${intensity} intensity<br>
+                    • Experience safety factor: ${(experienceMultiplier[experience] * 100).toFixed(0)}% of standard dose<br>
+                    • Gender metabolic factor: ${(genderMultiplier[gender] * 100).toFixed(0)}% adjustment<br>
+                    • Stomach absorption factor: ${(stomachMultiplier[stomach] * 100).toFixed(0)}% (${stomach} stomach)<br>
+                    • Setting safety factor: ${(settingMultiplier[setting] * 100).toFixed(0)}% adjustment<br>
+                    • Tolerance factor: ${(toleranceFactor * 100).toFixed(0)}% (${lastUse} days since last use)<br>
+                    GHB acts on GABA-B receptors with extremely narrow therapeutic window.
+                </div>
+                
                 ${warnings}
             `;
             resultDiv.style.display = 'block';
         }
 
-        // Amphetamines calculator
+        // Enhanced amphetamines calculator with comprehensive factors
         function calculateAmphetamines() {
             const weight = parseFloat(document.getElementById('amp-weight').value);
             const gender = document.getElementById('amp-gender').value;
             const substance = document.getElementById('amp-substance').value;
+            const experience = document.getElementById('amp-experience').value;
+            const route = document.getElementById('amp-route').value;
             const intensity = document.getElementById('amp-intensity').value;
+            const lastUse = parseFloat(document.getElementById('amp-last-use').value) || 7;
+            const setting = document.getElementById('amp-setting').value;
+            const health = document.getElementById('amp-health').value;
             const resultValue = document.getElementById('amp-result-value');
             const resultDetails = document.getElementById('amp-details');
             const resultDiv = document.getElementById('amp-result');
 
-            if (!validateWeight(weight) || !gender || !substance || !intensity) {
+            if (!validateWeight(weight) || !gender || !substance || !experience || !route || !intensity || !setting || !health) {
                 resultValue.innerHTML = 'Please fill in all fields with valid values.';
                 resultDetails.innerHTML = '';
                 resultDiv.style.display = 'block';
                 return;
             }
 
-            const intensityMultipliers = {
-                'threshold': 0.15,
-                'light': 0.3,
-                'common': 0.5,
-                'strong': 0.8
+            // CRITICAL: Check cardiovascular health first
+            if (health === 'serious') {
+                resultValue.innerHTML = 'CONTRAINDICATED';
+                resultDetails.innerHTML = `
+                    <div style="background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(139, 69, 19, 0.1) 100%); border: 2px solid #8B4513; border-radius: var(--radius-lg); padding: 2rem; margin: 1rem 0; text-align: center;">
+                        <h3 style="color: #8B4513; margin-bottom: 1rem; font-size: 1.5rem;">⚠️ SERIOUS HEALTH RISK ⚠️</h3>
+                        <p style="color: var(--text-primary); font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem;">
+                            Stimulants + Cardiovascular Issues = DANGEROUS
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                            Amphetamines can cause heart attacks, strokes, and arrhythmias in people with cardiovascular conditions. Please consult a medical professional.
+                        </p>
+                        <p style="color: #8B4513; font-weight: bold;">
+                            NO SAFE DOSE FOR SERIOUS HEART CONDITIONS
+                        </p>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            // Enhanced dosage calculation based on route and substance
+            const intensityDoses = {
+                'threshold': { 
+                    'amphetamine': { oral: 0.1, nasal: 0.07, sublingual: 0.08, rectal: 0.08, intravenous: 0.05, smoked: 0.05 },
+                    'dextroamphetamine': { oral: 0.07, nasal: 0.05, sublingual: 0.06, rectal: 0.06, intravenous: 0.04, smoked: 0.04 },
+                    'methamphetamine': { oral: 0.05, nasal: 0.03, sublingual: 0.04, rectal: 0.04, intravenous: 0.02, smoked: 0.02 },
+                    'adderall': { oral: 0.08, nasal: 0.06, sublingual: 0.07, rectal: 0.07, intravenous: 0.04, smoked: 0.04 }
+                },
+                'light': {
+                    'amphetamine': { oral: 0.25, nasal: 0.18, sublingual: 0.2, rectal: 0.2, intravenous: 0.12, smoked: 0.12 },
+                    'dextroamphetamine': { oral: 0.18, nasal: 0.13, sublingual: 0.15, rectal: 0.15, intravenous: 0.09, smoked: 0.09 },
+                    'methamphetamine': { oral: 0.12, nasal: 0.08, sublingual: 0.1, rectal: 0.1, intravenous: 0.06, smoked: 0.06 },
+                    'adderall': { oral: 0.2, nasal: 0.15, sublingual: 0.17, rectal: 0.17, intravenous: 0.1, smoked: 0.1 }
+                },
+                'common': {
+                    'amphetamine': { oral: 0.5, nasal: 0.35, sublingual: 0.4, rectal: 0.4, intravenous: 0.25, smoked: 0.25 },
+                    'dextroamphetamine': { oral: 0.35, nasal: 0.25, sublingual: 0.3, rectal: 0.3, intravenous: 0.18, smoked: 0.18 },
+                    'methamphetamine': { oral: 0.25, nasal: 0.18, sublingual: 0.2, rectal: 0.2, intravenous: 0.12, smoked: 0.12 },
+                    'adderall': { oral: 0.4, nasal: 0.3, sublingual: 0.35, rectal: 0.35, intravenous: 0.2, smoked: 0.2 }
+                },
+                'strong': {
+                    'amphetamine': { oral: 0.8, nasal: 0.6, sublingual: 0.7, rectal: 0.7, intravenous: 0.4, smoked: 0.4 },
+                    'dextroamphetamine': { oral: 0.6, nasal: 0.45, sublingual: 0.5, rectal: 0.5, intravenous: 0.3, smoked: 0.3 },
+                    'methamphetamine': { oral: 0.4, nasal: 0.3, sublingual: 0.35, rectal: 0.35, intravenous: 0.2, smoked: 0.2 },
+                    'adderall': { oral: 0.7, nasal: 0.5, sublingual: 0.6, rectal: 0.6, intravenous: 0.35, smoked: 0.35 }
+                }
             };
 
-            const substanceMultipliers = {
-                'amphetamine': 1.0,
-                'dextroamphetamine': 0.7,
-                'methamphetamine': 0.4,
-                'adderall': 0.8
+            const experienceMultiplier = {
+                'beginner': 0.6,      // Much more conservative for safety
+                'experienced': 0.8,   // Moderately conservative
+                'expert': 1.0         // Standard dosing
             };
 
-            const genderMultiplier = getGenderMultiplier(gender, 'amphetamines');
-            let dose = weight * intensityMultipliers[intensity] * genderMultiplier * substanceMultipliers[substance];
-
-            // Safety caps
-            const maxDoses = {
-                'amphetamine': 60,
-                'dextroamphetamine': 40,
-                'methamphetamine': 25,
-                'adderall': 50
+            // Gender-based metabolism differences
+            const genderMultiplier = {
+                'male': 1.0,
+                'female': 0.8,        // Generally lower dose needed
+                'other': 0.85         // Conservative approach
             };
 
-            dose = Math.min(dose, maxDoses[substance]);
+            // Setting-based safety adjustments
+            const settingMultiplier = {
+                'home': 1.0,          // Safe environment
+                'work': 0.7,          // Need to stay functional
+                'therapeutic': 0.6,   // Medical setting, conservative
+                'party': 0.8,         // Social setting, moderate reduction
+                'club': 0.7           // High-stimulation environment
+            };
 
+            // Health-based safety reductions
+            const healthMultiplier = {
+                'healthy': 1.0,       // No adjustment
+                'minor': 0.7,         // Significant reduction
+                'moderate': 0.4,      // Major reduction
+                'serious': 0.0        // Already handled above
+            };
+
+            // Calculate base dose (mg/kg for route and substance)
+            let baseDose = weight * intensityDoses[intensity][substance][route];
+
+            // Apply all multipliers
+            baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting] * healthMultiplier[health];
+
+            // Tolerance factor based on recent use
+            let toleranceFactor = 1.0;
+            if (lastUse < 1) {
+                toleranceFactor = 1.4; // High tolerance
+            } else if (lastUse < 3) {
+                toleranceFactor = 1.2; // Moderate tolerance
+            } else if (lastUse < 7) {
+                toleranceFactor = 1.1; // Mild tolerance
+            }
+
+            baseDose *= toleranceFactor;
+
+            // Safety caps by substance and route
+            const maxSafeDose = {
+                'amphetamine': { oral: 80, nasal: 50, sublingual: 60, rectal: 60, intravenous: 30, smoked: 30 },
+                'dextroamphetamine': { oral: 60, nasal: 40, sublingual: 50, rectal: 50, intravenous: 25, smoked: 25 },
+                'methamphetamine': { oral: 40, nasal: 25, sublingual: 30, rectal: 30, intravenous: 15, smoked: 15 },
+                'adderall': { oral: 70, nasal: 45, sublingual: 55, rectal: 55, intravenous: 25, smoked: 25 }
+            };
+
+            const safeDose = Math.min(baseDose, maxSafeDose[substance][route]);
+
+            // Generate warnings based on multiple factors
             let warnings = '';
-            if (dose > maxDoses[substance] * 0.8) {
-                warnings += showWarning('High dose - monitor heart rate and blood pressure!');
+            let riskLevel = 'low';
+
+            // Route-specific warnings
+            if (['intravenous', 'smoked'].includes(route)) {
+                warnings += showWarning('IV/Smoking routes carry extreme addiction risk and dangerous cardiovascular effects!', 'danger');
+                riskLevel = 'extreme';
+            } else if (route === 'nasal') {
+                warnings += showWarning('Nasal use can damage nasal passages and increases addiction potential.');
+                riskLevel = 'moderate';
             }
 
+            // Substance-specific warnings
             if (substance === 'methamphetamine') {
-                warnings += showWarning('Methamphetamine has high addiction potential and neurotoxicity risk.', 'danger');
+                warnings += showWarning('Methamphetamine has very high neurotoxicity and addiction potential. Consider safer alternatives.', 'danger');
+                riskLevel = 'high';
             }
 
-            const duration = {
-                'amphetamine': '4-6 hours',
-                'dextroamphetamine': '4-6 hours',
-                'methamphetamine': '8-12 hours',
-                'adderall': '4-6 hours'
+            // Health-based warnings
+            if (health === 'moderate') {
+                warnings += showWarning('Cardiovascular issues present - monitor heart rate, blood pressure, and have medical support available.', 'danger');
+                riskLevel = 'high';
+            } else if (health === 'minor') {
+                warnings += showWarning('Monitor cardiovascular signs closely. Stop immediately if chest pain, irregular heartbeat, or breathing difficulties occur.');
+            }
+
+            // Dose-based warnings
+            if (safeDose > maxSafeDose[substance][route] * 0.8) {
+                warnings += showWarning('High dose - serious cardiovascular risks! Monitor vital signs.', 'danger');
+                riskLevel = 'high';
+            } else if (safeDose > maxSafeDose[substance][route] * 0.6) {
+                warnings += showWarning('Moderate-high dose - monitor heart rate and blood pressure.');
+                riskLevel = 'moderate';
+            }
+
+            // Experience vs intensity warnings
+            if (experience === 'beginner' && intensity === 'strong') {
+                warnings += showWarning('Strong doses not recommended for beginners. High risk of panic, overstimulation, and cardiovascular issues.');
+            }
+
+            // Frequency warnings
+            if (lastUse < 3) {
+                warnings += showWarning('Recent use detected - tolerance develops quickly with stimulants. Risk of dependence and cardiovascular strain.');
+            }
+
+            // Timeline and duration info by route
+            const routeInfo = {
+                'oral': { onset: '30-60 minutes', peak: '2-4 hours', duration: getDuration(substance, 'oral'), bioavailability: '70-80%' },
+                'nasal': { onset: '5-15 minutes', peak: '30-90 minutes', duration: getDuration(substance, 'nasal'), bioavailability: '60-70%' },
+                'sublingual': { onset: '15-30 minutes', peak: '1-2 hours', duration: getDuration(substance, 'sublingual'), bioavailability: '50-60%' },
+                'rectal': { onset: '10-30 minutes', peak: '1-3 hours', duration: getDuration(substance, 'rectal'), bioavailability: '80-90%' },
+                'intravenous': { onset: 'Immediate', peak: '5-15 minutes', duration: getDuration(substance, 'iv'), bioavailability: '100%' },
+                'smoked': { onset: 'Immediate', peak: '2-10 minutes', duration: getDuration(substance, 'smoked'), bioavailability: '70-90%' }
             };
 
-            resultValue.innerHTML = `${Math.round(dose)} mg`;
+            function getDuration(sub, rt) {
+                const durations = {
+                    'amphetamine': { oral: '4-6 hours', nasal: '2-4 hours', sublingual: '3-5 hours', rectal: '4-6 hours', iv: '1-3 hours', smoked: '1-3 hours' },
+                    'dextroamphetamine': { oral: '4-6 hours', nasal: '2-4 hours', sublingual: '3-5 hours', rectal: '4-6 hours', iv: '1-3 hours', smoked: '1-3 hours' },
+                    'methamphetamine': { oral: '8-12 hours', nasal: '4-8 hours', sublingual: '6-10 hours', rectal: '8-12 hours', iv: '4-8 hours', smoked: '4-8 hours' },
+                    'adderall': { oral: '4-6 hours', nasal: '2-4 hours', sublingual: '3-5 hours', rectal: '4-6 hours', iv: '1-3 hours', smoked: '1-3 hours' }
+                };
+                return durations[sub][rt];
+            }
+
+            const currentRoute = routeInfo[route];
+
+            // Risk color coding
+            const riskColors = {
+                'low': '#10b981',
+                'moderate': '#f59e0b',
+                'high': '#ef4444',
+                'extreme': '#7c2d12'
+            };
+
+            resultValue.innerHTML = `<span style="color: ${riskColors[riskLevel]}">${Math.round(safeDose)}mg</span>`;
+            
             resultDetails.innerHTML = `
-                <p><strong>Duration:</strong> ${duration[substance]}</p>
-                <p><strong>Onset:</strong> 30-60 minutes (oral)</p>
-                <p><strong>Peak:</strong> 1-3 hours</p>
-                <div class="scientific-note">
-                    <strong>Safety Guidelines:</strong><br>
-                    • Monitor cardiovascular signs<br>
-                    • Stay hydrated and eat regularly<br>
-                    • Avoid frequent use (tolerance and dependence)<br>
-                    • Get adequate sleep between uses
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">💊 Dosage Information</h4>
+                        <p><strong>Substance:</strong> ${substance.charAt(0).toUpperCase() + substance.slice(1)}</p>
+                        <p><strong>Dose:</strong> ${Math.round(safeDose)}mg</p>
+                        <p><strong>Route:</strong> ${route.charAt(0).toUpperCase() + route.slice(1)}</p>
+                        <p><strong>Bioavailability:</strong> ${currentRoute.bioavailability}</p>
+                        <p><strong>Risk level:</strong> <span style="color: ${riskColors[riskLevel]}">${riskLevel.toUpperCase()}</span></p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">⏱️ ${route.charAt(0).toUpperCase() + route.slice(1)} Timeline</h4>
+                        <p><strong>Onset:</strong> ${currentRoute.onset}</p>
+                        <p><strong>Peak effects:</strong> ${currentRoute.peak}</p>
+                        <p><strong>Duration:</strong> ${currentRoute.duration}</p>
+                        <p><strong>Intensity:</strong> ${intensity.charAt(0).toUpperCase() + intensity.slice(1)}</p>
+                    </div>
                 </div>
+                
+                <div style="background: var(--background-secondary); padding: 1.25rem; border-radius: var(--radius-md); margin: 1.5rem 0;">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">🛡️ Safety Guidelines for ${setting.charAt(0).toUpperCase() + setting.slice(1)} Setting</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>Before:</strong><br>
+                            • Check blood pressure/heart rate<br>
+                            • Eat a proper meal<br>
+                            • Get adequate sleep<br>
+                            • Have emergency contacts ready
+                        </div>
+                        <div>
+                            <strong>During:</strong><br>
+                            • Monitor cardiovascular signs<br>
+                            • Stay hydrated (not excessive)<br>
+                            • Take breaks if overheating<br>
+                            • Avoid combining with other drugs
+                        </div>
+                        <div>
+                            <strong>After:</strong><br>
+                            • Eat nutritious food<br>
+                            • Get sleep when effects wear off<br>
+                            • Monitor mood for several days<br>
+                            • Wait appropriate time before next use
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scientific-note">
+                    <strong>Enhanced Calculation Factors:</strong><br>
+                    • Base dose (${route}): ${intensityDoses[intensity][substance][route]}mg/kg for ${intensity} intensity<br>
+                    • Experience adjustment: ${(experienceMultiplier[experience] * 100).toFixed(0)}% of standard dose<br>
+                    • Gender factor: ${(genderMultiplier[gender] * 100).toFixed(0)}% adjustment<br>
+                    • Setting safety factor: ${(settingMultiplier[setting] * 100).toFixed(0)}% adjustment<br>
+                    • Health safety factor: ${(healthMultiplier[health] * 100).toFixed(0)}% adjustment<br>
+                    • Tolerance factor: ${(toleranceFactor * 100).toFixed(0)}% (${lastUse} days since last use)<br>
+                    Based on dopamine/norepinephrine reuptake inhibition and cardiovascular effects.
+                </div>
+                
                 ${warnings}
             `;
             resultDiv.style.display = 'block';
         }
 
-        // Cocaine calculator
+        // Enhanced cocaine calculator with comprehensive safety factors
         function calculateCocaine() {
             const weight = parseFloat(document.getElementById('coc-weight').value);
             const gender = document.getElementById('coc-gender').value;
+            const experience = document.getElementById('coc-experience').value;
             const route = document.getElementById('coc-route').value;
             const intensity = document.getElementById('coc-intensity').value;
+            const lastUse = parseFloat(document.getElementById('coc-last-use').value) || 14;
+            const setting = document.getElementById('coc-setting').value;
+            const health = document.getElementById('coc-health').value;
+            const alcohol = document.getElementById('coc-alcohol').value;
             const resultValue = document.getElementById('coc-result-value');
             const resultDetails = document.getElementById('coc-details');
             const resultDiv = document.getElementById('coc-result');
 
-            if (!validateWeight(weight) || !gender || !route || !intensity) {
+            if (!validateWeight(weight) || !gender || !experience || !route || !intensity || !setting || !health || !alcohol) {
                 resultValue.innerHTML = 'Please fill in all fields with valid values.';
                 resultDetails.innerHTML = '';
                 resultDiv.style.display = 'block';
                 return;
             }
 
-            const routeMultipliers = {
-                'oral': 1.0,
-                'nasal': 0.7,
-                'iv': 0.3
+            // CRITICAL: Check for serious cardiovascular issues
+            if (health === 'serious') {
+                resultValue.innerHTML = 'CONTRAINDICATED';
+                resultDetails.innerHTML = `
+                    <div style="background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(139, 69, 19, 0.1) 100%); border: 2px solid #8B4513; border-radius: var(--radius-lg); padding: 2rem; margin: 1rem 0; text-align: center;">
+                        <h3 style="color: #8B4513; margin-bottom: 1rem; font-size: 1.5rem;">⚠️ EXTREME CARDIOVASCULAR RISK ⚠️</h3>
+                        <p style="color: var(--text-primary); font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem;">
+                            Cocaine + Heart Conditions = POTENTIALLY FATAL
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                            Cocaine causes severe cardiovascular effects including heart attacks, strokes, and arrhythmias. With existing heart conditions, this is extremely dangerous.
+                        </p>
+                        <p style="color: #8B4513; font-weight: bold;">
+                            NO SAFE DOSE FOR SERIOUS CARDIOVASCULAR CONDITIONS
+                        </p>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            // CRITICAL: Check for alcohol consumption (creates cocaethylene)
+            if (alcohol !== 'none') {
+                resultValue.innerHTML = 'HIGHLY DANGEROUS';
+                resultDetails.innerHTML = `
+                    <div style="background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(139, 69, 19, 0.1) 100%); border: 2px solid #8B4513; border-radius: var(--radius-lg); padding: 2rem; margin: 1rem 0; text-align: center;">
+                        <h3 style="color: #8B4513; margin-bottom: 1rem; font-size: 1.5rem;">⚠️ TOXIC COMBINATION ⚠️</h3>
+                        <p style="color: var(--text-primary); font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem;">
+                            Cocaine + Alcohol = Cocaethylene (Cardiotoxic)
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                            This combination creates cocaethylene, which is more toxic than either substance alone and significantly increases risk of sudden cardiac death.
+                        </p>
+                        <p style="color: #8B4513; font-weight: bold;">
+                            Wait at least 12+ hours after alcohol before considering cocaine use
+                        </p>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            // Enhanced dosage calculation based on route and intensity
+            const intensityDoses = {
+                'threshold': { nasal: 0.3, oral: 0.5, gums: 0.25, smoked: 0.15, intravenous: 0.1 },
+                'light': { nasal: 0.7, oral: 1.2, gums: 0.6, smoked: 0.35, intravenous: 0.25 },
+                'common': { nasal: 1.2, oral: 2.0, gums: 1.0, smoked: 0.6, intravenous: 0.4 },
+                'strong': { nasal: 2.0, oral: 3.5, gums: 1.7, smoked: 1.0, intravenous: 0.7 }
             };
 
-            const intensityMultipliers = {
-                'threshold': 0.3,
-                'light': 0.6,
-                'common': 1.0,
-                'strong': 1.5
+            const experienceMultiplier = {
+                'beginner': 0.5,      // Very conservative for safety
+                'experienced': 0.7,   // Still conservative
+                'expert': 0.85        // Slightly less conservative
             };
 
-            const genderMultiplier = getGenderMultiplier(gender, 'cocaine');
-            let dose = weight * intensityMultipliers[intensity] * genderMultiplier * routeMultipliers[route];
-
-            // Safety caps by route
-            const maxDoses = {
-                'oral': 200,
-                'nasal': 100,
-                'iv': 50
+            // Gender-based metabolism differences
+            const genderMultiplier = {
+                'male': 1.0,
+                'female': 0.8,        // Generally lower dose needed
+                'other': 0.85         // Conservative approach
             };
 
-            dose = Math.min(dose, maxDoses[route]);
+            // Setting-based safety adjustments
+            const settingMultiplier = {
+                'home': 1.0,          // Safest environment
+                'party': 0.8,         // Social setting, moderate reduction
+                'club': 0.7,          // High-stimulation environment
+                'public': 0.6         // Highest risk environment
+            };
 
+            // Health-based safety reductions
+            const healthMultiplier = {
+                'healthy': 1.0,       // No adjustment
+                'minor': 0.6,         // Significant reduction
+                'moderate': 0.3,      // Major reduction
+                'serious': 0.0        // Already handled above
+            };
+
+            // Calculate base dose (mg/kg for route)
+            let baseDose = weight * intensityDoses[intensity][route];
+
+            // Apply all safety multipliers
+            baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting] * healthMultiplier[health];
+
+            // Tolerance factor (cocaine tolerance is rapid but short-lived)
+            let toleranceFactor = 1.0;
+            if (lastUse < 1) {
+                toleranceFactor = 1.3; // Moderate tolerance
+            } else if (lastUse < 3) {
+                toleranceFactor = 1.15; // Mild tolerance
+            } else if (lastUse < 7) {
+                toleranceFactor = 1.05; // Very mild tolerance
+            }
+
+            baseDose *= toleranceFactor;
+
+            // STRICT safety caps by route
+            const maxSafeDose = {
+                'nasal': 120,         // Nasal maximum
+                'oral': 200,          // Oral maximum
+                'gums': 100,          // Gums maximum
+                'smoked': 60,         // Smoking maximum
+                'intravenous': 40     // IV maximum (extreme risk)
+            };
+
+            const safeDose = Math.min(baseDose, maxSafeDose[route]);
+
+            // Generate comprehensive warnings
             let warnings = '';
-            if (route === 'iv') {
-                warnings += showWarning('Intravenous use carries extreme risks including overdose, infection, and addiction!', 'danger');
-            }
-            if (dose > maxDoses[route] * 0.7) {
-                warnings += showWarning('High dose - serious cardiovascular risks!', 'danger');
+            let riskLevel = 'high'; // Cocaine is always high risk
+
+            // Route-specific warnings
+            if (route === 'intravenous') {
+                warnings += showWarning('IV cocaine use carries EXTREME risks: overdose, heart attack, stroke, infection, collapsed veins, and addiction!', 'danger');
+                riskLevel = 'extreme';
+            } else if (route === 'smoked') {
+                warnings += showWarning('Smoking cocaine (crack) has very high addiction potential and severe lung/cardiovascular risks!', 'danger');
+                riskLevel = 'extreme';
+            } else if (route === 'nasal') {
+                warnings += showWarning('Nasal use can cause severe nasal damage, deviated septum, and loss of smell. High addiction risk.');
             }
 
-            warnings += showWarning('Cocaine has high addiction potential and serious cardiovascular risks.', 'danger');
+            // Dose-based warnings
+            if (safeDose > maxSafeDose[route] * 0.8) {
+                warnings += showWarning('VERY HIGH DOSE - Serious risk of heart attack, stroke, and seizures!', 'danger');
+            } else if (safeDose > maxSafeDose[route] * 0.6) {
+                warnings += showWarning('High dose - Significant cardiovascular and neurological risks!', 'danger');
+            }
 
-            const duration = {
-                'oral': '30-90 minutes',
-                'nasal': '15-30 minutes',
-                'iv': '5-15 minutes'
+            // Experience-based warnings
+            if (experience === 'beginner') {
+                warnings += showWarning('First-time users are at highest risk for adverse reactions. Have medical support available.');
+            }
+
+            // Health-based warnings
+            if (health === 'moderate') {
+                warnings += showWarning('Cardiovascular concerns present - extremely high risk of complications. Consider avoiding use entirely.', 'danger');
+            } else if (health === 'minor') {
+                warnings += showWarning('Monitor cardiovascular signs extremely closely. Seek immediate medical help for chest pain or breathing issues.', 'danger');
+            }
+
+            // Frequency warnings
+            if (lastUse < 7) {
+                warnings += showWarning('Recent use detected - cocaine has high addiction potential and cardiovascular cumulative effects.');
+            }
+
+            // Universal cocaine warnings
+            warnings += showWarning('Cocaine carries severe risks: heart attack, stroke, seizures, hyperthermia, and addiction. Consider harm reduction alternatives.', 'danger');
+            warnings += showWarning('Never mix with alcohol, depressants, or other stimulants. Have emergency contacts ready.', 'danger');
+
+            // Timeline and duration info by route
+            const routeInfo = {
+                'nasal': { onset: '1-5 minutes', peak: '15-30 minutes', duration: '20-60 minutes', bioavailability: '60-80%' },
+                'oral': { onset: '30-60 minutes', peak: '60-90 minutes', duration: '60-120 minutes', bioavailability: '30-40%' },
+                'gums': { onset: '5-15 minutes', peak: '15-45 minutes', duration: '30-90 minutes', bioavailability: '40-60%' },
+                'smoked': { onset: 'Immediate', peak: '2-5 minutes', duration: '5-15 minutes', bioavailability: '70-90%' },
+                'intravenous': { onset: 'Immediate', peak: '1-3 minutes', duration: '5-20 minutes', bioavailability: '100%' }
             };
 
-            const onset = {
-                'oral': '30-60 minutes',
-                'nasal': '1-5 minutes',
-                'iv': 'Immediate'
+            const currentRoute = routeInfo[route];
+
+            // Risk color coding
+            const riskColors = {
+                'high': '#ef4444',
+                'extreme': '#7c2d12'
             };
 
-            resultValue.innerHTML = `${Math.round(dose)} mg`;
+            resultValue.innerHTML = `<span style="color: ${riskColors[riskLevel]}">${Math.round(safeDose)}mg</span>`;
+            
             resultDetails.innerHTML = `
-                <p><strong>Duration:</strong> ${duration[route]}</p>
-                <p><strong>Onset:</strong> ${onset[route]}</p>
-                <p><strong>Route:</strong> ${route.charAt(0).toUpperCase() + route.slice(1)}</p>
-                <div class="scientific-note">
-                    <strong>Critical Safety Information:</strong><br>
-                    • Never mix with alcohol (creates cocaethylene)<br>
-                    • Monitor heart rate and blood pressure<br>
-                    • Have emergency contacts ready<br>
-                    • High risk of addiction and cardiovascular events<br>
-                    • Consider harm reduction alternatives
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">💊 Dosage Information</h4>
+                        <p><strong>Dose:</strong> ${Math.round(safeDose)}mg</p>
+                        <p><strong>Route:</strong> ${route.charAt(0).toUpperCase() + route.slice(1)}</p>
+                        <p><strong>Bioavailability:</strong> ${currentRoute.bioavailability}</p>
+                        <p><strong>Purity assumption:</strong> 70% (street cocaine)</p>
+                        <p><strong>Risk level:</strong> <span style="color: ${riskColors[riskLevel]}">${riskLevel.toUpperCase()}</span></p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">⏱️ ${route.charAt(0).toUpperCase() + route.slice(1)} Timeline</h4>
+                        <p><strong>Onset:</strong> ${currentRoute.onset}</p>
+                        <p><strong>Peak effects:</strong> ${currentRoute.peak}</p>
+                        <p><strong>Duration:</strong> ${currentRoute.duration}</p>
+                        <p><strong>Compulsive redosing:</strong> Very high risk</p>
+                    </div>
                 </div>
+                
+                <div style="background: var(--background-secondary); padding: 1.25rem; border-radius: var(--radius-md); margin: 1.5rem 0;">
+                    <h4 style="color: #ef4444; margin-bottom: 1rem;">🚨 CRITICAL Safety Guidelines</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>Before:</strong><br>
+                            • Check blood pressure/heart rate<br>
+                            • ZERO alcohol for 24+ hours<br>
+                            • Have naloxone and emergency contacts<br>
+                            • Remove dangerous objects
+                        </div>
+                        <div>
+                            <strong>During:</strong><br>
+                            • Monitor heart rate constantly<br>
+                            • Stay cool and hydrated<br>
+                            • Avoid combining with any other drugs<br>
+                            • Set limits beforehand
+                        </div>
+                        <div>
+                            <strong>Emergency:</strong><br>
+                            • Call emergency services for chest pain<br>
+                            • Be honest with medical staff<br>
+                            • Watch for hyperthermia signs<br>
+                            • Aspirin for heart attack symptoms
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scientific-note">
+                    <strong>Enhanced Calculation Factors:</strong><br>
+                    • Base dose (${route}): ${intensityDoses[intensity][route]}mg/kg for ${intensity} intensity<br>
+                    • Experience safety factor: ${(experienceMultiplier[experience] * 100).toFixed(0)}% of standard dose<br>
+                    • Gender factor: ${(genderMultiplier[gender] * 100).toFixed(0)}% adjustment<br>
+                    • Setting safety factor: ${(settingMultiplier[setting] * 100).toFixed(0)}% adjustment<br>
+                    • Health safety factor: ${(healthMultiplier[health] * 100).toFixed(0)}% adjustment<br>
+                    • Tolerance factor: ${(toleranceFactor * 100).toFixed(0)}% (${lastUse} days since last use)<br>
+                    Cocaine blocks dopamine, norepinephrine, and sodium channels with severe cardiovascular effects.
+                </div>
+                
                 ${warnings}
             `;
             resultDiv.style.display = 'block';
         }
 
-        // Enhanced 4-MMC tolerance calculator
-        function calculate4MMCTolerance() {
+        // Enhanced 4-MMC calculator with comprehensive safety factors
+        function calculate4MMC() {
             const weight = parseFloat(document.getElementById('mmc-weight').value);
-            const previousDose = parseFloat(document.getElementById('mmc-previous-dose').value);
-            const daysAgo = parseFloat(document.getElementById('mmc-days-ago').value);
-            const desiredEffect = parseFloat(document.getElementById('mmc-desired-effect').value);
+            const gender = document.getElementById('mmc-gender').value;
+            const experience = document.getElementById('mmc-experience').value;
+            const route = document.getElementById('mmc-route').value;
+            const intensity = document.getElementById('mmc-intensity').value;
+            const lastUse = parseFloat(document.getElementById('mmc-last-use').value) || 14;
+            const setting = document.getElementById('mmc-setting').value;
+            const cardiovascular = document.getElementById('mmc-cardiovascular').value;
+            const temperature = document.getElementById('mmc-temperature').value;
+            const serotonin = document.getElementById('mmc-serotonin').value;
             const resultValue = document.getElementById('mmc-result-value');
             const resultDetails = document.getElementById('mmc-details');
             const resultDiv = document.getElementById('mmc-result');
 
-            if (!validateWeight(weight) || isNaN(previousDose) || isNaN(daysAgo) || isNaN(desiredEffect) || 
-                previousDose <= 0 || daysAgo < 0 || desiredEffect < 1 || desiredEffect > 10) {
-                resultValue.innerHTML = 'Please enter valid numbers. Previous dose > 0, days ≥ 0, effect intensity 1-10.';
+            if (!validateWeight(weight) || !gender || !experience || !route || !intensity || !setting || 
+                !cardiovascular || !temperature || !serotonin) {
+                resultValue.innerHTML = 'Please fill in all fields with valid values.';
                 resultDetails.innerHTML = '';
                 resultDiv.style.display = 'block';
                 return;
             }
 
-            const toleranceHalfLife = 10; // days
-            const baselineDose = weight * 1.7; // 1.7mg/kg baseline
-            
-            // Calculate remaining tolerance
-            const toleranceDecay = Math.pow(0.5, daysAgo / toleranceHalfLife);
-            const remainingTolerance = toleranceDecay;
-            
-            // Cross-tolerance factor
-            const crossToleranceFactor = Math.log(previousDose / baselineDose + 1) * 0.4;
-            const totalTolerance = remainingTolerance * (1 + crossToleranceFactor);
-            
-            // Effect scaling
-            const effectMultiplier = Math.pow(desiredEffect / 7, 1.3);
-            
-            // Calculate dose
-            let recommendedDose = baselineDose * effectMultiplier * (1 + totalTolerance);
-            
-            // Safety caps
-            const maxRecommendedDose = Math.min(previousDose * 2, 300, weight * 4);
-            if (recommendedDose > maxRecommendedDose) {
-                recommendedDose = maxRecommendedDose;
+            // CRITICAL: Check for serious contraindications
+            if (cardiovascular === 'serious') {
+                resultValue.innerHTML = 'CONTRAINDICATED';
+                resultDetails.innerHTML = `
+                    <div style="background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(139, 69, 19, 0.1) 100%); border: 2px solid #8B4513; border-radius: var(--radius-lg); padding: 2rem; margin: 1rem 0; text-align: center;">
+                        <h3 style="color: #8B4513; margin-bottom: 1rem; font-size: 1.5rem;">⚠️ EXTREME CARDIOVASCULAR RISK ⚠️</h3>
+                        <p style="color: var(--text-primary); font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem;">
+                            4-MMC + Heart Conditions = POTENTIALLY FATAL
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                            4-MMC causes severe cardiovascular strain, hyperthermia, and arrhythmias. With existing heart conditions, this is extremely dangerous.
+                        </p>
+                        <p style="color: #8B4513; font-weight: bold;">
+                            NO SAFE DOSE FOR SERIOUS CARDIOVASCULAR CONDITIONS
+                        </p>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+                return;
             }
 
+            // CRITICAL: Check for dangerous serotonin interactions
+            if (serotonin === 'antidepressants') {
+                resultValue.innerHTML = 'CONTRAINDICATED';
+                resultDetails.innerHTML = `
+                    <div style="background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(139, 69, 19, 0.1) 100%); border: 2px solid #8B4513; border-radius: var(--radius-lg); padding: 2rem; margin: 1rem 0; text-align: center;">
+                        <h3 style="color: #8B4513; margin-bottom: 1rem; font-size: 1.5rem;">⚠️ SEROTONIN SYNDROME RISK ⚠️</h3>
+                        <p style="color: var(--text-primary); font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem;">
+                            4-MMC + Antidepressants = SEROTONIN SYNDROME
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                            This combination can cause life-threatening serotonin syndrome with hyperthermia, seizures, and cardiovascular collapse.
+                        </p>
+                        <p style="color: #8B4513; font-weight: bold;">
+                            NEVER COMBINE WITH SSRIs, SNRIs, OR MAOIs
+                        </p>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            // Enhanced dosage calculation based on route and intensity
+            const intensityDoses = {
+                'threshold': { oral: 1.0, nasal: 0.7, rectal: 0.8, intravenous: 0.4 },
+                'light': { oral: 1.8, nasal: 1.3, rectal: 1.5, intravenous: 0.8 },
+                'common': { oral: 2.8, nasal: 2.0, rectal: 2.3, intravenous: 1.3 },
+                'strong': { oral: 4.0, nasal: 2.8, rectal: 3.2, intravenous: 1.8 }
+            };
+
+            const experienceMultiplier = {
+                'beginner': 0.6,      // Very conservative for 4-MMC
+                'experienced': 0.8,   // Still conservative due to neurotoxicity
+                'expert': 0.9         // Slightly less conservative
+            };
+
+            // Gender-based metabolism differences
+            const genderMultiplier = {
+                'male': 1.0,
+                'female': 0.85,       // Generally more sensitive
+                'other': 0.9          // Conservative approach
+            };
+
+            // Setting-based safety adjustments (important for temperature regulation)
+            const settingMultiplier = {
+                'home': 1.0,          // Safest environment
+                'party': 0.85,        // Social setting, some reduction
+                'club': 0.7,          // High-stimulation, crowd heat
+                'public': 0.6         // Highest risk environment
+            };
+
+            // Health-based safety reductions
+            const healthMultiplier = {
+                'healthy': 1.0,       // No adjustment
+                'minor': 0.7,         // Significant reduction
+                'moderate': 0.4,      // Major reduction
+                'serious': 0.0        // Already handled above
+            };
+
+            // Temperature safety factor (crucial for 4-MMC)
+            const temperatureMultiplier = {
+                'cool': 1.0,          // Ideal conditions
+                'warm': 0.8,          // Some risk reduction
+                'hot': 0.6            // High hyperthermia risk
+            };
+
+            // Serotonin safety factor
+            const serotoninMultiplier = {
+                'none': 1.0,          // No recent use
+                'mdma': 0.5,          // Significant serotonin depletion
+                'recent': 0.6,        // Other recent serotonergic use
+                'antidepressants': 0.0 // Already handled above
+            };
+
+            // Calculate base dose (mg/kg for route)
+            let baseDose = weight * intensityDoses[intensity][route];
+
+            // Apply all safety multipliers
+            baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * 
+                       settingMultiplier[setting] * healthMultiplier[cardiovascular] * 
+                       temperatureMultiplier[temperature] * serotoninMultiplier[serotonin];
+
+            // Tolerance factor (4-MMC has rapid tolerance development)
+            let toleranceFactor = 1.0;
+            if (lastUse < 3) {
+                toleranceFactor = 1.5; // Significant tolerance
+            } else if (lastUse < 7) {
+                toleranceFactor = 1.25; // Moderate tolerance
+            } else if (lastUse < 14) {
+                toleranceFactor = 1.1; // Mild tolerance
+            }
+
+            baseDose *= toleranceFactor;
+
+            // STRICT safety caps by route
+            const maxSafeDose = {
+                'oral': 200,          // Oral maximum
+                'nasal': 150,         // Nasal maximum
+                'rectal': 180,        // Rectal maximum
+                'intravenous': 80     // IV maximum (extreme risk)
+            };
+
+            const safeDose = Math.min(baseDose, maxSafeDose[route]);
+
+            // Generate comprehensive warnings
             let warnings = '';
-            if (recommendedDose > 250) {
-                warnings += showWarning('Very high dose - serious health risks including hyperthermia and cardiovascular stress!', 'danger');
-            } else if (recommendedDose > 200) {
-                warnings += showWarning('High dose - significant risks!', 'danger');
+            let riskLevel = 'extreme'; // 4-MMC is always extremely high risk
+
+            // Route-specific warnings
+            if (route === 'intravenous') {
+                warnings += showWarning('IV 4-MMC carries EXTREME risks: instant overdose, severe addiction, collapsed veins, and cardiac arrest!', 'danger');
+            } else if (route === 'nasal') {
+                warnings += showWarning('Nasal 4-MMC causes severe nasal damage and has high redose compulsion. Extreme addiction risk!', 'danger');
             }
+
+            // Dose-based warnings
+            if (safeDose > maxSafeDose[route] * 0.8) {
+                warnings += showWarning('VERY HIGH DOSE - Severe hyperthermia, cardiovascular collapse, and neurotoxicity risk!', 'danger');
+            } else if (safeDose > maxSafeDose[route] * 0.6) {
+                warnings += showWarning('High dose - Significant hyperthermia and cardiovascular risks!', 'danger');
+            }
+
+            // Experience-based warnings
+            if (experience === 'beginner') {
+                warnings += showWarning('4-MMC is NOT suitable for beginners. Extremely high addiction and neurotoxicity risks.', 'danger');
+            }
+
+            // Health-based warnings
+            if (cardiovascular === 'moderate') {
+                warnings += showWarning('Cardiovascular concerns + 4-MMC = extremely high risk of heart attack or stroke!', 'danger');
+            } else if (cardiovascular === 'minor') {
+                warnings += showWarning('Monitor cardiovascular signs extremely closely. 4-MMC causes severe cardiac strain.', 'danger');
+            }
+
+            // Temperature warnings
+            if (temperature === 'hot') {
+                warnings += showWarning('HOT environment + 4-MMC = extreme hyperthermia risk. Consider avoiding use entirely.', 'danger');
+            } else if (temperature === 'warm') {
+                warnings += showWarning('Monitor body temperature constantly. 4-MMC causes dangerous hyperthermia.', 'danger');
+            }
+
+            // Serotonin warnings
+            if (serotonin === 'mdma') {
+                warnings += showWarning('Recent MDMA use detected - serotonin depletion increases neurotoxicity risk significantly!', 'danger');
+            } else if (serotonin === 'recent') {
+                warnings += showWarning('Recent serotonergic drug use increases risk of adverse reactions and neurotoxicity.', 'danger');
+            }
+
+            // Frequency warnings
+            if (lastUse < 14) {
+                warnings += showWarning('Frequent 4-MMC use causes severe neurotoxicity and rapid addiction development!', 'danger');
+            }
+
+            // Universal 4-MMC warnings
+            warnings += showWarning('4-MMC is extremely neurotoxic and highly addictive. Maximum 2-3 uses per year recommended.', 'danger');
+            warnings += showWarning('Compulsive redosing is common - remove access to additional material beforehand.', 'danger');
+            warnings += showWarning('Monitor temperature constantly - hyperthermia can be fatal. Stay cool and hydrated.', 'danger');
+
+            // Timeline and duration info by route
+            const routeInfo = {
+                'oral': { onset: '30-60 minutes', peak: '1-2 hours', duration: '4-6 hours', bioavailability: '70-90%' },
+                'nasal': { onset: '5-15 minutes', peak: '30-60 minutes', duration: '2-4 hours', bioavailability: '80-95%' },
+                'rectal': { onset: '15-30 minutes', peak: '45-90 minutes', duration: '3-5 hours', bioavailability: '85-95%' },
+                'intravenous': { onset: 'Immediate', peak: '5-15 minutes', duration: '1-3 hours', bioavailability: '100%' }
+            };
+
+            const currentRoute = routeInfo[route];
+
+            resultValue.innerHTML = `<span style="color: #7c2d12">${Math.round(safeDose)}mg</span>`;
             
-            if (daysAgo < 7) {
-                warnings += showWarning('Consider waiting longer for better serotonin recovery (recommended: 1-2 weeks minimum).');
-            }
-
-            warnings += showWarning('4-MMC has neurotoxic potential - limit frequency of use and consider safer alternatives.');
-
-            resultValue.innerHTML = `${Math.round(recommendedDose)} mg`;
             resultDetails.innerHTML = `
-                <p><strong>Tolerance factor:</strong> ${(totalTolerance * 100).toFixed(1)}% remaining</p>
-                <p><strong>Recovery rate:</strong> ${((1 - remainingTolerance) * 100).toFixed(1)}% recovered</p>
-                <p><strong>Dose per kg:</strong> ${(recommendedDose / weight).toFixed(1)} mg/kg</p>
-                <div class="scientific-note">
-                    <strong>Safety Guidelines:</strong><br>
-                    • Wait at least 1-2 weeks between uses<br>
-                    • Monitor body temperature and hydration<br>
-                    • Use in cool environment with good ventilation<br>
-                    • Consider pre/post-loading with supplements (5-HTP, antioxidants)<br>
-                    • Maximum 3-4 uses per year recommended
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">💊 Dosage Information</h4>
+                        <p><strong>Dose:</strong> ${Math.round(safeDose)}mg</p>
+                        <p><strong>Route:</strong> ${route.charAt(0).toUpperCase() + route.slice(1)}</p>
+                        <p><strong>Bioavailability:</strong> ${currentRoute.bioavailability}</p>
+                        <p><strong>Purity assumption:</strong> 80% (laboratory grade)</p>
+                        <p><strong>Risk level:</strong> <span style="color: #7c2d12">EXTREME</span></p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-primary); margin-bottom: 0.75rem;">⏱️ ${route.charAt(0).toUpperCase() + route.slice(1)} Timeline</h4>
+                        <p><strong>Onset:</strong> ${currentRoute.onset}</p>
+                        <p><strong>Peak effects:</strong> ${currentRoute.peak}</p>
+                        <p><strong>Duration:</strong> ${currentRoute.duration}</p>
+                        <p><strong>Compulsive redosing:</strong> Very high risk</p>
+                    </div>
                 </div>
+                
+                <div style="background: var(--background-secondary); padding: 1.25rem; border-radius: var(--radius-md); margin: 1.5rem 0;">
+                    <h4 style="color: #ef4444; margin-bottom: 1rem;">🚨 CRITICAL Safety Guidelines</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>Before:</strong><br>
+                            • Test for purity/adulterants<br>
+                            • Remove all additional material<br>
+                            • Ensure cool environment<br>
+                            • Have emergency contacts ready
+                        </div>
+                        <div>
+                            <strong>During:</strong><br>
+                            • Monitor temperature constantly<br>
+                            • Stay cool and hydrated<br>
+                            • Avoid alcohol and stimulants<br>
+                            • Resist redosing urges
+                        </div>
+                        <div>
+                            <strong>After:</strong><br>
+                            • 5-HTP supplementation (24h+ later)<br>
+                            • Antioxidants (Vitamin C, E)<br>
+                            • Wait minimum 3+ months<br>
+                            • Monitor mental health
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scientific-note">
+                    <strong>Enhanced Calculation Factors:</strong><br>
+                    • Base dose (${route}): ${intensityDoses[intensity][route]}mg/kg for ${intensity} intensity<br>
+                    • Experience safety factor: ${(experienceMultiplier[experience] * 100).toFixed(0)}% of standard dose<br>
+                    • Gender factor: ${(genderMultiplier[gender] * 100).toFixed(0)}% adjustment<br>
+                    • Setting safety factor: ${(settingMultiplier[setting] * 100).toFixed(0)}% adjustment<br>
+                    • Health safety factor: ${(healthMultiplier[cardiovascular] * 100).toFixed(0)}% adjustment<br>
+                    • Temperature safety factor: ${(temperatureMultiplier[temperature] * 100).toFixed(0)}% adjustment<br>
+                    • Serotonin safety factor: ${(serotoninMultiplier[serotonin] * 100).toFixed(0)}% adjustment<br>
+                    • Tolerance factor: ${(toleranceFactor * 100).toFixed(0)}% (${lastUse} days since last use)<br>
+                    4-MMC is a potent serotonin-norepinephrine-dopamine reuptake inhibitor with severe neurotoxic potential.
+                </div>
+                
                 ${warnings}
             `;
             resultDiv.style.display = 'block';
