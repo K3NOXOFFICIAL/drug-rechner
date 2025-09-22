@@ -4178,10 +4178,8 @@
             }
         }
 
-        // Helper function for expected effects and gender considerations
-
-            // Apply multipliers
-            dose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting];
+        // Helper function for expected effects
+        function getExpectedEffects(intensity) {
 
             // Minimal weight adjustment for LSD (weak correlation)
             const weightFactor = Math.pow(weight / 70, 0.25); // Very weak weight dependence
