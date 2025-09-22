@@ -178,6 +178,29 @@ All calculations are based on:
 
 Simply open `index.html` in any modern web browser. No installation, setup, or internet connection required for full functionality.
 
+### Direct Calculator Access
+
+You can now directly access any calculator using URL paths:
+
+**Liquid Dosage Calculator:**
+- `https://k3noxofficial.github.io/drug-rechner/liquid`
+
+**Dose Calculators:**
+- `https://k3noxofficial.github.io/drug-rechner/dose/mdma`
+- `https://k3noxofficial.github.io/drug-rechner/dose/lsd`
+- `https://k3noxofficial.github.io/drug-rechner/dose/ketamine`
+- `https://k3noxofficial.github.io/drug-rechner/dose/ghb`
+- `https://k3noxofficial.github.io/drug-rechner/dose/amphetamines`
+- `https://k3noxofficial.github.io/drug-rechner/dose/cocaine`
+- `https://k3noxofficial.github.io/drug-rechner/dose/4mmc`
+
+**Tolerance Calculator:**
+- `https://k3noxofficial.github.io/drug-rechner/tolerance`
+
+### Sharing Links
+
+Each calculator has its own unique URL that you can bookmark or share. The browser's back/forward buttons work naturally, and the URL updates automatically when you navigate between calculators.
+
 ## ⚠️ Important Disclaimer
 
 **FOR SCIENTIFIC AND EDUCATIONAL PURPOSES ONLY**

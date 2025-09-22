@@ -2149,8 +2149,133 @@
         // Global variables for dropdown state
         let isDoseMenuOpen = false;
         
+        // Routing system for deep linking
+        const RoutingSystem = {
+            // Get the base path for GitHub Pages
+            getBasePath() {
+                return '/drug-rechner';
+            },
+            
+            // Parse the current URL path
+            getCurrentPath() {
+                const path = window.location.pathname;
+                const basePath = this.getBasePath();
+                
+                // Remove base path if present
+                if (path.startsWith(basePath)) {
+                    return path.substring(basePath.length);
+                }
+                return path;
+            },
+            
+            // Update the URL without refreshing the page
+            updateUrl(path) {
+                const basePath = this.getBasePath();
+                const fullPath = basePath + path;
+                
+                if (window.location.pathname !== fullPath) {
+                    window.history.pushState({}, '', fullPath);
+                }
+            },
+            
+            // Navigate to a specific calculator
+            navigateTo(type, calculator = null) {
+                let path = '';
+                
+                if (type === 'liquid') {
+                    path = '/liquid';
+                } else if (type === 'tolerance') {
+                    path = '/tolerance';
+                } else if (type === 'dose' && calculator) {
+                    path = `/dose/${calculator}`;
+                } else if (calculator) {
+                    // Direct calculator access
+                    path = `/dose/${type}`;
+                }
+                
+                this.updateUrl(path);
+                return path;
+            },
+            
+            // Parse URL path to determine which calculator to show
+            parsePathToCalculator(path) {
+                // Remove leading/trailing slashes
+                path = path.replace(/^\/+|\/+$/g, '');
+                
+                if (!path || path === '') {
+                    return { type: 'liquid', calculator: null };
+                }
+                
+                const segments = path.split('/');
+                
+                if (segments[0] === 'liquid') {
+                    return { type: 'liquid', calculator: null };
+                } else if (segments[0] === 'tolerance') {
+                    return { type: 'tolerance', calculator: null };
+                } else if (segments[0] === 'dose' && segments[1]) {
+                    return { type: 'dose', calculator: segments[1] };
+                } else if (segments.length === 1) {
+                    // Direct calculator access (legacy support)
+                    const validCalculators = ['mdma', 'lsd', 'ketamine', 'ghb', 'amphetamines', 'cocaine', '4mmc'];
+                    if (validCalculators.includes(segments[0])) {
+                        return { type: 'dose', calculator: segments[0] };
+                    }
+                }
+                
+                // Default to liquid if path is not recognized
+                return { type: 'liquid', calculator: null };
+            },
+            
+            // Initialize routing system
+            init() {
+                // Check for redirect parameter from 404 page
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectPath = urlParams.get('redirect');
+                
+                if (redirectPath) {
+                    // Clean URL and navigate to the correct path
+                    const cleanUrl = window.location.origin + this.getBasePath() + redirectPath;
+                    window.history.replaceState({}, '', cleanUrl);
+                }
+                
+                // Handle browser back/forward buttons
+                window.addEventListener('popstate', () => {
+                    this.loadFromCurrentUrl();
+                });
+                
+                // Load the correct calculator on page load
+                this.loadFromCurrentUrl();
+            },
+            
+            // Load calculator based on current URL
+            loadFromCurrentUrl() {
+                const path = this.getCurrentPath();
+                const { type, calculator } = this.parsePathToCalculator(path);
+                
+                if (type === 'dose' && calculator) {
+                    showCalculatorInternal(calculator);
+                } else {
+                    showCalculatorInternal(type);
+                }
+            }
+        };
+        
         // Enhanced navigation functionality
-        function showCalculator(calculatorId) {
+        function showCalculator(calculatorId, updateUrl = true) {
+            showCalculatorInternal(calculatorId);
+            
+            // Update URL if requested
+            if (updateUrl) {
+                if (calculatorId === 'liquid' || calculatorId === 'tolerance') {
+                    RoutingSystem.navigateTo(calculatorId);
+                } else {
+                    RoutingSystem.navigateTo('dose', calculatorId);
+                }
+            }
+        }
+        
+        // Internal function to show calculator without URL updates
+        function showCalculatorInternal(calculatorId) {
             // Hide all calculators
             const sections = document.querySelectorAll('.calculator-section');
             sections.forEach(section => {
@@ -4772,8 +4897,8 @@
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            // Show liquid calculator by default
-            showCalculator('liquid');
+            // Initialize routing system
+            RoutingSystem.init();
             
             // Add event listeners for dynamic form behavior
             const substanceSelect = document.getElementById('tol-substance');
