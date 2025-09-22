@@ -351,6 +351,7 @@
             <button class="tab-btn" onclick="showCalculator('amphetamines')">⚡ Amphetamines</button>
             <button class="tab-btn" onclick="showCalculator('cocaine')">❄️ Cocaine</button>
             <button class="tab-btn" onclick="showCalculator('4mmc')">🔥 4-MMC</button>
+            <button class="tab-btn" onclick="showCalculator('tolerance')">⚖️ General Tolerance</button>
         </div>
 
         <!-- Liquid Dosage Calculator -->
@@ -721,6 +722,79 @@
                 <div class="scientific-note">
                     Based on 4-MMC's tolerance half-life of approximately 7-14 days and serotonin/dopamine receptor recovery patterns.
                 </div>
+            </div>
+        </div>
+
+        <!-- General Tolerance Calculator -->
+        <div id="tolerance" class="calculator-section">
+            <h2>⚖️ General Tolerance Calculator</h2>
+            <p>Calculate how much you need to take for the same effect based on previous dose and time elapsed</p>
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="tol-substance" class="tooltip" data-tooltip="Different substances have different tolerance patterns">Substance Type:</label>
+                    <select id="tol-substance">
+                        <option value="">Select Substance</option>
+                        <option value="psychedelics">Psychedelics (LSD, Psilocybin, DMT)</option>
+                        <option value="mdma">MDMA/Entactogens</option>
+                        <option value="stimulants">Stimulants (Amphetamines, Cocaine)</option>
+                        <option value="dissociatives">Dissociatives (Ketamine, DXM)</option>
+                        <option value="depressants">Depressants (GHB, Benzodiazepines)</option>
+                        <option value="opioids">Opioids</option>
+                        <option value="cannabis">Cannabis/THC</option>
+                        <option value="custom">Custom (specify half-life)</option>
+                    </select>
+                </div>
+
+                <div class="input-group" id="custom-halflife-group" style="display: none;">
+                    <label for="tol-custom-halflife" class="tooltip" data-tooltip="Tolerance half-life in days - how long it takes for tolerance to reduce by 50%">Custom Tolerance Half-life (days):</label>
+                    <input type="number" id="tol-custom-halflife" placeholder="e.g., 3" min="0.1" step="0.1">
+                </div>
+
+                <div class="input-group">
+                    <label for="tol-previous-dose">Previous Dose:</label>
+                    <input type="number" id="tol-previous-dose" placeholder="e.g., 100" step="0.1">
+                </div>
+
+                <div class="input-group">
+                    <label for="tol-dose-unit">Dose Unit:</label>
+                    <select id="tol-dose-unit">
+                        <option value="mg">mg (milligrams)</option>
+                        <option value="μg">μg (micrograms)</option>
+                        <option value="g">g (grams)</option>
+                        <option value="ml">ml (milliliters)</option>
+                        <option value="tabs">tabs/hits</option>
+                        <option value="custom">custom unit</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="tol-days-ago">Days Since Last Dose:</label>
+                    <input type="number" id="tol-days-ago" placeholder="e.g., 4" min="0" step="0.1">
+                </div>
+
+                <div class="input-group">
+                    <label for="tol-target-effect" class="tooltip" data-tooltip="What effect level are you aiming for?">Target Effect Level:</label>
+                    <select id="tol-target-effect">
+                        <option value="same">Same as previous dose</option>
+                        <option value="stronger">Stronger than previous</option>
+                        <option value="weaker">Weaker than previous</option>
+                        <option value="baseline">Baseline (no tolerance)</option>
+                    </select>
+                </div>
+
+                <div class="input-group" id="effect-multiplier-group" style="display: none;">
+                    <label for="tol-effect-multiplier" class="tooltip" data-tooltip="How much stronger/weaker? 1.5 = 50% stronger, 0.7 = 30% weaker">Effect Multiplier:</label>
+                    <input type="number" id="tol-effect-multiplier" placeholder="e.g., 1.5" min="0.1" max="3" step="0.1" value="1">
+                </div>
+            </div>
+
+            <button class="btn" onclick="calculateGeneralTolerance()">Calculate Required Dose</button>
+
+            <div id="tolerance-result" class="result" style="display: none;">
+                <h3>Recommended Dose for Same Effect:</h3>
+                <div class="result-value" id="tolerance-result-value"></div>
+                <div id="tolerance-details"></div>
             </div>
         </div>
     </div>
@@ -1288,10 +1362,174 @@
             resultDiv.style.display = 'block';
         }
 
+        // General tolerance calculator
+        function calculateGeneralTolerance() {
+            const substance = document.getElementById('tol-substance').value;
+            const customHalflife = parseFloat(document.getElementById('tol-custom-halflife').value);
+            const previousDose = parseFloat(document.getElementById('tol-previous-dose').value);
+            const doseUnit = document.getElementById('tol-dose-unit').value;
+            const daysAgo = parseFloat(document.getElementById('tol-days-ago').value);
+            const targetEffect = document.getElementById('tol-target-effect').value;
+            const effectMultiplier = parseFloat(document.getElementById('tol-effect-multiplier').value) || 1;
+            const resultValue = document.getElementById('tolerance-result-value');
+            const resultDetails = document.getElementById('tolerance-details');
+            const resultDiv = document.getElementById('tolerance-result');
+
+            // Validation
+            if (!substance || isNaN(previousDose) || isNaN(daysAgo) || previousDose <= 0 || daysAgo < 0) {
+                resultValue.innerHTML = 'Please fill in all required fields with valid values.';
+                resultDetails.innerHTML = '';
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            if (substance === 'custom' && (isNaN(customHalflife) || customHalflife <= 0)) {
+                resultValue.innerHTML = 'Please enter a valid custom tolerance half-life.';
+                resultDetails.innerHTML = '';
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            // Tolerance half-lives in days (approximate values based on research)
+            const toleranceHalfLives = {
+                'psychedelics': 2.5,      // LSD, psilocybin - very fast tolerance development and recovery
+                'mdma': 14,               // MDMA - longer recovery due to serotonin depletion
+                'stimulants': 7,          // Amphetamines, cocaine - moderate tolerance
+                'dissociatives': 4,       // Ketamine, DXM - moderate tolerance
+                'depressants': 3,         // GHB, benzos - fast tolerance development
+                'opioids': 5,             // Opioids - significant tolerance issues
+                'cannabis': 3,            // THC - fast tolerance development
+                'custom': customHalflife
+            };
+
+            const toleranceHalfLife = toleranceHalfLives[substance];
+
+            // Calculate remaining tolerance (exponential decay)
+            const toleranceDecay = Math.pow(0.5, daysAgo / toleranceHalfLife);
+            const remainingTolerance = toleranceDecay;
+
+            // Calculate required dose multiplier based on target effect
+            let targetMultiplier = 1;
+            switch (targetEffect) {
+                case 'same':
+                    targetMultiplier = 1;
+                    break;
+                case 'stronger':
+                    targetMultiplier = effectMultiplier;
+                    break;
+                case 'weaker':
+                    targetMultiplier = effectMultiplier;
+                    break;
+                case 'baseline':
+                    targetMultiplier = 1;
+                    // For baseline, we calculate what the original dose would be without any tolerance
+                    const baselineDose = previousDose / (1 + remainingTolerance);
+                    resultValue.innerHTML = `${baselineDose.toFixed(2)} ${doseUnit}`;
+                    resultDetails.innerHTML = `
+                        <p><strong>Baseline dose (no tolerance):</strong> ${baselineDose.toFixed(2)} ${doseUnit}</p>
+                        <p><strong>Your previous dose had tolerance:</strong> ${(remainingTolerance * 100).toFixed(1)}% tolerance present</p>
+                        <p><strong>Current tolerance remaining:</strong> ${(toleranceDecay * 100).toFixed(1)}%</p>
+                        <div class="scientific-note">
+                            <strong>Substance:</strong> ${substance.charAt(0).toUpperCase() + substance.slice(1)}<br>
+                            <strong>Tolerance half-life:</strong> ${toleranceHalfLife} days<br>
+                            <strong>Recovery rate:</strong> ${((1 - toleranceDecay) * 100).toFixed(1)}% recovered
+                        </div>
+                    `;
+                    resultDiv.style.display = 'block';
+                    return;
+            }
+
+            // Calculate required dose for target effect
+            // If we want the same effect as before, we need to account for current tolerance
+            let requiredDose = previousDose * targetMultiplier;
+
+            // Adjust for current tolerance level
+            if (remainingTolerance > 0) {
+                requiredDose = requiredDose * (1 + remainingTolerance);
+            }
+
+            // Safety warnings
+            let warnings = '';
+            const doseIncrease = requiredDose / previousDose;
+            
+            if (doseIncrease > 2.0) {
+                warnings += showWarning('Very high dose increase required - consider waiting longer for tolerance to decrease!', 'danger');
+            } else if (doseIncrease > 1.5) {
+                warnings += showWarning('Significant dose increase required - exercise caution and consider harm reduction strategies.');
+            }
+
+            if (daysAgo < toleranceHalfLife) {
+                warnings += showWarning(`Short time since last dose. Consider waiting longer for better tolerance recovery (half-life: ${toleranceHalfLife} days).`);
+            }
+
+            // Substance-specific warnings
+            if (substance === 'psychedelics' && daysAgo < 7) {
+                warnings += showWarning('Psychedelics: Consider waiting at least 1-2 weeks between uses for full reset.');
+            } else if (substance === 'mdma' && daysAgo < 30) {
+                warnings += showWarning('MDMA: Recommended to wait at least 1-3 months between uses for serotonin recovery.', 'danger');
+            } else if (substance === 'opioids') {
+                warnings += showWarning('Opioids: High addiction potential and serious tolerance issues. Consider harm reduction resources.', 'danger');
+            }
+
+            resultValue.innerHTML = `${requiredDose.toFixed(2)} ${doseUnit}`;
+            resultDetails.innerHTML = `
+                <p><strong>Previous dose:</strong> ${previousDose} ${doseUnit}</p>
+                <p><strong>Required dose:</strong> ${requiredDose.toFixed(2)} ${doseUnit}</p>
+                <p><strong>Dose multiplier:</strong> ${doseIncrease.toFixed(2)}x</p>
+                <p><strong>Current tolerance:</strong> ${(toleranceDecay * 100).toFixed(1)}% remaining</p>
+                <p><strong>Recovery:</strong> ${((1 - toleranceDecay) * 100).toFixed(1)}% recovered</p>
+                <div class="scientific-note">
+                    <strong>Substance category:</strong> ${substance.charAt(0).toUpperCase() + substance.slice(1)}<br>
+                    <strong>Tolerance half-life:</strong> ${toleranceHalfLife} days<br>
+                    <strong>Days since last use:</strong> ${daysAgo} days<br>
+                    <strong>Target effect:</strong> ${targetEffect === 'same' ? 'Same as previous' : targetEffect}
+                    ${targetEffect !== 'same' ? `<br><strong>Effect multiplier:</strong> ${effectMultiplier}x` : ''}
+                </div>
+                ${warnings}
+            `;
+            resultDiv.style.display = 'block';
+        }
+
+        // Show/hide custom half-life input based on substance selection
+        function handleSubstanceChange() {
+            const substance = document.getElementById('tol-substance').value;
+            const customGroup = document.getElementById('custom-halflife-group');
+            
+            if (substance === 'custom') {
+                customGroup.style.display = 'block';
+            } else {
+                customGroup.style.display = 'none';
+            }
+        }
+
+        // Show/hide effect multiplier based on target effect
+        function handleTargetEffectChange() {
+            const targetEffect = document.getElementById('tol-target-effect').value;
+            const multiplierGroup = document.getElementById('effect-multiplier-group');
+            
+            if (targetEffect === 'stronger' || targetEffect === 'weaker') {
+                multiplierGroup.style.display = 'block';
+            } else {
+                multiplierGroup.style.display = 'none';
+            }
+        }
+
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             // Show liquid calculator by default
             showCalculator('liquid');
+            
+            // Add event listeners for dynamic form behavior
+            const substanceSelect = document.getElementById('tol-substance');
+            const targetEffectSelect = document.getElementById('tol-target-effect');
+            
+            if (substanceSelect) {
+                substanceSelect.addEventListener('change', handleSubstanceChange);
+            }
+            
+            if (targetEffectSelect) {
+                targetEffectSelect.addEventListener('change', handleTargetEffectChange);
+            }
         });
     </script>
 </body>
