@@ -3,309 +3,1296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drug Calculator Suite</title>
+    <title>XTCalc Enhanced - Drug Calculator Suite</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
         }
-        .calculator-section {
-            background: white;
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .input-group {
-            margin: 10px 0;
-        }
-        label {
-            display: inline-block;
-            width: 200px;
-            font-weight: bold;
-        }
-        input {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            width: 200px;
-        }
-        button {
-            background-color: #007bff;
+        
+        .header {
+            text-align: center;
             color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 10px 5px;
+            margin-bottom: 40px;
+            padding: 40px 0;
         }
-        button:hover {
-            background-color: #0056b3;
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .result {
-            background-color: #e9f7ef;
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
             padding: 15px;
-            border-radius: 4px;
-            margin: 10px 0;
-            border-left: 4px solid #28a745;
         }
-        .warning {
-            background-color: #fff3cd;
-            color: #856404;
-            padding: 10px;
-            border-radius: 4px;
-            margin: 10px 0;
-            border-left: 4px solid #ffc107;
+        
+        .tab-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .scientific-note {
-            font-style: italic;
+        
+        .tab-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            border-color: #ff6b6b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+        
+        .calculator-section {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .calculator-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .calculator-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .calculator-section p {
             color: #666;
-            font-size: 0.9em;
-            margin-top: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .input-group {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+        
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+            transform: translateY(-1px);
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto;
+            min-width: 200px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .result {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border: 2px solid #28a745;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(40,167,69,0.2);
+        }
+        
+        .result h3 {
+            color: #155724;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #155724;
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .warning {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffc107;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(255,193,7,0.2);
+        }
+        
+        .warning.danger {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border-color: #dc3545;
+            box-shadow: 0 5px 15px rgba(220,53,69,0.2);
+        }
+        
+        .warning h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .warning.danger h4 {
+            color: #721c24;
+        }
+        
+        .scientific-note {
+            background: #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            font-style: italic;
+            color: #6c757d;
+            border-left: 4px solid #6c757d;
+        }
+        
+        .disclaimer {
+            background: rgba(220,53,69,0.1);
+            border: 2px solid #dc3545;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            color: #721c24;
+        }
+        
+        .disclaimer h4 {
+            color: #dc3545;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .disclaimer h4::before {
+            content: "⚠️";
+            font-size: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 200px;
+                text-align: center;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator-section {
+                padding: 20px;
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+        
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .tooltip:hover::after {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
 <body>
-    <h1>Drug Calculator Suite</h1>
-    <div class="warning">
-        <strong>⚠️ For Scientific/Educational Purposes Only</strong><br>
-        This calculator is designed for harm reduction education and scientific research purposes. Always consult medical professionals and follow local laws.
-    </div>
-
-    <div class="calculator-section">
-        <h2>💊 Liquid Dosage Calculator</h2>
-        <p>Calculate the amount of medication in a specific volume of liquid.</p>
-
-        <div class="input-group">
-            <label for="total-volume">Total liquid volume (ml):</label>
-            <input type="number" id="total-volume" placeholder="e.g., 28">
+    <div class="container">
+        <div class="header">
+            <h1>K3NOX Drug Calc</h1>
+            <p>Your comprehensive drug dose calculator suite</p>
         </div>
 
-        <div class="input-group">
-            <label for="total-medication">Total medication (g):</label>
-            <input type="number" id="total-medication" placeholder="e.g., 4">
+        <div class="disclaimer">
+            <h4>For Scientific/Educational Purposes Only</h4>
+            <p>This calculator is designed for harm reduction education and scientific research purposes. Always consult medical professionals and follow local laws. Individual responses vary significantly, and these calculations are theoretical models based on general guidelines.</p>
         </div>
 
-        <div class="input-group">
-            <label for="drug-purity">Drug Purity (%):</label>
-            <input type="number" id="drug-purity" value="100" placeholder="e.g., 97">
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="showCalculator('liquid')">💧 Liquid Dosage</button>
+            <button class="tab-btn" onclick="showCalculator('mdma')">💊 MDMA</button>
+            <button class="tab-btn" onclick="showCalculator('lsd')">🌈 LSD</button>
+            <button class="tab-btn" onclick="showCalculator('ketamine')">🧠 Ketamine</button>
+            <button class="tab-btn" onclick="showCalculator('ghb')">🥤 GHB/GBL</button>
+            <button class="tab-btn" onclick="showCalculator('amphetamines')">⚡ Amphetamines</button>
+            <button class="tab-btn" onclick="showCalculator('cocaine')">❄️ Cocaine</button>
+            <button class="tab-btn" onclick="showCalculator('4mmc')">🔥 4-MMC</button>
         </div>
 
-        <div class="input-group">
-            <label for="target-volume">Target volume (ml):</label>
-            <input type="number" id="target-volume" value="0.1" placeholder="e.g., 0.1">
-        </div>
+        <!-- Liquid Dosage Calculator -->
+        <div id="liquid" class="calculator-section active">
+            <h2>� Liquid Dosage Calculator</h2>
+            <p>Calculate the amount of medication in a specific volume of liquid</p>
 
-        <button onclick="calculateLiquidDose()">Calculate</button>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="total-volume">Total liquid volume (ml):</label>
+                    <input type="number" id="total-volume" placeholder="e.g., 28" step="0.1">
+                </div>
 
-        <div id="liquid-result" class="result" style="display: none;">
-            <h3>Result:</h3>
-            <p><span id="result"></span></p>
-        </div>
-    </div>
+                <div class="input-group">
+                    <label for="total-medication">Total medication (g):</label>
+                    <input type="number" id="total-medication" placeholder="e.g., 4" step="0.01">
+                </div>
 
-    <div class="calculator-section">
-        <h2>🧠 Ketamine Tolerance Calculator</h2>
-        <p>Calculate adjusted dosage based on previous ketamine use and tolerance buildup.</p>
-        
-        <div class="input-group">
-            <label for="ket-previous-dose">Previous dose (mg):</label>
-            <input type="number" id="ket-previous-dose" placeholder="e.g., 100">
-        </div>
+                <div class="input-group">
+                    <label for="drug-purity" class="tooltip" data-tooltip="Purity percentage of the substance">Drug Purity (%):</label>
+                    <input type="number" id="drug-purity" value="100" placeholder="e.g., 97" min="0" max="100">
+                </div>
 
-        <div class="input-group">
-            <label for="ket-days-ago">Days since last dose:</label>
-            <input type="number" id="ket-days-ago" placeholder="e.g., 4">
-        </div>
+                <div class="input-group">
+                    <label for="target-volume">Target volume (ml):</label>
+                    <input type="number" id="target-volume" value="0.1" placeholder="e.g., 0.1" step="0.01">
+                </div>
+            </div>
 
-        <div class="input-group">
-            <label for="ket-desired-effect">Desired effect intensity (1-10):</label>
-            <input type="number" id="ket-desired-effect" min="1" max="10" value="7" placeholder="7">
-        </div>
+            <button class="btn" onclick="calculateLiquidDose()">Calculate Liquid Dose</button>
 
-        <button onclick="calculateKetamineTolerance()">Calculate Ketamine Dose</button>
-
-        <div id="ketamine-result" class="result" style="display: none;">
-            <h3>Recommended Ketamine Dose:</h3>
-            <p><span id="ket-result"></span></p>
-            <div class="scientific-note">
-                Based on ketamine's tolerance half-life of approximately 3-5 days and NMDA receptor downregulation patterns.
+            <div id="liquid-result" class="result" style="display: none;">
+                <h3>Result:</h3>
+                <div class="result-value" id="liquid-result-value"></div>
             </div>
         </div>
-    </div>
 
-    <div class="calculator-section">
-        <h2>⚡ 4-MMC Tolerance Calculator</h2>
-        <p>Calculate adjusted dosage based on previous 4-MMC use and tolerance buildup.</p>
-        
-        <div class="input-group">
-            <label for="mmc-previous-dose">Previous dose (mg):</label>
-            <input type="number" id="mmc-previous-dose" placeholder="e.g., 150">
+        <!-- MDMA Calculator -->
+        <div id="mdma" class="calculator-section">
+            <h2>💊 MDMA Dose Calculator</h2>
+            <p>Calculate MDMA dosage based on body weight and desired intensity</p>
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="mdma-weight">Body Weight (kg):</label>
+                    <input type="number" id="mdma-weight" placeholder="e.g., 70" min="40" max="150">
+                </div>
+
+                <div class="input-group">
+                    <label for="mdma-gender">Gender:</label>
+                    <select id="mdma-gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="mdma-experience" class="tooltip" data-tooltip="Your experience level with MDMA">Experience Level:</label>
+                    <select id="mdma-experience">
+                        <option value="">Select Experience</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="experienced">Experienced</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="mdma-intensity">Desired Intensity:</label>
+                    <select id="mdma-intensity">
+                        <option value="">Select Intensity</option>
+                        <option value="threshold">Threshold (mild)</option>
+                        <option value="light">Light</option>
+                        <option value="common">Common</option>
+                        <option value="strong">Strong</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn" onclick="calculateMDMA()">Calculate MDMA Dose</button>
+
+            <div id="mdma-result" class="result" style="display: none;">
+                <h3>Recommended MDMA Dose:</h3>
+                <div class="result-value" id="mdma-result-value"></div>
+                <div id="mdma-details"></div>
+            </div>
         </div>
 
-        <div class="input-group">
-            <label for="mmc-days-ago">Days since last dose:</label>
-            <input type="number" id="mmc-days-ago" placeholder="e.g., 4">
+        <!-- LSD Calculator -->
+        <div id="lsd" class="calculator-section">
+            <h2>🌈 LSD Dose Calculator</h2>
+            <p>Calculate LSD dosage based on body weight, gender, and desired intensity</p>
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="lsd-weight">Body Weight (kg):</label>
+                    <input type="number" id="lsd-weight" placeholder="e.g., 70" min="40" max="150">
+                </div>
+
+                <div class="input-group">
+                    <label for="lsd-gender">Gender:</label>
+                    <select id="lsd-gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="lsd-experience">Experience Level:</label>
+                    <select id="lsd-experience">
+                        <option value="">Select Experience</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="experienced">Experienced</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="lsd-intensity">Desired Intensity:</label>
+                    <select id="lsd-intensity">
+                        <option value="">Select Intensity</option>
+                        <option value="microdose">Microdose</option>
+                        <option value="threshold">Threshold</option>
+                        <option value="light">Light</option>
+                        <option value="common">Common</option>
+                        <option value="strong">Strong</option>
+                        <option value="heavy">Heavy</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn" onclick="calculateLSD()">Calculate LSD Dose</button>
+
+            <div id="lsd-result" class="result" style="display: none;">
+                <h3>Recommended LSD Dose:</h3>
+                <div class="result-value" id="lsd-result-value"></div>
+                <div id="lsd-details"></div>
+            </div>
         </div>
 
-        <div class="input-group">
-            <label for="mmc-desired-effect">Desired effect intensity (1-10):</label>
-            <input type="number" id="mmc-desired-effect" min="1" max="10" value="7" placeholder="7">
+        <!-- Ketamine Calculator (Enhanced) -->
+        <div id="ketamine" class="calculator-section">
+            <h2>🧠 Ketamine Tolerance Calculator</h2>
+            <p>Calculate adjusted dosage based on previous ketamine use and tolerance buildup</p>
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="ket-weight">Body Weight (kg):</label>
+                    <input type="number" id="ket-weight" placeholder="e.g., 70" min="40" max="150">
+                </div>
+
+                <div class="input-group">
+                    <label for="ket-previous-dose">Previous dose (mg):</label>
+                    <input type="number" id="ket-previous-dose" placeholder="e.g., 100">
+                </div>
+
+                <div class="input-group">
+                    <label for="ket-days-ago">Days since last dose:</label>
+                    <input type="number" id="ket-days-ago" placeholder="e.g., 4" min="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="ket-desired-effect" class="tooltip" data-tooltip="1=threshold, 10=maximum safe intensity">Desired effect intensity (1-10):</label>
+                    <input type="number" id="ket-desired-effect" min="1" max="10" value="7" placeholder="7">
+                </div>
+            </div>
+
+            <button class="btn" onclick="calculateKetamineTolerance()">Calculate Ketamine Dose</button>
+
+            <div id="ketamine-result" class="result" style="display: none;">
+                <h3>Recommended Ketamine Dose:</h3>
+                <div class="result-value" id="ket-result-value"></div>
+                <div id="ket-details"></div>
+                <div class="scientific-note">
+                    Based on ketamine's tolerance half-life of approximately 3-5 days and NMDA receptor downregulation patterns.
+                </div>
+            </div>
         </div>
 
-        <button onclick="calculate4MMCTolerance()">Calculate 4-MMC Dose</button>
+        <!-- GHB/GBL Calculator -->
+        <div id="ghb" class="calculator-section">
+            <h2>🥤 GHB/GBL Dose Calculator</h2>
+            <p>Calculate GHB or GBL dosage based on body weight and substance type</p>
 
-        <div id="mmc-result" class="result" style="display: none;">
-            <h3>Recommended 4-MMC Dose:</h3>
-            <p><span id="mmc-result-text"></span></p>
-            <div class="scientific-note">
-                Based on 4-MMC's tolerance half-life of approximately 7-14 days and serotonin/dopamine receptor recovery patterns.
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="ghb-weight">Body Weight (kg):</label>
+                    <input type="number" id="ghb-weight" placeholder="e.g., 70" min="40" max="150">
+                </div>
+
+                <div class="input-group">
+                    <label for="ghb-gender">Gender:</label>
+                    <select id="ghb-gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="ghb-substance">Substance:</label>
+                    <select id="ghb-substance">
+                        <option value="">Select Substance</option>
+                        <option value="ghb">GHB (Sodium γ-hydroxybutyrate)</option>
+                        <option value="gbl">GBL (γ-butyrolactone)</option>
+                        <option value="bdo">1,4-BDO (1,4-butanediol)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="ghb-intensity">Desired Intensity:</label>
+                    <select id="ghb-intensity">
+                        <option value="">Select Intensity</option>
+                        <option value="threshold">Threshold</option>
+                        <option value="light">Light</option>
+                        <option value="common">Common</option>
+                        <option value="strong">Strong</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn" onclick="calculateGHB()">Calculate GHB/GBL Dose</button>
+
+            <div id="ghb-result" class="result" style="display: none;">
+                <h3>Recommended Dose:</h3>
+                <div class="result-value" id="ghb-result-value"></div>
+                <div id="ghb-details"></div>
+            </div>
+        </div>
+
+        <!-- Amphetamines Calculator -->
+        <div id="amphetamines" class="calculator-section">
+            <h2>⚡ Amphetamines Dose Calculator</h2>
+            <p>Calculate amphetamine dosage based on body weight and substance type</p>
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="amp-weight">Body Weight (kg):</label>
+                    <input type="number" id="amp-weight" placeholder="e.g., 70" min="40" max="150">
+                </div>
+
+                <div class="input-group">
+                    <label for="amp-gender">Gender:</label>
+                    <select id="amp-gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="amp-substance">Substance Type:</label>
+                    <select id="amp-substance">
+                        <option value="">Select Substance</option>
+                        <option value="amphetamine">Amphetamine (racemic)</option>
+                        <option value="dextroamphetamine">Dextroamphetamine</option>
+                        <option value="methamphetamine">Methamphetamine</option>
+                        <option value="adderall">Adderall (mixed salts)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="amp-intensity">Desired Intensity:</label>
+                    <select id="amp-intensity">
+                        <option value="">Select Intensity</option>
+                        <option value="threshold">Threshold</option>
+                        <option value="light">Light</option>
+                        <option value="common">Common</option>
+                        <option value="strong">Strong</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn" onclick="calculateAmphetamines()">Calculate Amphetamine Dose</button>
+
+            <div id="amp-result" class="result" style="display: none;">
+                <h3>Recommended Dose:</h3>
+                <div class="result-value" id="amp-result-value"></div>
+                <div id="amp-details"></div>
+            </div>
+        </div>
+
+        <!-- Cocaine Calculator -->
+        <div id="cocaine" class="calculator-section">
+            <h2>❄️ Cocaine Dose Calculator</h2>
+            <p>Calculate cocaine dosage based on body weight and route of administration</p>
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="coc-weight">Body Weight (kg):</label>
+                    <input type="number" id="coc-weight" placeholder="e.g., 70" min="40" max="150">
+                </div>
+
+                <div class="input-group">
+                    <label for="coc-gender">Gender:</label>
+                    <select id="coc-gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="coc-route">Route of Administration:</label>
+                    <select id="coc-route">
+                        <option value="">Select Route</option>
+                        <option value="nasal">Nasal (snorted)</option>
+                        <option value="oral">Oral</option>
+                        <option value="iv">Intravenous (IV)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="coc-intensity">Desired Intensity:</label>
+                    <select id="coc-intensity">
+                        <option value="">Select Intensity</option>
+                        <option value="threshold">Threshold</option>
+                        <option value="light">Light</option>
+                        <option value="common">Common</option>
+                        <option value="strong">Strong</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn" onclick="calculateCocaine()">Calculate Cocaine Dose</button>
+
+            <div id="coc-result" class="result" style="display: none;">
+                <h3>Recommended Dose:</h3>
+                <div class="result-value" id="coc-result-value"></div>
+                <div id="coc-details"></div>
+            </div>
+        </div>
+
+        <!-- 4-MMC Calculator (Enhanced) -->
+        <div id="4mmc" class="calculator-section">
+            <h2>🔥 4-MMC Tolerance Calculator</h2>
+            <p>Calculate adjusted 4-MMC dosage based on previous use and tolerance buildup</p>
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="mmc-weight">Body Weight (kg):</label>
+                    <input type="number" id="mmc-weight" placeholder="e.g., 70" min="40" max="150">
+                </div>
+
+                <div class="input-group">
+                    <label for="mmc-previous-dose">Previous dose (mg):</label>
+                    <input type="number" id="mmc-previous-dose" placeholder="e.g., 150">
+                </div>
+
+                <div class="input-group">
+                    <label for="mmc-days-ago">Days since last dose:</label>
+                    <input type="number" id="mmc-days-ago" placeholder="e.g., 4" min="0">
+                </div>
+
+                <div class="input-group">
+                    <label for="mmc-desired-effect" class="tooltip" data-tooltip="1=threshold, 10=maximum safe intensity">Desired effect intensity (1-10):</label>
+                    <input type="number" id="mmc-desired-effect" min="1" max="10" value="7" placeholder="7">
+                </div>
+            </div>
+
+            <button class="btn" onclick="calculate4MMCTolerance()">Calculate 4-MMC Dose</button>
+
+            <div id="mmc-result" class="result" style="display: none;">
+                <h3>Recommended 4-MMC Dose:</h3>
+                <div class="result-value" id="mmc-result-value"></div>
+                <div id="mmc-details"></div>
+                <div class="scientific-note">
+                    Based on 4-MMC's tolerance half-life of approximately 7-14 days and serotonin/dopamine receptor recovery patterns.
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Original liquid dosage calculator
+        // Navigation functionality
+        function showCalculator(calculatorId) {
+            // Hide all calculators
+            const sections = document.querySelectorAll('.calculator-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected calculator
+            document.getElementById(calculatorId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Utility functions
+        function showWarning(message, type = 'warning') {
+            const warningClass = type === 'danger' ? 'warning danger' : 'warning';
+            return `<div class="${warningClass}"><h4>${type === 'danger' ? '⚠️ Danger' : '⚠️ Warning'}</h4><p>${message}</p></div>`;
+        }
+
+        function validateWeight(weight) {
+            return weight >= 40 && weight <= 150;
+        }
+
+        function getGenderMultiplier(gender, substance) {
+            const multipliers = {
+                'mdma': { male: 1.0, female: 0.85 },
+                'lsd': { male: 1.0, female: 0.9 },
+                'ghb': { male: 1.0, female: 0.8 },
+                'amphetamines': { male: 1.0, female: 0.85 },
+                'cocaine': { male: 1.0, female: 0.85 }
+            };
+            return multipliers[substance] ? multipliers[substance][gender] || 1.0 : 1.0;
+        }
+
+        // Enhanced liquid dosage calculator
         function calculateLiquidDose() {
-            const totalVolumeInput = document.getElementById('total-volume');
-            const totalMedicationInput = document.getElementById('total-medication');
-            const drugPurityInput = document.getElementById('drug-purity');
-            const targetVolumeInput = document.getElementById('target-volume');
-            const resultSpan = document.getElementById('result');
+            const totalVolume = parseFloat(document.getElementById('total-volume').value);
+            const totalMedication = parseFloat(document.getElementById('total-medication').value);
+            const drugPurity = parseFloat(document.getElementById('drug-purity').value);
+            const targetVolume = parseFloat(document.getElementById('target-volume').value);
+            const resultValue = document.getElementById('liquid-result-value');
             const resultDiv = document.getElementById('liquid-result');
 
-            const totalVolume = parseFloat(totalVolumeInput.value);
-            const totalMedication = parseFloat(totalMedicationInput.value);
-            const drugPurity = parseFloat(drugPurityInput.value);
-            const targetVolume = parseFloat(targetVolumeInput.value);
-
-            if (isNaN(totalVolume) || isNaN(totalMedication) || isNaN(targetVolume) || isNaN(drugPurity) || totalVolume <= 0 || drugPurity < 0 || drugPurity > 100) {
-                resultSpan.textContent = 'Please enter valid numbers. Total volume must be > 0. Purity must be between 0 and 100.';
+            if (isNaN(totalVolume) || isNaN(totalMedication) || isNaN(targetVolume) || isNaN(drugPurity) || 
+                totalVolume <= 0 || drugPurity < 0 || drugPurity > 100) {
+                resultValue.innerHTML = 'Please enter valid numbers. Total volume must be > 0. Purity must be between 0 and 100.';
                 resultDiv.style.display = 'block';
                 return;
             }
 
             const result = (totalMedication * 1000) / totalVolume * targetVolume * (drugPurity / 100);
-            resultSpan.textContent = `${result.toFixed(2)} mg`;
+            resultValue.innerHTML = `${result.toFixed(2)} mg`;
             resultDiv.style.display = 'block';
         }
 
-        // Ketamine tolerance calculator
+        // MDMA calculator
+        function calculateMDMA() {
+            const weight = parseFloat(document.getElementById('mdma-weight').value);
+            const gender = document.getElementById('mdma-gender').value;
+            const experience = document.getElementById('mdma-experience').value;
+            const intensity = document.getElementById('mdma-intensity').value;
+            const resultValue = document.getElementById('mdma-result-value');
+            const resultDetails = document.getElementById('mdma-details');
+            const resultDiv = document.getElementById('mdma-result');
+
+            if (!validateWeight(weight) || !gender || !experience || !intensity) {
+                resultValue.innerHTML = 'Please fill in all fields with valid values.';
+                resultDetails.innerHTML = '';
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            const intensityDoses = {
+                'threshold': { base: 0.8, max: 1.0 },
+                'light': { base: 1.0, max: 1.3 },
+                'common': { base: 1.3, max: 1.7 },
+                'strong': { base: 1.7, max: 2.5 }
+            };
+
+            const experienceMultiplier = {
+                'beginner': 0.8,
+                'experienced': 1.0,
+                'expert': 1.1
+            };
+
+            const genderMultiplier = getGenderMultiplier(gender, 'mdma');
+            const baseDose = weight * intensityDoses[intensity].base * genderMultiplier * experienceMultiplier[experience];
+            const maxDose = weight * intensityDoses[intensity].max * genderMultiplier * experienceMultiplier[experience];
+
+            // Safety caps
+            const absoluteMax = Math.min(200, weight * 2.5);
+            const safeDose = Math.min(baseDose, absoluteMax);
+            const safeMaxDose = Math.min(maxDose, absoluteMax);
+
+            let warnings = '';
+            if (safeDose > 150) {
+                warnings += showWarning('High dose - exercise extreme caution! Consider reducing dose.', 'danger');
+            } else if (safeDose > 120) {
+                warnings += showWarning('Moderate-high dose - be careful and stay hydrated.');
+            }
+
+            if (experience === 'beginner' && intensity === 'strong') {
+                warnings += showWarning('Strong doses not recommended for beginners. Consider starting with a lower intensity.');
+            }
+
+            resultValue.innerHTML = `${Math.round(safeDose)} - ${Math.round(safeMaxDose)} mg`;
+            resultDetails.innerHTML = `
+                <p><strong>Initial dose:</strong> ${Math.round(safeDose)} mg</p>
+                <p><strong>Optional redose:</strong> ${Math.round(safeDose * 0.5)} mg (after 1.5-2 hours)</p>
+                <p><strong>Total session:</strong> ≤ ${Math.round(safeMaxDose)} mg</p>
+                <div class="scientific-note">
+                    <strong>Safety Guidelines:</strong><br>
+                    • Wait at least 3 months between uses<br>
+                    • Stay hydrated but don't overdrink<br>
+                    • Test your substance with reagents<br>
+                    • Have a trusted sober friend present
+                </div>
+                ${warnings}
+            `;
+            resultDiv.style.display = 'block';
+        }
+
+        // LSD calculator
+        function calculateLSD() {
+            const weight = parseFloat(document.getElementById('lsd-weight').value);
+            const gender = document.getElementById('lsd-gender').value;
+            const experience = document.getElementById('lsd-experience').value;
+            const intensity = document.getElementById('lsd-intensity').value;
+            const resultValue = document.getElementById('lsd-result-value');
+            const resultDetails = document.getElementById('lsd-details');
+            const resultDiv = document.getElementById('lsd-result');
+
+            if (!validateWeight(weight) || !gender || !experience || !intensity) {
+                resultValue.innerHTML = 'Please fill in all fields with valid values.';
+                resultDetails.innerHTML = '';
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            const intensityDoses = {
+                'microdose': { dose: 10 },
+                'threshold': { dose: 25 },
+                'light': { dose: 50 },
+                'common': { dose: 100 },
+                'strong': { dose: 200 },
+                'heavy': { dose: 300 }
+            };
+
+            const experienceMultiplier = {
+                'beginner': 0.7,
+                'experienced': 1.0,
+                'expert': 1.2
+            };
+
+            const genderMultiplier = getGenderMultiplier(gender, 'lsd');
+            let dose = intensityDoses[intensity].dose * genderMultiplier * experienceMultiplier[experience];
+
+            // Weight adjustment for LSD (minimal effect)
+            const weightFactor = weight / 70; // 70kg reference
+            dose *= Math.pow(weightFactor, 0.3); // Weak weight dependence
+
+            let warnings = '';
+            if (dose > 250) {
+                warnings += showWarning('Very high dose - serious psychological risks!', 'danger');
+            } else if (dose > 150) {
+                warnings += showWarning('High dose - ensure safe environment and experienced trip sitter.');
+            }
+
+            if (experience === 'beginner' && ['strong', 'heavy'].includes(intensity)) {
+                warnings += showWarning('High doses not recommended for beginners. Start with threshold or light doses.');
+            }
+
+            const duration = intensity === 'microdose' ? '4-6 hours' : 
+                           ['threshold', 'light'].includes(intensity) ? '8-10 hours' : '10-12 hours';
+
+            resultValue.innerHTML = `${Math.round(dose)} µg`;
+            resultDetails.innerHTML = `
+                <p><strong>Expected duration:</strong> ${duration}</p>
+                <p><strong>Onset:</strong> 30-90 minutes</p>
+                <p><strong>Peak:</strong> 2-4 hours after onset</p>
+                <div class="scientific-note">
+                    <strong>Safety Guidelines:</strong><br>
+                    • Use only in a safe, comfortable environment<br>
+                    • Have a trusted, sober trip sitter present<br>
+                    • Avoid mixing with other substances<br>
+                    • Wait at least 2 weeks between uses for tolerance reset
+                </div>
+                ${warnings}
+            `;
+            resultDiv.style.display = 'block';
+        }
+
+        // Enhanced ketamine tolerance calculator
         function calculateKetamineTolerance() {
+            const weight = parseFloat(document.getElementById('ket-weight').value);
             const previousDose = parseFloat(document.getElementById('ket-previous-dose').value);
             const daysAgo = parseFloat(document.getElementById('ket-days-ago').value);
             const desiredEffect = parseFloat(document.getElementById('ket-desired-effect').value);
-            const resultSpan = document.getElementById('ket-result');
+            const resultValue = document.getElementById('ket-result-value');
+            const resultDetails = document.getElementById('ket-details');
             const resultDiv = document.getElementById('ketamine-result');
 
-            if (isNaN(previousDose) || isNaN(daysAgo) || isNaN(desiredEffect) || 
+            if (!validateWeight(weight) || isNaN(previousDose) || isNaN(daysAgo) || isNaN(desiredEffect) || 
                 previousDose <= 0 || daysAgo < 0 || desiredEffect < 1 || desiredEffect > 10) {
-                resultSpan.innerHTML = 'Please enter valid numbers. Previous dose > 0, days ≥ 0, effect intensity 1-10.';
+                resultValue.innerHTML = 'Please enter valid numbers. Previous dose > 0, days ≥ 0, effect intensity 1-10.';
+                resultDetails.innerHTML = '';
                 resultDiv.style.display = 'block';
                 return;
             }
 
-            // Ketamine tolerance calculation
-            // Based on NMDA receptor tolerance patterns and scientific literature
-            const toleranceHalfLife = 4; // days (conservative estimate)
-            const baselineDose = 75; // mg (typical recreational threshold)
+            const toleranceHalfLife = 4; // days
+            const baselineDose = weight * 1.0; // 1mg/kg baseline
             
-            // Calculate remaining tolerance (exponential decay)
+            // Calculate remaining tolerance
             const toleranceDecay = Math.pow(0.5, daysAgo / toleranceHalfLife);
             const remainingTolerance = toleranceDecay;
             
-            // Cross-tolerance factor from previous dose
+            // Cross-tolerance factor
             const crossToleranceFactor = Math.log(previousDose / baselineDose + 1) * 0.3;
             const totalTolerance = remainingTolerance * (1 + crossToleranceFactor);
             
-            // Desired effect scaling (non-linear)
+            // Effect scaling
             const effectMultiplier = Math.pow(desiredEffect / 7, 1.5);
             
-            // Calculate recommended dose
+            // Calculate dose
             let recommendedDose = baselineDose * effectMultiplier * (1 + totalTolerance);
             
             // Safety caps
-            const maxRecommendedDose = previousDose * 2.5;
+            const maxRecommendedDose = Math.min(previousDose * 2.5, weight * 4);
             if (recommendedDose > maxRecommendedDose) {
                 recommendedDose = maxRecommendedDose;
             }
 
-            let warningText = '';
-            if (recommendedDose > 200) {
-                warningText = '<br><strong style="color: #dc3545;">⚠️ High dose - exercise extreme caution!</strong>';
-            } else if (recommendedDose > 150) {
-                warningText = '<br><strong style="color: #fd7e14;">⚠️ Moderate-high dose - be careful!</strong>';
+            let warnings = '';
+            if (recommendedDose > weight * 3) {
+                warnings += showWarning('Very high dose relative to body weight!', 'danger');
+            } else if (recommendedDose > weight * 2.5) {
+                warnings += showWarning('High dose - exercise extreme caution!');
             }
 
-            resultSpan.innerHTML = `
-                <strong>${recommendedDose.toFixed(0)} mg</strong><br>
-                <small>Tolerance factor: ${(totalTolerance * 100).toFixed(1)}% remaining<br>
-                Recovery rate: ${((1 - remainingTolerance) * 100).toFixed(1)}% recovered</small>
-                ${warningText}
+            resultValue.innerHTML = `${Math.round(recommendedDose)} mg`;
+            resultDetails.innerHTML = `
+                <p><strong>Tolerance factor:</strong> ${(totalTolerance * 100).toFixed(1)}% remaining</p>
+                <p><strong>Recovery rate:</strong> ${((1 - remainingTolerance) * 100).toFixed(1)}% recovered</p>
+                <p><strong>Dose per kg:</strong> ${(recommendedDose / weight).toFixed(1)} mg/kg</p>
+                <div class="scientific-note">
+                    <strong>Route Guidelines:</strong><br>
+                    • Oral: Full dose, 45-90 min onset<br>
+                    • Nasal: 70% of dose, 10-20 min onset<br>
+                    • IM: 60% of dose, 5-15 min onset
+                </div>
+                ${warnings}
             `;
             resultDiv.style.display = 'block';
         }
 
-        // 4-MMC tolerance calculator
-        function calculate4MMCTolerance() {
-            const previousDose = parseFloat(document.getElementById('mmc-previous-dose').value);
-            const daysAgo = parseFloat(document.getElementById('mmc-days-ago').value);
-            const desiredEffect = parseFloat(document.getElementById('mmc-desired-effect').value);
-            const resultSpan = document.getElementById('mmc-result-text');
-            const resultDiv = document.getElementById('mmc-result');
+        // GHB/GBL calculator
+        function calculateGHB() {
+            const weight = parseFloat(document.getElementById('ghb-weight').value);
+            const gender = document.getElementById('ghb-gender').value;
+            const substance = document.getElementById('ghb-substance').value;
+            const intensity = document.getElementById('ghb-intensity').value;
+            const resultValue = document.getElementById('ghb-result-value');
+            const resultDetails = document.getElementById('ghb-details');
+            const resultDiv = document.getElementById('ghb-result');
 
-            if (isNaN(previousDose) || isNaN(daysAgo) || isNaN(desiredEffect) || 
-                previousDose <= 0 || daysAgo < 0 || desiredEffect < 1 || desiredEffect > 10) {
-                resultSpan.innerHTML = 'Please enter valid numbers. Previous dose > 0, days ≥ 0, effect intensity 1-10.';
+            if (!validateWeight(weight) || !gender || !substance || !intensity) {
+                resultValue.innerHTML = 'Please fill in all fields with valid values.';
+                resultDetails.innerHTML = '';
                 resultDiv.style.display = 'block';
                 return;
             }
 
-            // 4-MMC tolerance calculation
-            // Based on serotonin/dopamine receptor tolerance patterns
-            const toleranceHalfLife = 10; // days (longer than ketamine due to serotonergic effects)
-            const baselineDose = 120; // mg (typical starting dose)
+            const intensityMultipliers = {
+                'threshold': 15,
+                'light': 25,
+                'common': 35,
+                'strong': 50
+            };
+
+            const substanceMultipliers = {
+                'ghb': 1.0,
+                'gbl': 0.7,  // GBL is more potent
+                'bdo': 1.2   // BDO is less potent
+            };
+
+            const genderMultiplier = getGenderMultiplier(gender, 'ghb');
+            let dose = (weight / 70) * intensityMultipliers[intensity] * genderMultiplier * substanceMultipliers[substance];
+
+            // Convert to ml for liquid substances
+            const density = substance === 'ghb' ? 1.0 : 1.1; // Approximate densities
+            const volumeMl = dose / density / 1000; // Convert mg to ml
+
+            let warnings = '';
+            if (dose > 60) {
+                warnings += showWarning('Very high dose - serious risk of unconsciousness and respiratory depression!', 'danger');
+            } else if (dose > 45) {
+                warnings += showWarning('High dose - significant risk of loss of consciousness!', 'danger');
+            }
+
+            warnings += showWarning('Never mix with alcohol or other depressants - potentially fatal combination!', 'danger');
+
+            const unit = substance === 'ghb' ? 'mg' : 'ml';
+            const displayValue = substance === 'ghb' ? Math.round(dose) : volumeMl.toFixed(2);
+
+            resultValue.innerHTML = `${displayValue} ${unit}`;
+            resultDetails.innerHTML = `
+                <p><strong>Onset:</strong> 15-45 minutes</p>
+                <p><strong>Duration:</strong> 2-4 hours</p>
+                <p><strong>Peak:</strong> 1-2 hours</p>
+                <div class="scientific-note">
+                    <strong>Critical Safety Information:</strong><br>
+                    • NEVER mix with alcohol or other depressants<br>
+                    • Wait at least 2-3 hours between doses<br>
+                    • Have a sober person monitor you<br>
+                    • Keep emergency contacts ready<br>
+                    • The margin between active and dangerous dose is very small
+                </div>
+                ${warnings}
+            `;
+            resultDiv.style.display = 'block';
+        }
+
+        // Amphetamines calculator
+        function calculateAmphetamines() {
+            const weight = parseFloat(document.getElementById('amp-weight').value);
+            const gender = document.getElementById('amp-gender').value;
+            const substance = document.getElementById('amp-substance').value;
+            const intensity = document.getElementById('amp-intensity').value;
+            const resultValue = document.getElementById('amp-result-value');
+            const resultDetails = document.getElementById('amp-details');
+            const resultDiv = document.getElementById('amp-result');
+
+            if (!validateWeight(weight) || !gender || !substance || !intensity) {
+                resultValue.innerHTML = 'Please fill in all fields with valid values.';
+                resultDetails.innerHTML = '';
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            const intensityMultipliers = {
+                'threshold': 0.15,
+                'light': 0.3,
+                'common': 0.5,
+                'strong': 0.8
+            };
+
+            const substanceMultipliers = {
+                'amphetamine': 1.0,
+                'dextroamphetamine': 0.7,
+                'methamphetamine': 0.4,
+                'adderall': 0.8
+            };
+
+            const genderMultiplier = getGenderMultiplier(gender, 'amphetamines');
+            let dose = weight * intensityMultipliers[intensity] * genderMultiplier * substanceMultipliers[substance];
+
+            // Safety caps
+            const maxDoses = {
+                'amphetamine': 60,
+                'dextroamphetamine': 40,
+                'methamphetamine': 25,
+                'adderall': 50
+            };
+
+            dose = Math.min(dose, maxDoses[substance]);
+
+            let warnings = '';
+            if (dose > maxDoses[substance] * 0.8) {
+                warnings += showWarning('High dose - monitor heart rate and blood pressure!');
+            }
+
+            if (substance === 'methamphetamine') {
+                warnings += showWarning('Methamphetamine has high addiction potential and neurotoxicity risk.', 'danger');
+            }
+
+            const duration = {
+                'amphetamine': '4-6 hours',
+                'dextroamphetamine': '4-6 hours',
+                'methamphetamine': '8-12 hours',
+                'adderall': '4-6 hours'
+            };
+
+            resultValue.innerHTML = `${Math.round(dose)} mg`;
+            resultDetails.innerHTML = `
+                <p><strong>Duration:</strong> ${duration[substance]}</p>
+                <p><strong>Onset:</strong> 30-60 minutes (oral)</p>
+                <p><strong>Peak:</strong> 1-3 hours</p>
+                <div class="scientific-note">
+                    <strong>Safety Guidelines:</strong><br>
+                    • Monitor cardiovascular signs<br>
+                    • Stay hydrated and eat regularly<br>
+                    • Avoid frequent use (tolerance and dependence)<br>
+                    • Get adequate sleep between uses
+                </div>
+                ${warnings}
+            `;
+            resultDiv.style.display = 'block';
+        }
+
+        // Cocaine calculator
+        function calculateCocaine() {
+            const weight = parseFloat(document.getElementById('coc-weight').value);
+            const gender = document.getElementById('coc-gender').value;
+            const route = document.getElementById('coc-route').value;
+            const intensity = document.getElementById('coc-intensity').value;
+            const resultValue = document.getElementById('coc-result-value');
+            const resultDetails = document.getElementById('coc-details');
+            const resultDiv = document.getElementById('coc-result');
+
+            if (!validateWeight(weight) || !gender || !route || !intensity) {
+                resultValue.innerHTML = 'Please fill in all fields with valid values.';
+                resultDetails.innerHTML = '';
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            const routeMultipliers = {
+                'oral': 1.0,
+                'nasal': 0.7,
+                'iv': 0.3
+            };
+
+            const intensityMultipliers = {
+                'threshold': 0.3,
+                'light': 0.6,
+                'common': 1.0,
+                'strong': 1.5
+            };
+
+            const genderMultiplier = getGenderMultiplier(gender, 'cocaine');
+            let dose = weight * intensityMultipliers[intensity] * genderMultiplier * routeMultipliers[route];
+
+            // Safety caps by route
+            const maxDoses = {
+                'oral': 200,
+                'nasal': 100,
+                'iv': 50
+            };
+
+            dose = Math.min(dose, maxDoses[route]);
+
+            let warnings = '';
+            if (route === 'iv') {
+                warnings += showWarning('Intravenous use carries extreme risks including overdose, infection, and addiction!', 'danger');
+            }
+            if (dose > maxDoses[route] * 0.7) {
+                warnings += showWarning('High dose - serious cardiovascular risks!', 'danger');
+            }
+
+            warnings += showWarning('Cocaine has high addiction potential and serious cardiovascular risks.', 'danger');
+
+            const duration = {
+                'oral': '30-90 minutes',
+                'nasal': '15-30 minutes',
+                'iv': '5-15 minutes'
+            };
+
+            const onset = {
+                'oral': '30-60 minutes',
+                'nasal': '1-5 minutes',
+                'iv': 'Immediate'
+            };
+
+            resultValue.innerHTML = `${Math.round(dose)} mg`;
+            resultDetails.innerHTML = `
+                <p><strong>Duration:</strong> ${duration[route]}</p>
+                <p><strong>Onset:</strong> ${onset[route]}</p>
+                <p><strong>Route:</strong> ${route.charAt(0).toUpperCase() + route.slice(1)}</p>
+                <div class="scientific-note">
+                    <strong>Critical Safety Information:</strong><br>
+                    • Never mix with alcohol (creates cocaethylene)<br>
+                    • Monitor heart rate and blood pressure<br>
+                    • Have emergency contacts ready<br>
+                    • High risk of addiction and cardiovascular events<br>
+                    • Consider harm reduction alternatives
+                </div>
+                ${warnings}
+            `;
+            resultDiv.style.display = 'block';
+        }
+
+        // Enhanced 4-MMC tolerance calculator
+        function calculate4MMCTolerance() {
+            const weight = parseFloat(document.getElementById('mmc-weight').value);
+            const previousDose = parseFloat(document.getElementById('mmc-previous-dose').value);
+            const daysAgo = parseFloat(document.getElementById('mmc-days-ago').value);
+            const desiredEffect = parseFloat(document.getElementById('mmc-desired-effect').value);
+            const resultValue = document.getElementById('mmc-result-value');
+            const resultDetails = document.getElementById('mmc-details');
+            const resultDiv = document.getElementById('mmc-result');
+
+            if (!validateWeight(weight) || isNaN(previousDose) || isNaN(daysAgo) || isNaN(desiredEffect) || 
+                previousDose <= 0 || daysAgo < 0 || desiredEffect < 1 || desiredEffect > 10) {
+                resultValue.innerHTML = 'Please enter valid numbers. Previous dose > 0, days ≥ 0, effect intensity 1-10.';
+                resultDetails.innerHTML = '';
+                resultDiv.style.display = 'block';
+                return;
+            }
+
+            const toleranceHalfLife = 10; // days
+            const baselineDose = weight * 1.7; // 1.7mg/kg baseline
             
-            // Calculate remaining tolerance (exponential decay)
+            // Calculate remaining tolerance
             const toleranceDecay = Math.pow(0.5, daysAgo / toleranceHalfLife);
             const remainingTolerance = toleranceDecay;
             
-            // Cross-tolerance factor from previous dose (stronger for stimulants)
+            // Cross-tolerance factor
             const crossToleranceFactor = Math.log(previousDose / baselineDose + 1) * 0.4;
             const totalTolerance = remainingTolerance * (1 + crossToleranceFactor);
             
-            // Desired effect scaling
+            // Effect scaling
             const effectMultiplier = Math.pow(desiredEffect / 7, 1.3);
             
-            // Calculate recommended dose
+            // Calculate dose
             let recommendedDose = baselineDose * effectMultiplier * (1 + totalTolerance);
             
-            // Safety caps (more conservative for 4-MMC)
-            const maxRecommendedDose = Math.min(previousDose * 2, 300);
+            // Safety caps
+            const maxRecommendedDose = Math.min(previousDose * 2, 300, weight * 4);
             if (recommendedDose > maxRecommendedDose) {
                 recommendedDose = maxRecommendedDose;
             }
 
-            let warningText = '';
+            let warnings = '';
             if (recommendedDose > 250) {
-                warningText = '<br><strong style="color: #dc3545;">⚠️ Very high dose - serious health risks!</strong>';
+                warnings += showWarning('Very high dose - serious health risks including hyperthermia and cardiovascular stress!', 'danger');
             } else if (recommendedDose > 200) {
-                warningText = '<br><strong style="color: #fd7e14;">⚠️ High dose - significant risks!</strong>';
-            } else if (daysAgo < 7) {
-                warningText = '<br><strong style="color: #ffc107;">⚠️ Consider waiting longer for better recovery</strong>';
+                warnings += showWarning('High dose - significant risks!', 'danger');
+            }
+            
+            if (daysAgo < 7) {
+                warnings += showWarning('Consider waiting longer for better serotonin recovery (recommended: 1-2 weeks minimum).');
             }
 
-            resultSpan.innerHTML = `
-                <strong>${recommendedDose.toFixed(0)} mg</strong><br>
-                <small>Tolerance factor: ${(totalTolerance * 100).toFixed(1)}% remaining<br>
-                Recovery rate: ${((1 - remainingTolerance) * 100).toFixed(1)}% recovered</small>
-                ${warningText}
+            warnings += showWarning('4-MMC has neurotoxic potential - limit frequency of use and consider safer alternatives.');
+
+            resultValue.innerHTML = `${Math.round(recommendedDose)} mg`;
+            resultDetails.innerHTML = `
+                <p><strong>Tolerance factor:</strong> ${(totalTolerance * 100).toFixed(1)}% remaining</p>
+                <p><strong>Recovery rate:</strong> ${((1 - remainingTolerance) * 100).toFixed(1)}% recovered</p>
+                <p><strong>Dose per kg:</strong> ${(recommendedDose / weight).toFixed(1)} mg/kg</p>
+                <div class="scientific-note">
+                    <strong>Safety Guidelines:</strong><br>
+                    • Wait at least 1-2 weeks between uses<br>
+                    • Monitor body temperature and hydration<br>
+                    • Use in cool environment with good ventilation<br>
+                    • Consider pre/post-loading with supplements (5-HTP, antioxidants)<br>
+                    • Maximum 3-4 uses per year recommended
+                </div>
+                ${warnings}
             `;
             resultDiv.style.display = 'block';
         }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show liquid calculator by default
+            showCalculator('liquid');
+        });
     </script>
 </body>
 </html>
