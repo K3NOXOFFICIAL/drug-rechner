@@ -72,6 +72,32 @@
     }
     </script>
     <style>
+        :root {
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --secondary-color: #6b7280;
+            --accent-color: #06b6d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --background-primary: #000000;
+            --background-secondary: #111111;
+            --background-card: #1a1a1a;
+            --background-elevated: #222222;
+            --text-primary: #ffffff;
+            --text-secondary: #d1d5db;
+            --text-muted: #9ca3af;
+            --border-color: #333333;
+            --border-light: #2a2a2a;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+            --radius-sm: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -79,105 +105,155 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-primary);
+            background: var(--background-primary);
             min-height: 100vh;
-            color: #333;
+            font-size: 16px;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 1rem;
         }
         
+        /* Header Styling */
         .header {
+            padding: 4rem 0 3rem;
             text-align: center;
-            color: white;
-            margin-bottom: 40px;
-            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
         }
         
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            background: linear-gradient(45deg, #fff, #e0e0e0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .header p {
-            font-size: 1.2rem;
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .brand-icon {
+            font-size: 3.5rem;
             opacity: 0.9;
-            margin-bottom: 20px;
         }
         
+        .brand-text h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+        
+        .brand-tagline {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 0.5rem;
+            display: block;
+        }
+        
+        .header-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Navigation Tabs */
         .nav-tabs {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 15px;
-            position: relative;
-            z-index: 10000;
+            gap: 1rem;
+            margin: 3rem 0;
+            padding: 0;
         }
         
         .tab-btn {
-            background: rgba(255,255,255,0.2);
-            border: 2px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
+            background: var(--background-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-lg);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
         }
         
         .tab-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: var(--background-elevated);
+            color: var(--text-primary);
+            border-color: var(--primary-color);
         }
         
         .tab-btn.active {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-            border-color: #ff6b6b;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
         }
         
+        /* Dropdown Styling */
         .dose-calculators {
             position: relative;
             display: inline-block;
-            z-index: 9999;
+        }
+        
+        .dose-toggle {
+            background: var(--background-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .dose-toggle:hover {
+            background: var(--background-elevated);
+            color: var(--text-primary);
+            border-color: var(--primary-color);
+        }
+        
+        .dose-toggle.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
         }
         
         .dose-menu {
             display: none;
             position: absolute;
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(15px);
-            min-width: 280px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
-            border-radius: 20px;
-            z-index: 9999;
-            top: 100%;
+            top: calc(100% + 0.5rem);
             left: 50%;
             transform: translateX(-50%);
-            margin-top: 15px;
-            border: 2px solid rgba(255,255,255,0.5);
-            padding: 10px;
-            animation: slideDown 0.3s ease;
+            background: var(--background-card);
+            min-width: 280px;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            z-index: 1000;
+            animation: slideDown 0.2s ease;
         }
         
         .dose-menu.show {
@@ -187,7 +263,7 @@
         @keyframes slideDown {
             from {
                 opacity: 0;
-                transform: translateX(-50%) translateY(-10px);
+                transform: translateX(-50%) translateY(-8px);
             }
             to {
                 opacity: 1;
@@ -196,75 +272,39 @@
         }
         
         .dose-menu-item {
-            color: #333;
-            padding: 15px 20px;
-            text-decoration: none;
             display: block;
-            transition: all 0.3s ease;
-            border-radius: 12px;
-            margin: 3px 0;
-            font-weight: 500;
-            font-size: 0.95rem;
-            cursor: pointer;
+            width: 100%;
+            padding: 0.75rem 1rem;
             border: none;
             background: none;
-            width: 100%;
             text-align: left;
+            color: var(--text-secondary);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+            font-weight: 500;
         }
         
         .dose-menu-item:hover {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(102,126,234,0.3);
+            background: var(--background-elevated);
+            color: var(--text-primary);
         }
         
         .dose-menu-item.active {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            background: var(--primary-color);
             color: white;
-            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
-        }
-        
-        .dose-toggle {
-            background: rgba(255,255,255,0.2);
-            border: 2px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .dose-toggle:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .dose-toggle.active {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-            border-color: #ff6b6b;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
         }
         
         .dropdown-arrow {
-            transition: transform 0.3s ease;
-            font-size: 0.8rem;
+            transition: transform 0.2s ease;
+            font-size: 0.75rem;
         }
         
         .dose-calculators.open .dropdown-arrow {
             transform: rotate(180deg);
         }
         
-        /* Mobile overlay for better UX */
         .mobile-overlay {
             display: none;
             position: fixed;
@@ -273,25 +313,23 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.5);
-            z-index: 9998;
+            z-index: 999;
         }
         
         .mobile-overlay.show {
             display: block;
         }
         
+        /* Calculator Sections */
         .calculator-section {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
             display: none;
-            animation: fadeIn 0.5s ease-in;
-            position: relative;
-            z-index: 1;
+            background: var(--background-card);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            animation: fadeIn 0.3s ease;
         }
         
         .calculator-section.active {
@@ -299,165 +337,190 @@
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
         
         .calculator-section h2 {
-            color: #667eea;
-            margin-bottom: 20px;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
             font-size: 2rem;
-            text-align: center;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
         }
         
         .calculator-section p {
-            color: #666;
-            margin-bottom: 25px;
-            text-align: center;
-            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
         }
         
+        /* Form Styling */
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
         }
         
         .input-group {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 4px solid #667eea;
+            background: var(--background-secondary);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+        
+        .input-group:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .input-group:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
         
         .input-group label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.875rem;
         }
         
-        .input-group input, .input-group select {
+        .input-group input,
+        .input-group select {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
             font-size: 1rem;
-            transition: all 0.3s ease;
-            background: white;
+            background: var(--background-primary);
+            color: var(--text-primary);
+            transition: all 0.2s ease;
         }
         
-        .input-group input:focus, .input-group select:focus {
+        .input-group input:focus,
+        .input-group select:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
-            transform: translateY(-1px);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
         
+        .input-group input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        /* Button Styling */
         .btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: var(--primary-color);
             color: white;
-            padding: 15px 30px;
+            padding: 1.25rem 2.5rem;
             border: none;
-            border-radius: 50px;
+            border-radius: var(--radius-lg);
             cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
             display: block;
-            margin: 20px auto;
-            min-width: 200px;
+            margin: 2rem auto;
+            min-width: 220px;
+            box-shadow: var(--shadow-sm);
         }
         
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
         
         .btn:active {
-            transform: translateY(-1px);
+            transform: translateY(0);
         }
         
+        /* Result Styling */
         .result {
-            background: linear-gradient(135deg, #d4edda, #c3e6cb);
-            border: 2px solid #28a745;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(40,167,69,0.2);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-sm);
         }
         
         .result h3 {
-            color: #155724;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+            color: var(--success-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
         }
         
         .result-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #155724;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--success-color);
             text-align: center;
-            margin: 15px 0;
+            margin: 1.5rem 0;
         }
         
+        /* Warning Styling */
         .warning {
-            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
-            border: 2px solid #ffc107;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(255,193,7,0.2);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-sm);
         }
         
         .warning.danger {
-            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
-            border-color: #dc3545;
-            box-shadow: 0 5px 15px rgba(220,53,69,0.2);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border-color: rgba(239, 68, 68, 0.3);
         }
         
         .warning h4 {
-            color: #856404;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+            color: var(--warning-color);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
         
         .warning.danger h4 {
-            color: #721c24;
+            color: var(--danger-color);
         }
         
-        .scientific-note {
-            background: #e9ecef;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
-            font-style: italic;
-            color: #6c757d;
-            border-left: 4px solid #6c757d;
-        }
-        
+        /* Disclaimer */
         .disclaimer {
-            background: rgba(220,53,69,0.1);
-            border: 2px solid #dc3545;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            color: #721c24;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+            box-shadow: var(--shadow-sm);
         }
         
         .disclaimer h4 {
-            color: #dc3545;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
+            color: var(--danger-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 1rem;
         }
         
         .disclaimer h4::before {
@@ -465,78 +528,23 @@
             font-size: 1.5rem;
         }
         
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .nav-tabs {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-            
-            .tab-btn, .dose-toggle {
-                width: 220px;
-                text-align: center;
-                justify-content: center;
-            }
-            
-            .dose-calculators {
-                width: 100%;
-                position: static;
-            }
-            
-            .dose-menu {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 90%;
-                max-width: 350px;
-                margin-top: 0;
-                max-height: 60vh;
-                overflow-y: auto;
-                border-radius: 25px;
-                padding: 20px;
-                box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            }
-            
-            .dose-menu-item {
-                padding: 18px 20px;
-                font-size: 1rem;
-                border-radius: 15px;
-                margin: 8px 0;
-            }
-            
-            .dose-menu-item:hover {
-                transform: none;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .calculator-section {
-                padding: 20px;
-            }
-            
-            .dropdown-arrow {
-                font-size: 1rem;
-            }
+        /* Scientific Note */
+        .scientific-note {
+            background: var(--background-secondary);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            border-left: 4px solid var(--secondary-color);
+            font-size: 0.875rem;
         }
         
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        
+        /* Tooltip */
         .tooltip {
             position: relative;
             cursor: help;
+            border-bottom: 1px dotted var(--text-muted);
         }
         
         .tooltip::after {
@@ -545,16 +553,19 @@
             bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
-            background: #333;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
+            background: var(--background-elevated);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.75rem;
             white-space: nowrap;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             z-index: 1000;
+            pointer-events: none;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
         }
         
         .tooltip:hover::after {
@@ -562,58 +573,354 @@
             visibility: visible;
         }
         
+        /* Graph Container */
         .graph-container {
-            background: rgba(255,255,255,0.9);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 2px solid rgba(102,126,234,0.3);
+            background: var(--background-secondary);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border-color);
         }
         
         .graph-wrapper {
             display: flex;
             justify-content: center;
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--background-card);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
         }
         
         #tolerance-graph {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
         }
         
         .graph-legend {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 15px;
+            gap: 2rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
         }
         
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            color: #333;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--text-primary);
         }
         
         .legend-color {
             width: 16px;
             height: 16px;
-            border-radius: 3px;
+            border-radius: var(--radius-sm);
             display: inline-block;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 0.75rem;
+            }
+            
+            .header {
+                padding: 2rem 0 1.5rem;
+            }
+            
+            .brand {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .brand-text h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 1.5rem;
+            }
+            
+            .tab-btn,
+            .dose-toggle {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .dose-calculators {
+                width: 100%;
+            }
+            
+            .dose-menu {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                max-width: 320px;
+                max-height: 60vh;
+                overflow-y: auto;
+                border-radius: var(--radius-xl);
+                padding: 1rem;
+            }
+            
+            .calculator-section {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .calculator-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .input-group {
+                padding: 1rem;
+            }
+            
+            .result-value {
+                font-size: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 1rem auto;
+                max-height: 90vh;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .brand-icon {
+                font-size: 2.5rem;
+            }
+            
+            .brand-text h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header-description {
+                font-size: 1rem;
+            }
+            
+            .calculator-section {
+                padding: 1rem;
+            }
+            
+            .disclaimer {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* Footer Styling */
+        .footer {
+            background: var(--background-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            color: var(--text-primary);
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-disclaimer {
+            font-size: 0.75rem !important;
+            font-style: italic;
+        }
+        
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+        
+        .modal-content {
+            background-color: var(--background-card);
+            margin: 2rem auto;
+            border-radius: var(--radius-xl);
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            animation: modalSlideIn 0.3s ease;
+            overflow: hidden;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--background-secondary);
+        }
+        
+        .modal-header h2 {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .close {
+            color: var(--text-muted);
+            font-size: 2rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 1;
+        }
+        
+        .close:hover {
+            color: var(--text-primary);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+            max-height: 70vh;
+        }
+        
+        .legal-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .legal-content section {
+            margin-bottom: 2rem;
+        }
+        
+        .legal-content h3 {
+            color: var(--text-primary);
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .legal-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .legal-content ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .legal-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .legal-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .legal-update {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>K3NOX Drug Calc</h1>
-            <p>Your comprehensive drug dose calculator suite</p>
+            <div class="header-content">
+                <div class="brand">
+                    <div class="brand-icon">🧮</div>
+                    <div class="brand-text">
+                        <h1>K3NOX Drug Calc</h1>
+                        <span class="brand-tagline">Harm Reduction Calculator Suite</span>
+                    </div>
+                </div>
+                <p class="header-description">Evidence-based dosage calculations for educational and research purposes</p>
+            </div>
         </div>
 
         <div class="disclaimer">
@@ -1150,6 +1457,311 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>K3NOX Drug Calc</h4>
+                    <p>Educational harm reduction calculator suite</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="openModal('tos')">Terms of Service</a></li>
+                        <li><a href="#" onclick="openModal('privacy')">Privacy Policy</a></li>
+                        <li><a href="#" onclick="openModal('usage')">Usage Agreement</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Information</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showCalculator('liquid')">Liquid Calculator</a></li>
+                        <li><a href="#" onclick="showCalculator('tolerance')">Tolerance Calculator</a></li>
+                        <li><a href="#" onclick="openDoseMenu()">Dose Calculators</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 K3NOX Drug Calc. For educational and harm reduction purposes only.</p>
+                <p class="footer-disclaimer">This tool is not a substitute for medical advice. Always consult healthcare professionals.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Legal Document Modals -->
+    <!-- Terms of Service Modal -->
+    <div id="tos-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Terms of Service</h2>
+                <span class="close" onclick="closeModal('tos')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="legal-content">
+                    <section>
+                        <h3>1. Acceptance of Terms</h3>
+                        <p>By accessing and using K3NOX Drug Calc ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
+                    </section>
+                    
+                    <section>
+                        <h3>2. Educational Purpose Only</h3>
+                        <p>This calculator is designed exclusively for educational and harm reduction purposes. All calculations are theoretical and based on general guidelines found in scientific literature. Individual responses to substances vary significantly due to factors including but not limited to:</p>
+                        <ul>
+                            <li>Individual metabolism and body chemistry</li>
+                            <li>Tolerance levels and previous use history</li>
+                            <li>Mental and physical health conditions</li>
+                            <li>Concurrent medications or substances</li>
+                            <li>Set, setting, and environmental factors</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>3. Medical Disclaimer</h3>
+                        <p>The information provided by this service is not medical advice and should not be used as a substitute for professional medical consultation, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition or substance use.</p>
+                    </section>
+                    
+                    <section>
+                        <h3>4. Age Restrictions</h3>
+                        <p>This service is intended for users who are 18 years of age or older. By using this service, you represent and warrant that you are at least 18 years old. If you are under 18, you must obtain parental or guardian consent before using this service.</p>
+                    </section>
+                    
+                    <section>
+                        <h3>5. Prohibited Uses</h3>
+                        <p>You agree not to use this service:</p>
+                        <ul>
+                            <li>For any illegal purpose or to encourage illegal activities</li>
+                            <li>To harm, abuse, harass, threaten, or intimidate others</li>
+                            <li>To distribute malware or other malicious code</li>
+                            <li>To make decisions regarding illegal substance use</li>
+                            <li>In violation of any applicable laws or regulations</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>6. Limitation of Liability</h3>
+                        <p>To the maximum extent permitted by applicable law, K3NOX Drug Calc and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses resulting from your use of the service.</p>
+                    </section>
+                    
+                    <section>
+                        <h3>7. Accuracy of Information</h3>
+                        <p>While we strive to provide accurate information based on current scientific knowledge, we make no representations or warranties of any kind about the completeness, accuracy, reliability, suitability, or availability of the information, products, services, or related graphics contained in this service.</p>
+                    </section>
+                    
+                    <section>
+                        <h3>8. Changes to Terms</h3>
+                        <p>We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting to the service. Your continued use of the service after any such changes constitutes your acceptance of the new terms.</p>
+                    </section>
+                    
+                    <section>
+                        <h3>9. Governing Law</h3>
+                        <p>These terms shall be governed by and construed in accordance with applicable international laws regarding educational content and harm reduction resources.</p>
+                    </section>
+                    
+                    <p class="legal-update">Last updated: September 22, 2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Privacy Policy</h2>
+                <span class="close" onclick="closeModal('privacy')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="legal-content">
+                    <section>
+                        <h3>1. Information We Collect</h3>
+                        <p>K3NOX Drug Calc is designed with privacy in mind. We collect minimal information to provide our service:</p>
+                        <ul>
+                            <li><strong>No Personal Data:</strong> We do not collect, store, or process any personal information, names, email addresses, or identifying information.</li>
+                            <li><strong>No Calculation History:</strong> All calculations are performed locally in your browser and are not stored or transmitted to our servers.</li>
+                            <li><strong>Technical Data:</strong> We may collect basic technical information such as browser type, device type, and general geographic region (country level) for service improvement purposes.</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>2. How We Use Information</h3>
+                        <p>Any technical information collected is used solely for:</p>
+                        <ul>
+                            <li>Improving service performance and compatibility</li>
+                            <li>Understanding general usage patterns to enhance user experience</li>
+                            <li>Ensuring service availability and security</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>3. Data Storage and Security</h3>
+                        <p>Your privacy and security are paramount:</p>
+                        <ul>
+                            <li>All calculations are performed locally in your browser</li>
+                            <li>No calculation data, inputs, or results are transmitted to our servers</li>
+                            <li>No user accounts or profiles are created or maintained</li>
+                            <li>No cookies are used for tracking or data collection</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>4. Third-Party Services</h3>
+                        <p>This service operates independently and does not integrate with third-party analytics, advertising, or data collection services. We do not share any information with third parties.</p>
+                    </section>
+                    
+                    <section>
+                        <h3>5. Local Storage</h3>
+                        <p>Your browser may store temporary data locally for functionality purposes. This data remains on your device and can be cleared by:</p>
+                        <ul>
+                            <li>Clearing your browser cache and cookies</li>
+                            <li>Using private/incognito browsing mode</li>
+                            <li>Manually clearing local storage in browser settings</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>6. Your Rights</h3>
+                        <p>Since we do not collect personal data, traditional data protection rights do not apply. However, you maintain complete control over:</p>
+                        <ul>
+                            <li>All input data (entered only locally)</li>
+                            <li>Calculation results (computed only locally)</li>
+                            <li>Browser storage (can be cleared at any time)</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>7. Children's Privacy</h3>
+                        <p>This service is not intended for children under 18. We do not knowingly collect any information from children. If you believe a child has accessed this service, please contact us immediately.</p>
+                    </section>
+                    
+                    <section>
+                        <h3>8. Changes to Privacy Policy</h3>
+                        <p>We may update this privacy policy periodically. Any changes will be posted on this page with an updated revision date. Continued use of the service constitutes acceptance of any changes.</p>
+                    </section>
+                    
+                    <section>
+                        <h3>9. Contact Information</h3>
+                        <p>If you have questions about this privacy policy or our data practices, please review our terms of service or contact us through official channels.</p>
+                    </section>
+                    
+                    <p class="legal-update">Last updated: September 22, 2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Usage Agreement Modal -->
+    <div id="usage-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Usage Agreement</h2>
+                <span class="close" onclick="closeModal('usage')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="legal-content">
+                    <section>
+                        <h3>1. Harm Reduction Purpose</h3>
+                        <p>K3NOX Drug Calc is a harm reduction educational tool designed to provide theoretical dosage calculations based on scientific literature. This tool is intended to:</p>
+                        <ul>
+                            <li>Educate users about dosage relationships and tolerance patterns</li>
+                            <li>Provide general safety information about various substances</li>
+                            <li>Support academic research and educational initiatives</li>
+                            <li>Promote understanding of pharmacological principles</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>2. Educational Use Only</h3>
+                        <p>This calculator is strictly for educational purposes and must not be used to:</p>
+                        <ul>
+                            <li>Make actual dosing decisions for any controlled or illegal substances</li>
+                            <li>Replace professional medical advice or consultation</li>
+                            <li>Plan or facilitate illegal drug use</li>
+                            <li>Provide medical treatment recommendations</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>3. Safety Considerations</h3>
+                        <p>Users must understand that:</p>
+                        <ul>
+                            <li>Individual responses to substances vary dramatically</li>
+                            <li>Purity and composition of illegal substances cannot be guaranteed</li>
+                            <li>Drug interactions can be dangerous and unpredictable</li>
+                            <li>Mental health conditions may affect substance responses</li>
+                            <li>No amount of any illegal substance can be considered "safe"</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>4. Medical Conditions</h3>
+                        <p>This tool does not account for medical conditions that may affect substance metabolism or interactions, including but not limited to:</p>
+                        <ul>
+                            <li>Cardiovascular conditions</li>
+                            <li>Liver or kidney dysfunction</li>
+                            <li>Mental health disorders</li>
+                            <li>Pregnancy or breastfeeding</li>
+                            <li>Concurrent medications</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>5. Legal Considerations</h3>
+                        <p>Users must be aware that:</p>
+                        <ul>
+                            <li>Controlled substances are illegal in most jurisdictions</li>
+                            <li>Laws vary significantly by location</li>
+                            <li>Possession, use, and distribution may carry serious legal penalties</li>
+                            <li>This tool does not provide legal advice</li>
+                            <li>Users are responsible for understanding and complying with local laws</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>6. Emergency Information</h3>
+                        <p>In case of medical emergency or adverse reactions:</p>
+                        <ul>
+                            <li>Call emergency services immediately (911, 112, etc.)</li>
+                            <li>Be honest with medical professionals about substance use</li>
+                            <li>Do not delay seeking medical attention</li>
+                            <li>Consider having naloxone (Narcan) available for opioid emergencies</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>7. Accuracy Limitations</h3>
+                        <p>This tool's calculations are based on:</p>
+                        <ul>
+                            <li>General population averages and may not apply to individuals</li>
+                            <li>Published research which may have limitations</li>
+                            <li>Theoretical models that may not reflect real-world conditions</li>
+                            <li>Assumptions about substance purity and consistency</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>8. Responsible Use Guidelines</h3>
+                        <p>If using this tool for educational purposes, consider:</p>
+                        <ul>
+                            <li>Researching harm reduction strategies</li>
+                            <li>Understanding drug testing and adulterant detection</li>
+                            <li>Learning about safer use practices</li>
+                            <li>Seeking support for substance use concerns</li>
+                            <li>Consulting healthcare providers about substance use</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>9. Acknowledgment</h3>
+                        <p>By using this service, you acknowledge that you have read, understood, and agree to comply with this usage agreement. You understand the educational nature of this tool and accept full responsibility for any decisions made based on the information provided.</p>
+                    </section>
+                    
+                    <p class="legal-update">Last updated: September 22, 2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Global variables for dropdown state
         let isDoseMenuOpen = false;
@@ -1279,6 +1891,44 @@
                 const mobileOverlay = document.getElementById('mobile-overlay');
                 mobileOverlay.classList.remove('show');
                 document.body.style.overflow = '';
+            }
+        });
+
+        // Modal functionality
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId + '-modal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId + '-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close modal with escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const openModals = document.querySelectorAll('.modal');
+                openModals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }
+                });
             }
         });
 
