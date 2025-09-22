@@ -19,6 +19,11 @@
 
     <br>
 
+    <label for="drug-purity">Drug Purity (%):</label>
+    <input type="number" id="drug-purity" value="100" placeholder="e.g., 97">
+
+    <br>
+
     <label for="target-volume">Target volume (ml):</label>
     <input type="number" id="target-volume" value="0.1" placeholder="e.g., 0.1">
 
@@ -33,6 +38,7 @@
     <script>
         const totalVolumeInput = document.getElementById('total-volume');
         const totalMedicationInput = document.getElementById('total-medication');
+        const drugPurityInput = document.getElementById('drug-purity');
         const targetVolumeInput = document.getElementById('target-volume');
         const resultSpan = document.getElementById('result');
         const calculateButton = document.querySelector('button');
@@ -40,14 +46,15 @@
         calculateButton.addEventListener('click', () => {
             const totalVolume = parseFloat(totalVolumeInput.value);
             const totalMedication = parseFloat(totalMedicationInput.value);
+            const drugPurity = parseFloat(drugPurityInput.value);
             const targetVolume = parseFloat(targetVolumeInput.value);
 
-            if (isNaN(totalVolume) || isNaN(totalMedication) || isNaN(targetVolume) || totalVolume <= 0) {
-                resultSpan.textContent = 'Please enter valid numbers. Total volume must be greater than 0.';
+            if (isNaN(totalVolume) || isNaN(totalMedication) || isNaN(targetVolume) || isNaN(drugPurity) || totalVolume <= 0 || drugPurity < 0 || drugPurity > 100) {
+                resultSpan.textContent = 'Please enter valid numbers. Total volume must be > 0. Purity must be between 0 and 100.';
                 return;
             }
 
-            const result = (totalMedication * 1000) / totalVolume * targetVolume;
+            const result = (totalMedication * 1000) / totalVolume * targetVolume * (drugPurity / 100);
             resultSpan.textContent = `${result.toFixed(2)} mg`;
         });
     </script>
