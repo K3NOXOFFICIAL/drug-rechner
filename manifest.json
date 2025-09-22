@@ -1,0 +1,48 @@
+{
+  "name": "K3NOX Drug Calc - Drug Calculator Suite",
+  "short_name": "Drug Calc",
+  "description": "Comprehensive drug calculator suite for harm reduction education and scientific research",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "lang": "en-US",
+  "categories": ["health", "education", "utilities"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='20' fill='%23667eea'/><text x='96' y='130' font-size='120' text-anchor='middle' fill='white'>🧮</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='50' fill='%23667eea'/><text x='256' y='350' font-size='320' text-anchor='middle' fill='white'>🧮</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "preview-image.svg",
+      "sizes": "1200x630",
+      "type": "image/svg+xml",
+      "form_factor": "wide"
+    }
+  ],
+  "features": [
+    "Drug dosage calculations",
+    "Tolerance modeling",
+    "Safety warnings",
+    "Harm reduction information",
+    "Drug testing guidance",
+    "Legal status warnings",
+    "Emergency protocols"
+  ],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
+}

@@ -48,6 +48,23 @@
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Drug Calc">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="msapplication-config" content="browserconfig.xml">
+    
+    <!-- iOS specific PWA enhancements -->
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="apple-touch-startup-image" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%23000000'/><text x='96' y='130' font-size='120' text-anchor='middle' fill='%23667eea'>🧮</text></svg>">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
     <!-- Schema.org markup for better SEO -->
     <script type="application/ld+json">
     {
@@ -959,7 +976,7 @@
         </div>
 
         <div class="nav-tabs">
-            <button class="tab-btn active" onclick="showCalculator('liquid')">💧 Liquid Dosage</button>
+            <button class="tab-btn active" onclick="showCalculator('liquid')" role="tab" aria-selected="true" aria-controls="liquid" id="liquid-tab" tabindex="0">💧 Liquid Dosage</button>
             
             <div class="dose-calculators">
                 <button class="dose-toggle" id="dose-calc-btn" onclick="toggleDoseMenu()">
@@ -992,7 +1009,7 @@
                 </div>
             </div>
             
-            <button class="tab-btn" onclick="showCalculator('tolerance')">⚖️ Tolerance Calculator</button>
+            <button class="tab-btn" onclick="showCalculator('tolerance')" role="tab" aria-selected="false" aria-controls="tolerance" id="tolerance-tab" tabindex="0">⚖️ Tolerance Calculator</button>
         </div>
 
         <!-- Mobile overlay -->
@@ -2149,6 +2166,206 @@
         // Global variables for dropdown state
         let isDoseMenuOpen = false;
         
+        // Emergency information system
+        const emergencyContacts = {
+            global: {
+                us: "Emergency: 911",
+                eu: "Emergency: 112",
+                uk: "Emergency: 999",
+                au: "Emergency: 000",
+                ca: "Emergency: 911"
+            },
+            poison: {
+                us: "Poison Control: 1-800-222-1222",
+                uk: "NHS 111 or 999",
+                au: "Poisons Information: 13 11 26",
+                ca: "Poison Control: 1-844-POISON-X"
+            },
+            crisis: "Crisis Text Line: Text HOME to 741741",
+            danceSafe: "DanceSafe.org for testing info"
+        };
+        
+        // Drug testing information database
+        const drugTestingInfo = {
+            mdma: {
+                reagents: [
+                    { name: 'Marquis', expected: 'Purple/Black', adulterants: 'Detects most substitutes' },
+                    { name: 'Mecke', expected: 'Blue/Black', adulterants: 'Confirms MDMA presence' },
+                    { name: 'Mandelin', expected: 'Blue/Black', adulterants: 'Additional confirmation' }
+                ],
+                commonAdulterants: ['Caffeine', 'MDA', 'Methylone', 'PMMA', 'PMA'],
+                testStrips: 'Fentanyl test strips recommended',
+                resources: 'DanceSafe.org, Bunk Police'
+            },
+            lsd: {
+                reagents: [
+                    { name: 'Ehrlich', expected: 'Purple/Pink', adulterants: 'Detects indoles' },
+                    { name: 'Hofmann', expected: 'Blue', adulterants: 'Confirms LSD vs analogs' }
+                ],
+                commonAdulterants: ['NBOMe', '25I-NBOMe', 'DOB', 'DOC'],
+                testStrips: 'Highly recommended - NBOMe can be fatal',
+                resources: 'Test your tabs before use'
+            },
+            ketamine: {
+                reagents: [
+                    { name: 'Mandelin', expected: 'Orange', adulterants: 'Primary test' },
+                    { name: 'Mecke', expected: 'Light Yellow', adulterants: 'Confirmation' }
+                ],
+                commonAdulterants: ['Caffeine', 'Lactose', 'MSG', '2F-DCK'],
+                testStrips: 'Recommended for purity',
+                resources: 'KnowYourStuff NZ, DanceSafe'
+            },
+            cocaine: {
+                reagents: [
+                    { name: 'Scott', expected: 'Blue', adulterants: 'Primary cocaine test' },
+                    { name: 'Liebermann', expected: 'Orange/Red', adulterants: 'Secondary confirmation' }
+                ],
+                commonAdulterants: ['Levamisole', 'Lidocaine', 'Caffeine', 'Phenacetin'],
+                testStrips: 'Fentanyl strips essential',
+                resources: 'High contamination risk - test mandatory'
+            }
+        };
+        
+        // Legal status information
+        const legalStatus = {
+            mdma: { 
+                us: 'Schedule I - Illegal', 
+                eu: 'Class A/Schedule I - Illegal', 
+                uk: 'Class A - Illegal',
+                status: 'illegal',
+                penalties: 'Severe criminal penalties apply'
+            },
+            lsd: { 
+                us: 'Schedule I - Illegal', 
+                eu: 'Class A/Schedule I - Illegal', 
+                uk: 'Class A - Illegal',
+                status: 'illegal',
+                penalties: 'Severe criminal penalties apply'
+            },
+            ketamine: { 
+                us: 'Schedule III - Controlled', 
+                eu: 'Prescription only - Controlled', 
+                uk: 'Class B - Controlled',
+                status: 'controlled',
+                penalties: 'Criminal penalties for unauthorized use'
+            },
+            cocaine: { 
+                us: 'Schedule II - Illegal', 
+                eu: 'Class A/Schedule I - Illegal', 
+                uk: 'Class A - Illegal',
+                status: 'illegal',
+                penalties: 'Severe criminal penalties apply'
+            }
+        };
+        
+        // Enhanced input validation and sanitization
+        function validateAndSanitizeInput(value, type, min = 0, max = 1000, fieldName = 'input') {
+            if (!value && value !== 0) {
+                throw new Error(`${fieldName} is required`);
+            }
+            
+            if (type === 'number') {
+                const num = parseFloat(value);
+                if (isNaN(num)) {
+                    throw new Error(`${fieldName} must be a valid number`);
+                }
+                if (num < min || num > max) {
+                    throw new Error(`${fieldName} must be between ${min} and ${max}`);
+                }
+                return num;
+            }
+            
+            if (type === 'string') {
+                // XSS prevention
+                const sanitized = value.toString()
+                    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                    .replace(/<[^>]*>/g, '')
+                    .trim();
+                    
+                if (sanitized.length < min || sanitized.length > max) {
+                    throw new Error(`${fieldName} length must be between ${min} and ${max} characters`);
+                }
+                return sanitized;
+            }
+            
+            return value;
+        }
+        
+        // Unit conversion system
+        const unitConverter = {
+            weight: {
+                kg: 1,
+                lbs: 0.453592,
+                stone: 6.35029
+            },
+            dose: {
+                mg: 1,
+                μg: 0.001,
+                mcg: 0.001,
+                g: 1000
+            },
+            volume: {
+                ml: 1,
+                l: 1000,
+                oz: 29.5735,
+                cups: 236.588
+            }
+        };
+        
+        function convertUnits(value, fromUnit, toUnit, type) {
+            if (!unitConverter[type] || !unitConverter[type][fromUnit] || !unitConverter[type][toUnit]) {
+                return value;
+            }
+            return (value * unitConverter[type][fromUnit]) / unitConverter[type][toUnit];
+        }
+        
+        // User preferences management (privacy-focused)
+        function saveUserPreferences() {
+            try {
+                const preferences = {
+                    units: document.getElementById('preferred-units')?.value || 'metric',
+                    warnings: document.getElementById('show-warnings')?.checked !== false,
+                    language: document.getElementById('preferred-language')?.value || 'en',
+                    theme: document.getElementById('preferred-theme')?.value || 'dark',
+                    timestamp: Date.now()
+                };
+                localStorage.setItem('drugCalcPrefs', JSON.stringify(preferences));
+            } catch (error) {
+                console.warn('Unable to save preferences:', error);
+            }
+        }
+        
+        function loadUserPreferences() {
+            try {
+                const saved = localStorage.getItem('drugCalcPrefs');
+                if (saved) {
+                    const preferences = JSON.parse(saved);
+                    // Apply preferences to UI elements
+                    if (document.getElementById('preferred-units')) {
+                        document.getElementById('preferred-units').value = preferences.units || 'metric';
+                    }
+                    return preferences;
+                }
+            } catch (error) {
+                console.warn('Unable to load preferences:', error);
+            }
+            return null;
+        }
+        
+        // Anonymous usage statistics (no personal data)
+        function trackAnonymousUsage(calculatorType) {
+            try {
+                const stats = JSON.parse(localStorage.getItem('anonStats') || '{}');
+                stats.calculationsUsed = (stats.calculationsUsed || 0) + 1;
+                stats.lastCalculationType = calculatorType;
+                stats.lastUsed = Date.now();
+                // Only store aggregate data, never personal information
+                localStorage.setItem('anonStats', JSON.stringify(stats));
+            } catch (error) {
+                console.warn('Unable to track usage:', error);
+            }
+        }
+        
         // Routing system for deep linking
         const RoutingSystem = {
             // Get the base path for GitHub Pages
@@ -2282,15 +2499,18 @@
                 section.classList.remove('active');
             });
             
-            // Remove active class from all main tabs
+            // Remove active class from all main tabs and update ARIA states
             const tabs = document.querySelectorAll('.tab-btn');
             tabs.forEach(tab => {
                 tab.classList.remove('active');
+                tab.setAttribute('aria-selected', 'false');
+                tab.setAttribute('tabindex', '-1');
             });
             
             // Remove active class from dose toggle
             const doseToggle = document.getElementById('dose-calc-btn');
             doseToggle.classList.remove('active');
+            doseToggle.setAttribute('aria-expanded', 'false');
             
             // Remove active class from all dose menu items
             const doseMenuItems = document.querySelectorAll('.dose-menu-item');
@@ -2299,17 +2519,34 @@
             });
             
             // Show selected calculator
-            document.getElementById(calculatorId).classList.add('active');
+            const targetSection = document.getElementById(calculatorId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                // Announce calculator change to screen readers
+                if (typeof announceToScreenReader === 'function') {
+                    announceToScreenReader(`Switched to ${calculatorId} calculator`);
+                }
+            }
             
             // Set active states based on calculator type
             const doseCalculators = ['mdma', 'lsd', 'ketamine', 'ghb', 'amphetamines', 'cocaine', '4mmc'];
             
             if (calculatorId === 'liquid') {
                 // Activate liquid dosage tab
-                document.querySelector('button[onclick="showCalculator(\'liquid\')"]').classList.add('active');
+                const liquidTab = document.getElementById('liquid-tab');
+                if (liquidTab) {
+                    liquidTab.classList.add('active');
+                    liquidTab.setAttribute('aria-selected', 'true');
+                    liquidTab.setAttribute('tabindex', '0');
+                }
             } else if (calculatorId === 'tolerance') {
                 // Activate general tolerance tab
-                document.querySelector('button[onclick="showCalculator(\'tolerance\')"]').classList.add('active');
+                const toleranceTab = document.getElementById('tolerance-tab');
+                if (toleranceTab) {
+                    toleranceTab.classList.add('active');
+                    toleranceTab.setAttribute('aria-selected', 'true');
+                    toleranceTab.setAttribute('tabindex', '0');
+                }
             } else if (doseCalculators.includes(calculatorId)) {
                 // Activate dose calculator dropdown button
                 doseToggle.classList.add('active');
@@ -2342,9 +2579,13 @@
             const doseMenu = document.getElementById('dose-menu');
             const mobileOverlay = document.getElementById('mobile-overlay');
             const doseCalculators = document.querySelector('.dose-calculators');
+            const doseToggle = document.getElementById('dose-calc-btn');
             
             doseMenu.classList.add('show');
             doseCalculators.classList.add('open');
+            
+            // Update ARIA state
+            doseToggle.setAttribute('aria-expanded', 'true');
             
             // Show overlay on mobile
             if (window.innerWidth <= 768) {
@@ -2360,11 +2601,15 @@
             const doseMenu = document.getElementById('dose-menu');
             const mobileOverlay = document.getElementById('mobile-overlay');
             const doseCalculators = document.querySelector('.dose-calculators');
+            const doseToggle = document.getElementById('dose-calc-btn');
             
             doseMenu.classList.remove('show');
             mobileOverlay.classList.remove('show');
             doseCalculators.classList.remove('open');
             document.body.style.overflow = ''; // Re-enable scrolling
+            
+            // Update ARIA state
+            doseToggle.setAttribute('aria-expanded', 'false');
             
             isDoseMenuOpen = false;
         }
@@ -2637,6 +2882,265 @@
                 'cocaine': { male: 1.0, female: 0.85 }
             };
             return multipliers[substance] ? multipliers[substance][gender] || 1.0 : 1.0;
+        }
+
+        // Enhanced emergency and safety information functions
+        function displayEmergencyInfo(substance) {
+            return `
+                <div class="emergency-info" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1rem 0;">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        🚨 Emergency Information
+                    </h4>
+                    <div style="margin-bottom: 1rem;">
+                        <strong>Emergency Contacts:</strong><br>
+                        ${emergencyContacts.global.us} | ${emergencyContacts.global.eu} | ${emergencyContacts.global.uk}<br>
+                        ${emergencyContacts.poison.us}<br>
+                        ${emergencyContacts.crisis}
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong>Crisis Resources:</strong><br>
+                        • ${emergencyContacts.danceSafe}<br>
+                        • PsychonautWiki for substance information<br>
+                        • Erowid.org for experience reports and safety data
+                    </div>
+                    <div>
+                        <strong>Signs requiring immediate medical attention:</strong><br>
+                        • Difficulty breathing or stopped breathing<br>
+                        • Unconsciousness or unresponsiveness<br>
+                        • Seizures or convulsions<br>
+                        • Chest pain or irregular heartbeat<br>
+                        • Extreme hyperthermia (overheating)<br>
+                        • Severe panic or dangerous behavior
+                    </div>
+                </div>
+            `;
+        }
+        
+        function getTestingInfo(substance) {
+            const info = drugTestingInfo[substance];
+            if (!info) return '';
+            
+            return `
+                <div class="testing-info" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1rem 0;">
+                    <h4 style="color: var(--accent-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        🧪 Drug Testing Information
+                    </h4>
+                    <div style="margin-bottom: 1rem;">
+                        <strong>Recommended Reagent Tests:</strong><br>
+                        ${info.reagents.map(reagent => `• <strong>${reagent.name}</strong>: Expected ${reagent.expected} (${reagent.adulterants})`).join('<br>')}
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong>Common Adulterants to Watch For:</strong><br>
+                        ${info.commonAdulterants.join(', ')}
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong>Test Strips:</strong> ${info.testStrips}
+                    </div>
+                    <div>
+                        <strong>Testing Resources:</strong> ${info.resources}
+                    </div>
+                </div>
+            `;
+        }
+        
+        function getLegalWarning(substance) {
+            const legal = legalStatus[substance];
+            if (!legal) return '';
+            
+            return `
+                <div class="legal-warning" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1rem 0;">
+                    <h4 style="color: var(--warning-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        ⚖️ Legal Status Warning
+                    </h4>
+                    <div style="margin-bottom: 0.5rem;">
+                        <strong>Legal Status by Jurisdiction:</strong><br>
+                        <strong>United States:</strong> ${legal.us}<br>
+                        <strong>European Union:</strong> ${legal.eu}<br>
+                        <strong>United Kingdom:</strong> ${legal.uk}
+                    </div>
+                    <div style="color: var(--warning-color); font-weight: 500;">
+                        ⚠️ ${legal.penalties}
+                    </div>
+                    <div style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">
+                        This information is for educational purposes only. Laws vary by jurisdiction and change frequently. Consult local legal resources for current information.
+                    </div>
+                </div>
+            `;
+        }
+
+        function getPharmacologyInfo(substance) {
+            const pharmData = {
+                mdma: {
+                    mechanism: 'Serotonin, dopamine, and norepinephrine reuptake inhibition + release',
+                    metabolism: 'Hepatic via CYP2D6, CYP3A4, CYP1A2',
+                    halfLife: '6-10 hours',
+                    peakPlasma: '2-4 hours',
+                    excretion: 'Renal (65% unchanged)',
+                    bioavailability: '50-90% oral'
+                },
+                lsd: {
+                    mechanism: '5-HT2A receptor partial agonist',
+                    metabolism: 'Hepatic via CYP2D6, rapid first-pass',
+                    halfLife: '3-5 hours (effects last 8-12 hours)',
+                    peakPlasma: '1-3 hours',
+                    excretion: 'Renal (8% unchanged)',
+                    bioavailability: '71% oral'
+                },
+                ketamine: {
+                    mechanism: 'NMDA receptor antagonist',
+                    metabolism: 'Hepatic via CYP2B6, CYP3A4 to norketamine',
+                    halfLife: '2-4 hours',
+                    peakPlasma: '1-2 hours oral, 5-30 min IV',
+                    excretion: 'Renal (91% as metabolites)',
+                    bioavailability: '17% oral, 45% intranasal'
+                },
+                cocaine: {
+                    mechanism: 'Dopamine, serotonin, norepinephrine reuptake inhibition',
+                    metabolism: 'Hepatic via plasma cholinesterases',
+                    halfLife: '0.5-1.5 hours',
+                    peakPlasma: '30-60 minutes',
+                    excretion: 'Renal (1-9% unchanged)',
+                    bioavailability: '33% oral, 60-90% intranasal'
+                }
+            };
+
+            const info = pharmData[substance];
+            if (!info) return '';
+
+            return `
+                <div class="pharmacology-info" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1rem 0;">
+                    <h4 style="color: #8b5cf6; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        🧬 Pharmacology Information
+                    </h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.875rem;">
+                        <div><strong>Mechanism:</strong><br>${info.mechanism}</div>
+                        <div><strong>Metabolism:</strong><br>${info.metabolism}</div>
+                        <div><strong>Half-life:</strong><br>${info.halfLife}</div>
+                        <div><strong>Peak Plasma:</strong><br>${info.peakPlasma}</div>
+                        <div><strong>Excretion:</strong><br>${info.excretion}</div>
+                        <div><strong>Bioavailability:</strong><br>${info.bioavailability}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Enhanced drug interaction checking system
+        function checkMedicationInteractions(substance, medications = []) {
+            const interactions = {
+                dangerous: [],
+                caution: [],
+                contraindicated: []
+            };
+            
+            // Enhanced interaction matrix
+            const interactionMatrix = {
+                mdma: {
+                    'ssri': { level: 'dangerous', info: 'Risk of serotonin syndrome - potentially fatal. Seek medical advice before use.' },
+                    'snri': { level: 'dangerous', info: 'Risk of serotonin syndrome - potentially fatal. Seek medical advice before use.' },
+                    'maoi': { level: 'contraindicated', info: 'Extreme risk of serotonin syndrome - DO NOT COMBINE under any circumstances.' },
+                    'tramadol': { level: 'contraindicated', info: 'High risk of serotonin syndrome and seizures.' },
+                    'dxm': { level: 'dangerous', info: 'Risk of serotonin syndrome and increased neurotoxicity.' },
+                    'lithium': { level: 'dangerous', info: 'Increased risk of seizures and cardiac complications.' },
+                    'alcohol': { level: 'dangerous', info: 'Increased dehydration, neurotoxicity, and impaired temperature regulation.' }
+                },
+                lsd: {
+                    'ssri': { level: 'caution', info: 'May significantly reduce or block psychedelic effects.' },
+                    'snri': { level: 'caution', info: 'May significantly reduce or block psychedelic effects.' },
+                    'antipsychotics': { level: 'contraindicated', info: 'Will completely block psychedelic effects and may cause complications.' },
+                    'lithium': { level: 'dangerous', info: 'Increased risk of seizures - avoid combination.' },
+                    'tramadol': { level: 'caution', info: 'Potential serotonin interaction - use with extreme caution.' }
+                },
+                ketamine: {
+                    'alcohol': { level: 'dangerous', info: 'Severe respiratory depression risk - potentially fatal combination.' },
+                    'benzodiazepines': { level: 'dangerous', info: 'Respiratory depression risk - monitor breathing carefully.' },
+                    'opioids': { level: 'contraindicated', info: 'Severe respiratory depression risk - DO NOT COMBINE.' },
+                    'stimulants': { level: 'dangerous', info: 'Cardiovascular stress and unpredictable effects.' },
+                    'depressants': { level: 'dangerous', info: 'Compounded sedation and respiratory depression.' }
+                },
+                cocaine: {
+                    'alcohol': { level: 'contraindicated', info: 'Creates toxic cocaethylene metabolite - significantly increased toxicity and cardiac risk.' },
+                    'maoi': { level: 'dangerous', info: 'Risk of hypertensive crisis and cardiac complications.' },
+                    'stimulants': { level: 'dangerous', info: 'Cardiovascular overload - increased risk of heart attack and stroke.' },
+                    'beta_blockers': { level: 'dangerous', info: 'Paradoxical hypertension and increased cardiac stress.' },
+                    'depressants': { level: 'caution', info: 'Masks warning signs of overdose from either substance.' }
+                }
+            };
+            
+            if (medications && medications.length > 0) {
+                medications.forEach(medication => {
+                    const med = medication.toLowerCase().trim();
+                    const substanceInteractions = interactionMatrix[substance] || {};
+                    
+                    Object.keys(substanceInteractions).forEach(interactionKey => {
+                        if (med.includes(interactionKey) || checkMedicationClass(med, interactionKey)) {
+                            const interaction = substanceInteractions[interactionKey];
+                            interactions[interaction.level].push({
+                                medication: medication,
+                                info: interaction.info,
+                                type: interactionKey
+                            });
+                        }
+                    });
+                });
+            }
+            
+            return interactions;
+        }
+        
+        function checkMedicationClass(medication, drugClass) {
+            const medicationClasses = {
+                'ssri': ['fluoxetine', 'sertraline', 'paroxetine', 'citalopram', 'escitalopram', 'prozac', 'zoloft', 'paxil', 'celexa', 'lexapro', 'fluvoxamine'],
+                'snri': ['venlafaxine', 'duloxetine', 'desvenlafaxine', 'effexor', 'cymbalta', 'pristiq'],
+                'maoi': ['phenelzine', 'tranylcypromine', 'isocarboxazid', 'selegiline', 'nardil', 'parnate', 'marplan', 'emsam'],
+                'benzodiazepines': ['alprazolam', 'lorazepam', 'clonazepam', 'diazepam', 'temazepam', 'xanax', 'ativan', 'klonopin', 'valium', 'restoril'],
+                'opioids': ['morphine', 'oxycodone', 'hydrocodone', 'fentanyl', 'codeine', 'oxycontin', 'vicodin', 'percocet', 'tramadol'],
+                'stimulants': ['amphetamine', 'methylphenidate', 'dextroamphetamine', 'adderall', 'ritalin', 'concerta', 'vyvanse'],
+                'antipsychotics': ['haloperidol', 'risperidone', 'quetiapine', 'olanzapine', 'aripiprazole', 'haldol', 'risperdal', 'seroquel', 'zyprexa', 'abilify'],
+                'beta_blockers': ['propranolol', 'metoprolol', 'atenolol', 'carvedilol', 'inderal', 'lopressor', 'tenormin'],
+                'depressants': ['alcohol', 'barbiturate', 'benzodiazepine', 'ghb', 'phenibut']
+            };
+            
+            return medicationClasses[drugClass] && medicationClasses[drugClass].some(med => 
+                medication.toLowerCase().includes(med.toLowerCase())
+            );
+        }
+
+        function displayInteractionWarnings(interactions) {
+            if (!interactions || (interactions.contraindicated.length === 0 && interactions.dangerous.length === 0 && interactions.caution.length === 0)) {
+                return '';
+            }
+
+            let html = `<div class="interaction-warnings" style="margin: 1rem 0;">`;
+
+            if (interactions.contraindicated.length > 0) {
+                html += `
+                    <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.1) 100%); border: 2px solid var(--danger-color); border-radius: var(--radius-lg); padding: 1rem; margin-bottom: 1rem;">
+                        <h4 style="color: var(--danger-color); margin-bottom: 0.5rem;">⛔ CONTRAINDICATED COMBINATIONS</h4>
+                        ${interactions.contraindicated.map(interaction => `<p style="margin: 0.25rem 0;"><strong>${interaction.medication}:</strong> ${interaction.info}</p>`).join('')}
+                    </div>
+                `;
+            }
+
+            if (interactions.dangerous.length > 0) {
+                html += `
+                    <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%); border: 2px solid var(--warning-color); border-radius: var(--radius-lg); padding: 1rem; margin-bottom: 1rem;">
+                        <h4 style="color: var(--warning-color); margin-bottom: 0.5rem;">⚠️ DANGEROUS COMBINATIONS</h4>
+                        ${interactions.dangerous.map(interaction => `<p style="margin: 0.25rem 0;"><strong>${interaction.medication}:</strong> ${interaction.info}</p>`).join('')}
+                    </div>
+                `;
+            }
+
+            if (interactions.caution.length > 0) {
+                html += `
+                    <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%); border: 1px solid var(--primary-color); border-radius: var(--radius-lg); padding: 1rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">💡 CAUTION ADVISED</h4>
+                        ${interactions.caution.map(interaction => `<p style="margin: 0.25rem 0;"><strong>${interaction.medication}:</strong> ${interaction.info}</p>`).join('')}
+                    </div>
+                `;
+            }
+
+            html += `</div>`;
+            return html;
         }
 
         // Enhanced liquid dosage calculator
@@ -2924,38 +3428,175 @@
 
         // Enhanced LSD calculator
         function calculateLSD() {
-            const weight = parseFloat(document.getElementById('lsd-weight').value);
-            const gender = document.getElementById('lsd-gender').value;
-            const experience = document.getElementById('lsd-experience').value;
-            const intensity = document.getElementById('lsd-intensity').value;
-            const lastPsychedelic = parseFloat(document.getElementById('lsd-last-psychedelic').value) || 14;
-            const setting = document.getElementById('lsd-setting').value;
-            const resultValue = document.getElementById('lsd-result-value');
-            const resultDetails = document.getElementById('lsd-details');
-            const resultDiv = document.getElementById('lsd-result');
+            try {
+                const weight = validateAndSanitizeInput(document.getElementById('lsd-weight').value, 'number', 30, 300, 'Weight');
+                const gender = validateAndSanitizeInput(document.getElementById('lsd-gender').value, 'string', 1, 20, 'Gender');
+                const experience = validateAndSanitizeInput(document.getElementById('lsd-experience').value, 'string', 1, 20, 'Experience');
+                const intensity = validateAndSanitizeInput(document.getElementById('lsd-intensity').value, 'string', 1, 20, 'Intensity');
+                const lastPsychedelic = parseFloat(document.getElementById('lsd-last-psychedelic').value) || 14;
+                const setting = validateAndSanitizeInput(document.getElementById('lsd-setting').value, 'string', 1, 20, 'Setting');
+                const medications = document.getElementById('lsd-medications')?.value.split(',').map(med => med.trim()).filter(med => med) || [];
+                const age = parseInt(document.getElementById('lsd-age')?.value) || null;
+                
+                const resultValue = document.getElementById('lsd-result-value');
+                const resultDetails = document.getElementById('lsd-details');
+                const resultDiv = document.getElementById('lsd-result');
 
-            if (!validateWeight(weight) || !gender || !experience || !intensity || !setting) {
-                resultValue.innerHTML = 'Please fill in all fields with valid values.';
+                // Enhanced dosage calculation with more precise ranges
+                const intensityDoses = {
+                    'microdose': { dose: 8, range: '5-12' },      // Sub-perceptual
+                    'threshold': { dose: 20, range: '15-30' },    // Barely perceptual
+                    'light': { dose: 50, range: '30-75' },        // Clear effects
+                    'common': { dose: 100, range: '75-150' },     // Standard trip
+                    'strong': { dose: 200, range: '150-300' },    // Intense experience
+                    'heavy': { dose: 350, range: '300-500' }      // Very intense (not recommended)
+                };
+
+                // Calculate base dose
+                let calculatedDose = intensityDoses[intensity].dose;
+
+                // Apply experience multiplier
+                const experienceMultiplier = {
+                    'first-time': 0.7,
+                    'novice': 0.8,
+                    'experienced': 1.0,
+                    'expert': 1.1
+                };
+                calculatedDose *= experienceMultiplier[experience];
+
+                // Apply gender multiplier (women generally more sensitive)
+                const genderMultiplier = getGenderMultiplier(gender, 'lsd');
+                calculatedDose *= genderMultiplier;
+
+                // Apply setting safety multiplier
+                const settingMultiplier = {
+                    'controlled': 1.0,
+                    'festival': 0.85,
+                    'public': 0.7,
+                    'unknown': 0.6
+                };
+                calculatedDose *= settingMultiplier[setting];
+
+                // Calculate age multiplier
+                const ageMultiplier = getAgeMultiplier(age);
+                if (ageMultiplier !== 1.0) {
+                    calculatedDose *= ageMultiplier;
+                }
+
+                // Apply tolerance from last psychedelic use
+                let toleranceFactor = 1.0;
+                if (lastPsychedelic < 14) {
+                    // Strong cross-tolerance with other psychedelics
+                    toleranceFactor = 1.0 + (14 - lastPsychedelic) * 0.15; // Up to +150% for daily use
+                }
+                calculatedDose *= toleranceFactor;
+
+                // Check for dangerous drug interactions
+                const interactions = checkMedicationInteractions('lsd', medications);
+
+                // Apply safety caps
+                const maxSafeDose = {
+                    'first-time': 75,
+                    'novice': 100,
+                    'experienced': 200,
+                    'expert': 300
+                };
+                calculatedDose = Math.min(calculatedDose, maxSafeDose[experience]);
+
+                // Determine risk level
+                let riskLevel = 'low';
+                if (calculatedDose > 150) riskLevel = 'moderate';
+                if (calculatedDose > 250) riskLevel = 'high';
+                if (interactions.contraindicated.length > 0 || interactions.dangerous.length > 0) riskLevel = 'high';
+
+                const riskColors = {
+                    'low': '#10b981',
+                    'moderate': '#f59e0b', 
+                    'high': '#ef4444'
+                };
+
+                // Generate warnings
+                let warnings = '';
+                if (calculatedDose > 200) {
+                    warnings += showWarning('High dose - increased risk of challenging experience, anxiety, and HPPD. Consider reducing dose.', 'danger');
+                }
+                if (lastPsychedelic < 7) {
+                    warnings += getCrossToleranceWarning('lsd', lastPsychedelic);
+                }
+
+                const ageWarning = getAgeWarning(age);
+                const legalWarning = getLegalWarning('lsd');
+                const testingInfo = getTestingInfo('lsd');
+                const pharmacologyInfo = getPharmacologyInfo('lsd');
+                const emergencyInfo = displayEmergencyInfo('lsd');
+                const interactionWarnings = displayInteractionWarnings(interactions);
+
+                // Track usage (anonymous)
+                trackAnonymousUsage('lsd');
+
+                resultValue.innerHTML = `
+                    <div style="font-size: 2rem; font-weight: bold; color: ${riskColors[riskLevel]};">
+                        ${Math.round(calculatedDose)}μg
+                    </div>
+                    <div style="font-size: 1rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        Range: ${intensityDoses[intensity].range}μg (${intensity})
+                    </div>
+                `;
+
+                resultDetails.innerHTML = `
+                    ${legalWarning}
+                    ${testingInfo}
+                    ${interactionWarnings}
+                    ${emergencyInfo}
+                    ${pharmacologyInfo}
+                    
+                    <div class="scientific-note">
+                        <strong>Enhanced Calculation Factors:</strong><br>
+                        • Base dose for ${intensity}: ${intensityDoses[intensity].dose}μg<br>
+                        • Experience adjustment: ${(experienceMultiplier[experience] * 100).toFixed(0)}% of standard dose<br>
+                        • Gender metabolic factor: ${(genderMultiplier * 100).toFixed(0)}% adjustment<br>
+                        • Setting safety factor: ${(settingMultiplier[setting] * 100).toFixed(0)}% adjustment<br>
+                        ${age ? `• Age safety factor: ${(ageMultiplier * 100).toFixed(0)}% adjustment (Age: ${age})<br>` : ''}
+                        • Tolerance consideration: ${(toleranceFactor * 100).toFixed(0)}% increase (${lastPsychedelic} days since last psychedelic)<br>
+                        • Risk level: <strong style="color: ${riskColors[riskLevel]}">${riskLevel.toUpperCase()}</strong>
+                    </div>
+                    
+                    ${warnings}
+                    ${ageWarning}
+                    
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">🔬 Important LSD Safety Notes:</h4>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li>LSD effects last 8-12 hours - ensure safe environment for entire duration</li>
+                            <li>Strong psychological effects - have a trusted sober trip sitter present</li>
+                            <li>Cross-tolerance with other psychedelics (psilocybin, mescaline, etc.) lasts ~14 days</li>
+                            <li>Start low, especially if inexperienced - you can't "un-take" a dose</li>
+                            <li>Avoid NBOMe and other dangerous LSD analogs - always test your substance</li>
+                            <li>Set and setting are crucial - comfortable environment and positive mindset</li>
+                        </ul>
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+                
+                // Announce result to screen readers
+                if (typeof announceToScreenReader === 'function') {
+                    announceToScreenReader(`LSD dosage calculated: ${Math.round(calculatedDose)} micrograms`);
+                }
+
+            } catch (error) {
+                const resultValue = document.getElementById('lsd-result-value');
+                const resultDetails = document.getElementById('lsd-details');
+                const resultDiv = document.getElementById('lsd-result');
+                
+                resultValue.innerHTML = `<span style="color: var(--danger-color);">Error: ${error.message}</span>`;
                 resultDetails.innerHTML = '';
                 resultDiv.style.display = 'block';
-                return;
+                
+                console.error('LSD Calculator Error:', error);
             }
+        }
 
-            // Enhanced dosage calculation with more precise ranges
-            const intensityDoses = {
-                'microdose': { dose: 8, range: '5-12' },      // Sub-perceptual
-                'threshold': { dose: 25, range: '20-30' },    // Barely noticeable
-                'light': { dose: 50, range: '40-75' },        // Clear psychedelic effects
-                'common': { dose: 100, range: '75-150' },     // Full LSD experience
-                'strong': { dose: 200, range: '150-300' },    // Strong visuals and headspace
-                'heavy': { dose: 350, range: '300-500' }      // Overwhelming intensity
-            };
-
-            const experienceMultiplier = {
-                'beginner': 0.7,      // Conservative for safety
-                'experienced': 1.0,   // Standard dosing
-                'expert': 1.15        // Can handle slightly higher doses
-            };
+        // Helper function for expected effects
 
             // Gender-based sensitivity differences (minimal for LSD)
             const genderMultiplier = {
@@ -4910,6 +5551,64 @@
             
             if (targetEffectSelect) {
                 targetEffectSelect.addEventListener('change', handleTargetEffectChange);
+            }
+            
+            // PWA Service Worker Registration
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('./sw.js')
+                        .then(function(registration) {
+                            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                        })
+                        .catch(function(error) {
+                            console.log('ServiceWorker registration failed: ', error);
+                        });
+                });
+            }
+            
+            // Load user preferences on page load
+            loadUserPreferences();
+            
+            // Add keyboard navigation support
+            document.addEventListener('keydown', function(event) {
+                // Handle escape key for modals and dropdowns
+                if (event.key === 'Escape') {
+                    // Close any open modals
+                    const modals = document.querySelectorAll('.modal');
+                    modals.forEach(modal => {
+                        if (modal.style.display === 'block') {
+                            modal.style.display = 'none';
+                        }
+                    });
+                    
+                    // Close dose menu
+                    closeDoseMenu();
+                }
+                
+                // Handle tab navigation
+                if (event.key === 'Tab') {
+                    // Let browser handle default tab behavior
+                    // Add visual focus indicators via CSS
+                }
+            });
+            
+            // Add accessibility announcements
+            function announceToScreenReader(message) {
+                const announcement = document.createElement('div');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('aria-atomic', 'true');
+                announcement.className = 'sr-only';
+                announcement.style.position = 'absolute';
+                announcement.style.left = '-10000px';
+                announcement.style.width = '1px';
+                announcement.style.height = '1px';
+                announcement.style.overflow = 'hidden';
+                announcement.textContent = message;
+                document.body.appendChild(announcement);
+                
+                setTimeout(() => {
+                    document.body.removeChild(announcement);
+                }, 1000);
             }
         });
     </script>
