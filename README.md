@@ -1,15 +1,85 @@
-# XTCalc Enhanced - Drug Calculator Suite
+# XTCalc Enhanced - Drug Calculator Suite & Information Wiki
 
-A comprehensive, modern calculator suite for scientific and educational purposes, designed for harm reduction research and pharmacological studies. Features a beautiful, responsive interface with advanced dosing calculators for multiple substances.
+A comprehensive, modern calculator suite for scientific and educational purposes, designed for harm reduction research and pharmacological studies. Features a beautif**Direct Calculator Access:**
+
+You can now directly access any calculator using URL paths:
+
+**Liquid Dosage Calculator:**
+- `https://k3noxofficial.github.io/drug-rechner/liquid`
+
+**Dose Calculators:**
+- `https://k3noxofficial.github.io/drug-rechner/dose/mdma`
+- `https://k3noxofficial.github.io/drug-rechner/dose/lsd`
+- `https://k3noxofficial.github.io/drug-rechner/dose/ketamine`
+- `https://k3noxofficial.github.io/drug-rechner/dose/ghb`
+- `https://k3noxofficial.github.io/drug-rechner/dose/amphetamines`
+- `https://k3noxofficial.github.io/drug-rechner/dose/cocaine`
+- `https://k3noxofficial.github.io/drug-rechner/dose/4mmc`
+
+**Tolerance Calculator:**
+- `https://k3noxofficial.github.io/drug-rechner/tolerance`
+
+**Drug Information Wiki:**
+- `https://k3noxofficial.github.io/drug-rechner/info`erface with advanced dosing calculators and an extensive drug information wiki for multiple substances.
 
 ## 🎨 New Modern Interface
 
 - **Beautiful gradient design** with smooth animations and transitions
-- **Tabbed navigation** for easy access to all calculators
+- **Tabbed navigation** for easy access to all calculators and drug information
 - **Responsive layout** that works perfectly on desktop, tablet, and mobile
 - **Professional styling** with glassmorphism effects and modern typography
 - **Interactive tooltips** and comprehensive safety warnings
 - **Real-time calculations** with detailed explanations
+
+## 📚 Drug Information Wiki
+
+Our comprehensive drug information wiki provides essential harm reduction knowledge for Germany and Switzerland:
+
+### 🌟 Overview Section
+- Interactive cards with key substance categories
+- Safety principles and harm reduction fundamentals
+- Evidence-based information from trusted sources
+
+### 🌱 First-Time Use Guide
+- Comprehensive preparation checklist
+- Set and setting guidelines
+- Mental and physical preparation strategies
+- Integration and aftercare planning
+
+### ⏰ Redosing Guidelines
+- Substance-specific redosing recommendations
+- Risk assessment for different drug classes
+- Tolerance information and waiting periods
+- Safety protocols to prevent overdose
+
+### ✅ Essential Dos & Don'ts
+- Critical safety practices organized by importance
+- Dangerous behaviors to avoid
+- Contraindications with medications
+- Emergency preparation guidelines
+
+### 🚨 Emergency Information
+- **Germany Emergency Contacts:**
+  - Emergency: 112 (Fire, Medical, Police)
+  - Poison Control: +49 30 19240, +49 228 19240, +49 89 19240
+  - Crisis Helpline: 0800 111 0 111 / 0800 111 0 222 (24/7)
+  
+- **Switzerland Emergency Contacts:**
+  - Emergency: 112, Medical: 144, Police: 117
+  - Poison Control: 145 or +41 44 251 51 51 (24/7)
+  - Crisis Helpline: 143
+
+### 🤝 Trip-Sitting Guide
+- Comprehensive preparation checklist
+- Communication strategies and helpful phrases
+- Crisis management and warning signs
+- Emergency action protocols
+
+### 🛡️ Harm Reduction Resources
+- **Drug Testing Services:**
+  - Germany: Mindzone, Eclipse, Substitol
+  - Switzerland: DIB+, Safer Dance Swiss, Eve & Rave Schweiz
+  - International: DanceSafe, The Loop, Erowid, PsychonautWiki
 
 ## 🧮 Calculator Features
 
@@ -230,10 +300,10 @@ Contributions should focus on:
 
 ## 📊 Version Information
 
-- **Version:** 2.0 Enhanced
-- **Updated:** September 2025
-- **Total Calculators:** 8 comprehensive tools
-- **New Features:** Modern UI, enhanced safety systems, weight-based dosing
+- **Version:** 2.1 Enhanced with Drug Information Wiki
+- **Updated:** December 2024
+- **Total Features:** 8 comprehensive calculators + extensive drug information wiki
+- **New Features:** Drug information wiki with German/Swiss emergency contacts, trip-sitting guide, harm reduction resources
 - **Compatibility:** All modern browsers, mobile-responsive
 
 ---

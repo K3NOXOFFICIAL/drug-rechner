@@ -772,6 +772,101 @@
             }
         }
         
+        /* Drug Information Styles */
+        .drug-info-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .drug-info-nav li {
+            list-style: none;
+            background: var(--background-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .drug-info-nav li:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .drug-info-nav li.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .drug-info-content {
+            display: none;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .drug-info-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .emergency-card {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border: 2px solid rgba(239, 68, 68, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .emergency-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .drug-info-nav {
+                justify-content: center;
+            }
+            
+            .drug-info-nav li {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.75rem;
+            }
+            
+            .emergency-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .emergency-card {
+                padding: 1.5rem;
+            }
+        }
+        
         /* Footer Styling */
         .footer {
             background: var(--background-secondary);
@@ -1010,6 +1105,7 @@
             </div>
             
             <button class="tab-btn" onclick="showCalculator('tolerance')" role="tab" aria-selected="false" aria-controls="tolerance" id="tolerance-tab" tabindex="0">⚖️ Tolerance Calculator</button>
+            <button class="tab-btn" onclick="showCalculator('drug-info')" role="tab" aria-selected="false" aria-controls="drug-info" id="drug-info-tab" tabindex="0">📚 Drug Information</button>
         </div>
 
         <!-- Mobile overlay -->
@@ -1850,6 +1946,453 @@
                         <div class="legend-item">
                             <span class="legend-color" style="background: #ff6b6b;"></span>
                             <span>Current Day</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drug Information/Wiki Section -->
+        <div id="drug-info" class="calculator-section">
+            <h2>📚 Drug Information & Harm Reduction Wiki</h2>
+            <p>Comprehensive information for harm reduction, first-time use, emergency protocols, and trip-sitting</p>
+
+            <!-- Drug Information Navigation -->
+            <div class="drug-info-nav" style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; justify-content: center;">
+                <button class="drug-info-tab active" onclick="showDrugInfoSection('overview')" data-section="overview">🏠 Overview</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('first-time')" data-section="first-time">🌱 First Time Use</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('redosing')" data-section="redosing">⏰ Redosing Guide</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('dos-donts')" data-section="dos-donts">✅ Dos & Don'ts</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('emergency')" data-section="emergency">🚨 Emergency Info</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('tripsitting')" data-section="tripsitting">🤝 Trip-Sitting</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('harm-reduction')" data-section="harm-reduction">🛡️ Harm Reduction</button>
+            </div>
+
+            <!-- Overview Section -->
+            <div id="drug-info-overview" class="drug-info-content active">
+                <h3>🏠 Welcome to the Drug Information & Harm Reduction Wiki</h3>
+                <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                    
+                    <div class="info-card" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🌱 First Time Users
+                        </h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Essential information for those considering or planning their first experience with any substance.</p>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Preparation and set/setting guidelines</li>
+                            <li>Dosage recommendations for beginners</li>
+                            <li>What to expect during different phases</li>
+                            <li>Safety precautions and contraindications</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--accent-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            ⏰ Redosing Information
+                        </h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Science-based guidelines on when and how to safely redose different substances.</p>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Optimal timing for redoses</li>
+                            <li>Recommended redose amounts</li>
+                            <li>Tolerance considerations</li>
+                            <li>When NOT to redose</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--success-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            ✅ Safety Guidelines
+                        </h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Essential dos and don'ts for responsible use and risk minimization.</p>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Critical safety protocols</li>
+                            <li>Drug interaction warnings</li>
+                            <li>Environmental considerations</li>
+                            <li>Health monitoring guidelines</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--danger-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🚨 Emergency Information
+                        </h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Critical emergency contacts and procedures for Germany, Switzerland, and other regions.</p>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Emergency phone numbers by country</li>
+                            <li>Poison control centers</li>
+                            <li>Crisis intervention resources</li>
+                            <li>Hospital preparation guidelines</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--warning-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🤝 Trip-Sitting Guide
+                        </h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Comprehensive guide for supporting someone during their psychoactive experience.</p>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>How to be an effective trip-sitter</li>
+                            <li>Communication strategies</li>
+                            <li>Recognizing problem situations</li>
+                            <li>Creating safe environments</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--secondary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🛡️ Harm Reduction
+                        </h4>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Evidence-based strategies to minimize risks and maximize safety.</p>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Drug testing and purity assessment</li>
+                            <li>Safe use practices</li>
+                            <li>Recovery and integration</li>
+                            <li>Resource networks and support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="disclaimer" style="margin-top: 2rem;">
+                    <h4>Educational Purpose & Legal Disclaimer</h4>
+                    <p>This information is provided for educational and harm reduction purposes only. The use of controlled substances may be illegal in your jurisdiction. Always consult with healthcare professionals and follow local laws. This information does not constitute medical advice.</p>
+                </div>
+            </div>
+
+            <!-- First Time Use Section -->
+            <div id="drug-info-first-time" class="drug-info-content">
+                <h3>🌱 First Time Use Guide</h3>
+                
+                <!-- General Preparation -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🎯 Pre-Experience Preparation</h4>
+                    
+                    <div class="preparation-checklist" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">✅ Essential Checklist</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                <li><strong>Research extensively</strong> - Know the effects, duration, and risks</li>
+                                <li><strong>Test your substance</strong> - Use reagent tests when possible</li>
+                                <li><strong>Start with low doses</strong> - You can always take more, but never less</li>
+                                <li><strong>Have a trusted trip-sitter</strong> - Preferably experienced and sober</li>
+                                <li><strong>Choose safe setting</strong> - Comfortable, familiar environment</li>
+                                <li><strong>Clear schedule</strong> - No responsibilities for 24+ hours</li>
+                                <li><strong>Mental preparation</strong> - Positive mindset and expectations</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Red Flags - DO NOT Use If:</h5>
+                            <ul style="color: var(--danger-color); padding-left: 1.5rem;">
+                                <li>Taking antidepressants or other medications</li>
+                                <li>History of heart problems or high blood pressure</li>
+                                <li>Mental health conditions (bipolar, psychosis, severe anxiety)</li>
+                                <li>Pregnant or breastfeeding</li>
+                                <li>Under 18 years old</li>
+                                <li>Family history of schizophrenia or psychotic disorders</li>
+                                <li>Feeling anxious, depressed, or unstable</li>
+                                <li>In an unsafe or unfamiliar environment</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Set and Setting -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--accent-color); margin-bottom: 1rem;">🌍 Set and Setting Guidelines</h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🧠 Set (Your Mental State)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                <li><strong>Positive mood</strong> - Feeling good and optimistic</li>
+                                <li><strong>Well-rested</strong> - Good sleep the night before</li>
+                                <li><strong>Properly nourished</strong> - Eaten appropriately for the substance</li>
+                                <li><strong>Hydrated</strong> - Good hydration status</li>
+                                <li><strong>Clear intentions</strong> - Know why you're doing this</li>
+                                <li><strong>Prepared mindset</strong> - Ready for unexpected experiences</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏠 Setting (Your Environment)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                <li><strong>Safe location</strong> - Familiar, private space</li>
+                                <li><strong>Comfortable temperature</strong> - Good ventilation</li>
+                                <li><strong>Minimal distractions</strong> - Phone on silent, no obligations</li>
+                                <li><strong>Trusted companions</strong> - People you feel safe with</li>
+                                <li><strong>Easy access to necessities</strong> - Water, bathroom, comfortable seating</li>
+                                <li><strong>Escape route</strong> - Ability to change environments if needed</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Drug Info Sections -->
+            <div id="drug-info-redosing" class="drug-info-content">
+                <h3>⏰ Redosing Guidelines</h3>
+                <div class="warning" style="margin-bottom: 2rem;">
+                    <h4>⚠️ Important Redosing Warning</h4>
+                    <p>Redosing significantly increases risks including overdose, dangerous drug interactions, prolonged effects, increased toxicity, and unpredictable responses. Many substances have non-linear dose-response curves.</p>
+                </div>
+                
+                <div class="redosing-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                    <div class="info-card" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">💊 Stimulants (MDMA, Amphetamines)</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li><strong>Wait minimum 6-8 weeks</strong> between MDMA uses</li>
+                            <li><strong>Never redose MDMA</strong> in the same session</li>
+                            <li><strong>Amphetamines:</strong> Wait 2-4 hours, max 50% of initial dose</li>
+                            <li><strong>Risk:</strong> Neurotoxicity, cardiovascular stress</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🍄 Psychedelics (LSD, Psilocybin)</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li><strong>Tolerance builds immediately</strong> - redosing ineffective</li>
+                            <li><strong>LSD:</strong> Effects can last 12+ hours</li>
+                            <li><strong>Psilocybin:</strong> Wait 1-2 weeks between uses</li>
+                            <li><strong>Risk:</strong> Psychological overwhelm, panic</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🌊 Dissociatives (Ketamine, DXM)</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li><strong>Ketamine:</strong> Wait 45-60 minutes, start low</li>
+                            <li><strong>Risk of K-hole</strong> with excessive redosing</li>
+                            <li><strong>DXM:</strong> Never redose - long duration (6-8 hours)</li>
+                            <li><strong>Risk:</strong> Dissociation, injury, addiction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="drug-info-dos-donts" class="drug-info-content">
+                <h3>✅ Essential Dos & Don'ts</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                    <div class="dos-section" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%); border: 2px solid rgba(34, 197, 94, 0.3); border-radius: var(--radius-lg); padding: 2rem;">
+                        <h4 style="color: #22c55e; margin-bottom: 1.5rem;">✅ DO</h4>
+                        <ul style="color: var(--text-secondary); line-height: 1.6;">
+                            <li><strong>Research thoroughly</strong> before trying any substance</li>
+                            <li><strong>Test your substances</strong> with reagent kits</li>
+                            <li><strong>Start with small doses</strong> and wait</li>
+                            <li><strong>Stay hydrated</strong> but don't overdrink</li>
+                            <li><strong>Have a sober trip-sitter</strong> present</li>
+                            <li><strong>Plan your setting</strong> carefully</li>
+                            <li><strong>Keep emergency contacts</strong> available</li>
+                            <li><strong>Tell someone</strong> your plans</li>
+                            <li><strong>Prepare integration time</strong> after psychedelics</li>
+                            <li><strong>Respect set and setting</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="donts-section" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 2rem;">
+                        <h4 style="color: #ef4444; margin-bottom: 1.5rem;">❌ DON'T</h4>
+                        <ul style="color: var(--text-secondary); line-height: 1.6;">
+                            <li><strong>Mix substances</strong> without research</li>
+                            <li><strong>Use alone</strong> (especially with dissociatives)</li>
+                            <li><strong>Drive or operate machinery</strong></li>
+                            <li><strong>Use if depressed/anxious</strong></li>
+                            <li><strong>Take unknown substances</strong></li>
+                            <li><strong>Redose impulsively</strong></li>
+                            <li><strong>Use in unsafe environments</strong></li>
+                            <li><strong>Combine with alcohol</strong> (most substances)</li>
+                            <li><strong>Use frequently</strong> - respect tolerance</li>
+                            <li><strong>Ignore contraindications</strong> with medications</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="critical-warning" style="background: linear-gradient(135deg, rgba(234, 88, 12, 0.1) 0%, rgba(234, 88, 12, 0.05) 100%); border: 2px solid rgba(234, 88, 12, 0.5); border-radius: var(--radius-lg); padding: 2rem; margin-top: 2rem;">
+                    <h4 style="color: #ea580c; margin-bottom: 1rem;">⚠️ Critical Contraindications</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;"><strong>Never use psychoactive substances if you:</strong></p>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.6;">
+                        <li>Are taking MAOIs (antidepressants) - wait 2+ weeks</li>
+                        <li>Have heart conditions, high blood pressure, or epilepsy</li>
+                        <li>Are pregnant or breastfeeding</li>
+                        <li>Have a personal/family history of psychosis or schizophrenia</li>
+                        <li>Are under 25 (brain development)</li>
+                        <li>Are in a poor mental state or crisis</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="drug-info-emergency" class="drug-info-content">
+                <h3>🚨 Emergency Information & Crisis Resources</h3>
+                
+                <!-- Germany Emergency -->
+                <div class="emergency-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                    <div class="emergency-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 2rem;">
+                        <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🇩🇪 Germany Emergency</h4>
+                        <div style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 1rem;">
+                            <strong>🚑 Emergency: 112</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 0.9rem;">Fire, Medical, Police - EU-wide</span>
+                        </div>
+                        <div style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+                            <strong>☎️ Poison Control:</strong><br>
+                            +49 30 19240 (Berlin)<br>
+                            +49 228 19240 (Bonn)<br>
+                            +49 89 19240 (Munich)
+                        </div>
+                        <div style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+                            <strong>🧠 Crisis Helpline:</strong><br>
+                            0800 111 0 111 / 0800 111 0 222<br>
+                            <span style="font-size: 0.8rem;">Telefonseelsorge - 24/7</span>
+                        </div>
+                        <div style="color: var(--primary-color); margin-top: 1rem; font-size: 0.9rem;">
+                            <strong>📍 Good Samaritan protections apply</strong>
+                        </div>
+                    </div>
+
+                    <div class="emergency-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 2rem;">
+                        <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🇨🇭 Switzerland Emergency</h4>
+                        <div style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 1rem;">
+                            <strong>🚑 Emergency: 112</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 0.9rem;">General emergency</span>
+                        </div>
+                        <div style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+                            <strong>☎️ Poison Control:</strong><br>
+                            145 or +41 44 251 51 51<br>
+                            <span style="font-size: 0.8rem;">Tox Info Suisse - 24/7</span>
+                        </div>
+                        <div style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+                            <strong>🧠 Crisis Helpline:</strong> 143<br>
+                            <strong>🏥 Medical:</strong> 144<br>
+                            <strong>👮 Police:</strong> 117
+                        </div>
+                        <div style="color: var(--primary-color); margin-top: 1rem; font-size: 0.9rem;">
+                            <strong>📍 Harm reduction services available</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="drug-info-tripsitting" class="drug-info-content">
+                <h3>🤝 Trip-Sitting Guide</h3>
+                <div class="warning" style="margin-bottom: 2rem;">
+                    <h4>⚠️ Trip-Sitting Responsibility</h4>
+                    <p>Being a trip-sitter is a serious responsibility. You may need to make critical decisions about someone's safety and wellbeing.</p>
+                </div>
+                
+                <div class="tripsitting-sections" style="display: grid; gap: 2rem; margin: 2rem 0;">
+                    <div class="preparation-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">📋 Preparation Checklist</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Before the Session</h5>
+                                <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>Know the substance, dose, and expected duration</li>
+                                    <li>Have emergency numbers ready</li>
+                                    <li>Clear your schedule completely</li>
+                                    <li>Prepare comfort items (blankets, music)</li>
+                                    <li>Stock up on water and light snacks</li>
+                                    <li>Test all substances beforehand</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Environment Setup</h5>
+                                <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>Safe, familiar, comfortable space</li>
+                                    <li>Remove dangerous objects</li>
+                                    <li>Control lighting and temperature</li>
+                                    <li>Prepare calming music playlists</li>
+                                    <li>Have access to outdoors if possible</li>
+                                    <li>Ensure privacy and no interruptions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="communication-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">💬 Communication Strategies</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <h5 style="color: #22c55e; margin-bottom: 0.5rem;">✅ Helpful Phrases</h5>
+                                <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>"You are safe"</li>
+                                    <li>"This is temporary"</li>
+                                    <li>"I'm here with you"</li>
+                                    <li>"Focus on your breathing"</li>
+                                    <li>"You took [substance] at [time]"</li>
+                                    <li>"Let's change the music/lighting"</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 style="color: #ef4444; margin-bottom: 0.5rem;">❌ Avoid Saying</h5>
+                                <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>"Calm down" or "Just relax"</li>
+                                    <li>"It's all in your head"</li>
+                                    <li>"You're being paranoid"</li>
+                                    <li>Arguing with their reality</li>
+                                    <li>Bringing up stressful topics</li>
+                                    <li>"You took too much"</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crisis-section" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 2rem;">
+                        <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🚨 Crisis Management</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Warning Signs</h5>
+                                <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li>Difficulty breathing</li>
+                                    <li>Chest pain or heart issues</li>
+                                    <li>Extreme agitation or violence</li>
+                                    <li>Self-harm behavior</li>
+                                    <li>Complete loss of reality contact</li>
+                                    <li>Hyperthermia or hypothermia</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Emergency Actions</h5>
+                                <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                    <li><strong>Call 112 immediately</strong></li>
+                                    <li>Be honest with paramedics</li>
+                                    <li>Stay with them at all times</li>
+                                    <li>Remove dangerous objects</li>
+                                    <li>Monitor vital signs</li>
+                                    <li>Keep them cool and hydrated</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="drug-info-harm-reduction" class="drug-info-content">
+                <h3>🛡️ Harm Reduction Resources</h3>
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🧪 Drug Testing Resources</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🇩🇪 Germany</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                <li><strong>Mindzone:</strong> mindzone.info</li>
+                                <li><strong>Eclipse:</strong> eclipse-online.de</li>
+                                <li><strong>Substitol:</strong> Drug testing services</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🇨🇭 Switzerland</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                <li><strong>DIB+:</strong> Drug checking Zurich</li>
+                                <li><strong>Safer Dance Swiss:</strong> saferdanceswiss.ch</li>
+                                <li><strong>Eve & Rave Schweiz:</strong> eve-rave.ch</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌍 International</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                <li><strong>DanceSafe:</strong> dancesafe.org</li>
+                                <li><strong>The Loop:</strong> wearetheloop.org</li>
+                                <li><strong>Erowid:</strong> erowid.org</li>
+                                <li><strong>PsychonautWiki:</strong> psychonautwiki.org</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -5609,6 +6152,61 @@
                 setTimeout(() => {
                     document.body.removeChild(announcement);
                 }, 1000);
+            }
+        });
+
+        // Drug Information Navigation
+        function showDrugInfo(sectionId) {
+            // Hide all drug info content sections
+            document.querySelectorAll('.drug-info-content').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+            
+            // Update active state on navigation items
+            document.querySelectorAll('.drug-info-nav li').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class to clicked item if event exists
+            if (typeof event !== 'undefined' && event.target) {
+                const listItem = event.target.closest('li');
+                if (listItem) {
+                    listItem.classList.add('active');
+                }
+            }
+        }
+
+        // Initialize drug info when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up drug info tab initialization
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                        const drugInfoSection = document.getElementById('drug-info');
+                        if (drugInfoSection && drugInfoSection.classList.contains('tabcontent') && drugInfoSection.style.display === 'block') {
+                            // Show overview by default when drug info tab is opened
+                            setTimeout(() => {
+                                showDrugInfo('drug-info-overview');
+                                // Set first nav item as active
+                                const firstNavItem = document.querySelector('.drug-info-nav li:first-child');
+                                if (firstNavItem) {
+                                    firstNavItem.classList.add('active');
+                                }
+                            }, 100);
+                        }
+                    }
+                });
+            });
+
+            const drugInfoSection = document.getElementById('drug-info');
+            if (drugInfoSection) {
+                observer.observe(drugInfoSection, { attributes: true });
             }
         });
     </script>
