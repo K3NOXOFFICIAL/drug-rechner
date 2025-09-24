@@ -1,6 +1,6 @@
 {
-  "name": "K3NOX Drug Calc - Drug Calculator Suite",
-  "short_name": "Drug Calc",
+  "name": "K3NOX Drug Calculator - Drug Calculator Suite",
+  "short_name": "Drug Calculator",
   "description": "Comprehensive drug calculator suite for harm reduction education and scientific research",
   "start_url": "./index.html",
   "display": "standalone",
