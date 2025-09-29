@@ -5867,6 +5867,14 @@
             doseToggle.classList.remove('active');
             doseToggle.setAttribute('aria-expanded', 'false');
             
+            // Remove active class from general info toggle
+            const generalInfoToggle = document.getElementById('general-info-btn');
+            generalInfoToggle.classList.remove('active');
+            
+            // Remove active class from drug specific toggle
+            const drugSpecificToggle = document.getElementById('drug-specific-btn');
+            drugSpecificToggle.classList.remove('active');
+            
             // Remove active class from all dose menu items
             const doseMenuItems = document.querySelectorAll('.dose-menu-item');
             doseMenuItems.forEach(item => {
@@ -5910,10 +5918,16 @@
                 if (activeMenuItem) {
                     activeMenuItem.classList.add('active');
                 }
+            } else if (calculatorId === 'drug-info') {
+                // Activate both general info and drug specific toggles for drug info section
+                generalInfoToggle.classList.add('active');
+                drugSpecificToggle.classList.add('active');
             }
             
-            // Close dose menu if open
+            // Close all menus if open
             closeDoseMenu();
+            closeGeneralInfoMenu();
+            closeDrugSpecificMenu();
         }
         
         // Toggle dose calculator menu
@@ -6119,6 +6133,13 @@
 
         // Drug Info Section Navigation
         function showDrugInfoSection(sectionId) {
+            // First, show the main drug info calculator section
+            showCalculatorInternal('drug-info');
+            
+            // Close any open dropdown menus
+            closeGeneralInfoMenu();
+            closeDrugSpecificMenu();
+            
             // Hide all drug info content sections
             const contentSections = document.querySelectorAll('.drug-info-content');
             contentSections.forEach(section => {
