@@ -1158,8 +1158,13 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="mdma-height" class="tooltip" data-tooltip="Height is used to calculate BMI for safer dosing">Height (cm) - Optional:</label>
-                    <input type="number" id="mdma-height" placeholder="e.g., 175" min="140" max="220">
+                    <label for="mdma-duration">Desired Trip Duration:</label>
+                    <select id="mdma-duration">
+                        <option value="">Select Duration</option>
+                        <option value="short">Short (3-4 hours)</option>
+                        <option value="medium">Medium (4-6 hours)</option>
+                        <option value="long">Long (6-8 hours)</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
@@ -1182,7 +1187,7 @@
                     <select id="mdma-experience">
                         <option value="">Select Experience</option>
                         <option value="beginner">Beginner (0-2 times)</option>
-                        <option value="experienced">Experienced (3-10 times)</option>
+                        <option value="experienced" selected>Experienced (3-10 times)</option>
                         <option value="expert">Expert (10+ times)</option>
                     </select>
                 </div>
@@ -1193,7 +1198,7 @@
                         <option value="">Select Intensity</option>
                         <option value="threshold">Threshold (mild effects)</option>
                         <option value="light">Light (noticeable effects)</option>
-                        <option value="common">Common (full experience)</option>
+                        <option value="common" selected>Common (full experience)</option>
                         <option value="strong">Strong (intense experience)</option>
                     </select>
                 </div>
@@ -1207,7 +1212,7 @@
                     <label for="mdma-setting">Setting/Environment:</label>
                     <select id="mdma-setting">
                         <option value="">Select Setting</option>
-                        <option value="home">Home/Private setting</option>
+                        <option value="home" selected>Home/Private setting</option>
                         <option value="club">Club/Rave</option>
                         <option value="festival">Festival/Outdoor</option>
                         <option value="therapy">Therapeutic setting</option>
@@ -1218,7 +1223,7 @@
                     <label for="mdma-medications" class="tooltip" data-tooltip="Current medications can interact dangerously with MDMA">Current Medications:</label>
                     <select id="mdma-medications">
                         <option value="">Select if taking medications</option>
-                        <option value="none">No medications</option>
+                        <option value="none" selected>No medications</option>
                         <option value="ssri">SSRI Antidepressants (Prozac, Zoloft, etc.)</option>
                         <option value="snri">SNRI Antidepressants (Effexor, Cymbalta, etc.)</option>
                         <option value="maoi">MAOI Antidepressants (Nardil, Parnate, etc.)</option>
@@ -1267,7 +1272,7 @@
                     <select id="lsd-experience">
                         <option value="">Select Experience</option>
                         <option value="beginner">Beginner (0-2 psychedelic experiences)</option>
-                        <option value="experienced">Experienced (3-15 experiences)</option>
+                        <option value="experienced" selected>Experienced (3-15 experiences)</option>
                         <option value="expert">Expert (15+ experiences)</option>
                     </select>
                 </div>
@@ -1279,7 +1284,7 @@
                         <option value="microdose">Microdose (sub-perceptual)</option>
                         <option value="threshold">Threshold (barely perceptible)</option>
                         <option value="light">Light (clear effects)</option>
-                        <option value="common">Common (full experience)</option>
+                        <option value="common" selected>Common (full experience)</option>
                         <option value="strong">Strong (intense experience)</option>
                         <option value="heavy">Heavy (overwhelming intensity)</option>
                     </select>
@@ -1294,10 +1299,20 @@
                     <label for="lsd-setting">Setting/Environment:</label>
                     <select id="lsd-setting">
                         <option value="">Select Setting</option>
-                        <option value="home">Home/Safe indoor space</option>
+                        <option value="home" selected>Home/Safe indoor space</option>
                         <option value="nature">Nature/Outdoor setting</option>
                         <option value="controlled">Controlled/Therapeutic setting</option>
                         <option value="festival">Festival/Social gathering</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="lsd-duration">Desired Trip Duration:</label>
+                    <select id="lsd-duration">
+                        <option value="">Select Duration</option>
+                        <option value="short">Short (6-8 hours)</option>
+                        <option value="medium">Medium (8-12 hours)</option>
+                        <option value="long">Long (12-16 hours)</option>
                     </select>
                 </div>
             </div>
@@ -1337,7 +1352,7 @@
                     <select id="ket-experience">
                         <option value="">Select Experience</option>
                         <option value="beginner">Beginner (0-3 times)</option>
-                        <option value="experienced">Experienced (4-15 times)</option>
+                        <option value="experienced" selected>Experienced (4-15 times)</option>
                         <option value="expert">Expert (15+ times)</option>
                     </select>
                 </div>
@@ -1360,7 +1375,7 @@
                         <option value="">Select Intensity</option>
                         <option value="threshold">Threshold (mild dissociation)</option>
                         <option value="light">Light (noticeable effects)</option>
-                        <option value="common">Common (full dissociative experience)</option>
+                        <option value="common" selected>Common (full dissociative experience)</option>
                         <option value="strong">Strong (intense dissociation)</option>
                         <option value="k-hole">K-hole (complete dissociation)</option>
                     </select>
@@ -1375,7 +1390,7 @@
                     <label for="ket-setting">Setting/Environment:</label>
                     <select id="ket-setting">
                         <option value="">Select Setting</option>
-                        <option value="home">Home/Safe indoor space</option>
+                        <option value="home" selected>Home/Safe indoor space</option>
                         <option value="therapeutic">Therapeutic/Medical setting</option>
                         <option value="party">Party/Social gathering</option>
                         <option value="club">Club/Rave</option>
@@ -1390,6 +1405,16 @@
                         <option value="occasional">Occasional (1-3 times)</option>
                         <option value="regular">Regular (4-10 times)</option>
                         <option value="frequent">Frequent (10+ times)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="ket-duration">Desired Trip Duration:</label>
+                    <select id="ket-duration">
+                        <option value="">Select Duration</option>
+                        <option value="short">Short (45-90 minutes)</option>
+                        <option value="medium">Medium (1-2 hours)</option>
+                        <option value="long">Long (2-4 hours)</option>
                     </select>
                 </div>
             </div>
@@ -1442,7 +1467,7 @@
                     <select id="ghb-experience">
                         <option value="">Select Experience</option>
                         <option value="beginner">Beginner (0-2 times)</option>
-                        <option value="experienced">Experienced (3-10 times)</option>
+                        <option value="experienced" selected>Experienced (3-10 times)</option>
                         <option value="expert">Expert (10+ times)</option>
                     </select>
                 </div>
@@ -1453,7 +1478,7 @@
                         <option value="">Select Intensity</option>
                         <option value="threshold">Threshold (mild relaxation)</option>
                         <option value="light">Light (noticeable effects)</option>
-                        <option value="common">Common (full euphoric effects)</option>
+                        <option value="common" selected>Common (full euphoric effects)</option>
                         <option value="strong">Strong (intense sedation)</option>
                     </select>
                 </div>
@@ -1477,7 +1502,7 @@
                     <label for="ghb-setting">Setting/Environment:</label>
                     <select id="ghb-setting">
                         <option value="">Select Setting</option>
-                        <option value="home">Home/Safe indoor space</option>
+                        <option value="home" selected>Home/Safe indoor space</option>
                         <option value="party">House party/Small gathering</option>
                         <option value="club">Club/Rave</option>
                         <option value="therapeutic">Therapeutic/Medical setting</option>
@@ -1488,9 +1513,19 @@
                     <label for="ghb-alcohol" class="tooltip" data-tooltip="ANY alcohol consumption with GHB is extremely dangerous">Alcohol Consumption:</label>
                     <select id="ghb-alcohol">
                         <option value="">Select Status</option>
-                        <option value="none">No alcohol (past 12+ hours)</option>
+                        <option value="none" selected>No alcohol (past 12+ hours)</option>
                         <option value="recent">Recent alcohol (within 12 hours)</option>
                         <option value="current">Currently under alcohol influence</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="ghb-duration">Desired Trip Duration:</label>
+                    <select id="ghb-duration">
+                        <option value="">Select Duration</option>
+                        <option value="short">Short (1-2 hours)</option>
+                        <option value="medium">Medium (2-4 hours)</option>
+                        <option value="long">Long (4-6 hours)</option>
                     </select>
                 </div>
             </div>
@@ -1541,7 +1576,7 @@
                     <select id="amp-experience">
                         <option value="">Select Experience</option>
                         <option value="beginner">Beginner (0-3 times)</option>
-                        <option value="experienced">Experienced (4-20 times)</option>
+                        <option value="experienced" selected>Experienced (4-20 times)</option>
                         <option value="expert">Expert (20+ times)</option>
                     </select>
                 </div>
@@ -1565,7 +1600,7 @@
                         <option value="">Select Intensity</option>
                         <option value="threshold">Threshold (mild stimulation)</option>
                         <option value="light">Light (clear effects)</option>
-                        <option value="common">Common (full stimulation)</option>
+                        <option value="common" selected>Common (full stimulation)</option>
                         <option value="strong">Strong (intense effects)</option>
                     </select>
                 </div>
@@ -1579,7 +1614,7 @@
                     <label for="amp-setting">Setting/Environment:</label>
                     <select id="amp-setting">
                         <option value="">Select Setting</option>
-                        <option value="home">Home/Study environment</option>
+                        <option value="home" selected>Home/Study environment</option>
                         <option value="work">Work/Productivity setting</option>
                         <option value="party">Party/Social gathering</option>
                         <option value="club">Club/Rave</option>
@@ -1591,10 +1626,20 @@
                     <label for="amp-health" class="tooltip" data-tooltip="Cardiovascular conditions significantly affect stimulant safety">Cardiovascular Health:</label>
                     <select id="amp-health">
                         <option value="">Select Status</option>
-                        <option value="healthy">Healthy (no known issues)</option>
+                        <option value="healthy" selected>Healthy (no known issues)</option>
                         <option value="minor">Minor issues (controlled)</option>
                         <option value="moderate">Moderate cardiovascular concerns</option>
                         <option value="serious">Serious heart/blood pressure issues</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="amp-duration">Desired Trip Duration:</label>
+                    <select id="amp-duration">
+                        <option value="">Select Duration</option>
+                        <option value="short">Short (4-6 hours)</option>
+                        <option value="medium">Medium (6-10 hours)</option>
+                        <option value="long">Long (8-12 hours)</option>
                     </select>
                 </div>
             </div>
@@ -1634,7 +1679,7 @@
                     <select id="coc-experience">
                         <option value="">Select Experience</option>
                         <option value="beginner">Beginner (0-3 times)</option>
-                        <option value="experienced">Experienced (4-15 times)</option>
+                        <option value="experienced" selected>Experienced (4-15 times)</option>
                         <option value="expert">Expert (15+ times)</option>
                     </select>
                 </div>
@@ -1657,7 +1702,7 @@
                         <option value="">Select Intensity</option>
                         <option value="threshold">Threshold (mild stimulation)</option>
                         <option value="light">Light (clear effects)</option>
-                        <option value="common">Common (full stimulation)</option>
+                        <option value="common" selected>Common (full stimulation)</option>
                         <option value="strong">Strong (intense effects)</option>
                     </select>
                 </div>
@@ -1671,7 +1716,7 @@
                     <label for="coc-setting">Setting/Environment:</label>
                     <select id="coc-setting">
                         <option value="">Select Setting</option>
-                        <option value="home">Home/Private setting</option>
+                        <option value="home" selected>Home/Private setting</option>
                         <option value="party">Party/Social gathering</option>
                         <option value="club">Club/Nightlife</option>
                         <option value="public">Public/Outdoor setting</option>
@@ -1682,7 +1727,7 @@
                     <label for="coc-health" class="tooltip" data-tooltip="Cardiovascular health is critical with cocaine use">Cardiovascular Health:</label>
                     <select id="coc-health">
                         <option value="">Select Status</option>
-                        <option value="healthy">Healthy (no known issues)</option>
+                        <option value="healthy" selected>Healthy (no known issues)</option>
                         <option value="minor">Minor issues (controlled)</option>
                         <option value="moderate">Moderate cardiovascular concerns</option>
                         <option value="serious">Serious heart/blood pressure issues</option>
@@ -1693,9 +1738,19 @@
                     <label for="coc-alcohol" class="tooltip" data-tooltip="Alcohol and cocaine create dangerous cocaethylene">Alcohol Consumption:</label>
                     <select id="coc-alcohol">
                         <option value="">Select Status</option>
-                        <option value="none">No alcohol (past 12+ hours)</option>
+                        <option value="none" selected>No alcohol (past 12+ hours)</option>
                         <option value="recent">Recent alcohol (within 12 hours)</option>
                         <option value="current">Currently under alcohol influence</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="coc-duration">Desired Trip Duration:</label>
+                    <select id="coc-duration">
+                        <option value="">Select Duration</option>
+                        <option value="short">Short (30-60 minutes)</option>
+                        <option value="medium">Medium (1-2 hours)</option>
+                        <option value="long">Long (2-4 hours)</option>
                     </select>
                 </div>
             </div>
@@ -1735,7 +1790,7 @@
                     <select id="mmc-experience">
                         <option value="">Select Experience</option>
                         <option value="beginner">Beginner (No/Limited experience)</option>
-                        <option value="experienced">Experienced (Regular user)</option>
+                        <option value="experienced" selected>Experienced (Regular user)</option>
                         <option value="expert">Expert (Extensive experience)</option>
                     </select>
                 </div>
@@ -1757,7 +1812,7 @@
                         <option value="">Select Intensity</option>
                         <option value="threshold">Threshold (Just noticeable)</option>
                         <option value="light">Light (Mild effects)</option>
-                        <option value="common">Common (Moderate effects)</option>
+                        <option value="common" selected>Common (Moderate effects)</option>
                         <option value="strong">Strong (Intense effects)</option>
                     </select>
                 </div>
@@ -1771,7 +1826,7 @@
                     <label for="mmc-setting">Setting/Environment:</label>
                     <select id="mmc-setting">
                         <option value="">Select Setting</option>
-                        <option value="home">Home (Safe, controlled)</option>
+                        <option value="home" selected>Home (Safe, controlled)</option>
                         <option value="party">House Party (Social)</option>
                         <option value="club">Club/Rave (High stimulation)</option>
                         <option value="public">Public/Unknown (Higher risk)</option>
@@ -1782,7 +1837,7 @@
                     <label for="mmc-cardiovascular">Cardiovascular Health:</label>
                     <select id="mmc-cardiovascular">
                         <option value="">Select Health Status</option>
-                        <option value="healthy">Healthy (No issues)</option>
+                        <option value="healthy" selected>Healthy (No issues)</option>
                         <option value="minor">Minor concerns (Mild hypertension)</option>
                         <option value="moderate">Moderate issues (Heart conditions)</option>
                         <option value="serious">Serious conditions (Contraindicated)</option>
@@ -1803,10 +1858,20 @@
                     <label for="mmc-serotonin">Recent Serotonergic Drug Use:</label>
                     <select id="mmc-serotonin">
                         <option value="">Select Recent Use</option>
-                        <option value="none">None in past 3 months</option>
+                        <option value="none" selected>None in past 3 months</option>
                         <option value="mdma">MDMA/MDA within 3 months</option>
                         <option value="antidepressants">On antidepressants (SSRIs/SNRIs)</option>
                         <option value="recent">Other serotonergic drugs recently</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="mmc-duration">Desired Trip Duration:</label>
+                    <select id="mmc-duration">
+                        <option value="">Select Duration</option>
+                        <option value="short">Short (2-4 hours)</option>
+                        <option value="medium">Medium (4-6 hours)</option>
+                        <option value="long">Long (6-8 hours)</option>
                     </select>
                 </div>
             </div>
@@ -3737,7 +3802,6 @@
         // Enhanced MDMA calculator
         function calculateMDMA() {
             const weight = parseFloat(document.getElementById('mdma-weight').value);
-            const height = parseFloat(document.getElementById('mdma-height').value) || null;
             const age = parseFloat(document.getElementById('mdma-age').value) || null;
             const gender = document.getElementById('mdma-gender').value;
             const experience = document.getElementById('mdma-experience').value;
@@ -3745,11 +3809,12 @@
             const lastUse = parseFloat(document.getElementById('mdma-last-use').value) || 90;
             const setting = document.getElementById('mdma-setting').value;
             const medications = document.getElementById('mdma-medications').value;
+            const duration = document.getElementById('mdma-duration').value;
             const resultValue = document.getElementById('mdma-result-value');
             const resultDetails = document.getElementById('mdma-details');
             const resultDiv = document.getElementById('mdma-result');
 
-            if (!validateWeight(weight) || !gender || !experience || !intensity || !setting) {
+            if (!validateWeight(weight) || !gender || !experience || !intensity || !setting || !duration) {
                 resultValue.innerHTML = 'Please fill in all fields with valid values.';
                 resultDetails.innerHTML = '';
                 resultDiv.style.display = 'block';
@@ -3778,12 +3843,16 @@
                 return;
             }
 
-            // Calculate BMI and age factors if provided
-            const bmi = height ? calculateBMI(weight, height) : null;
-            const bmiMultiplier = getBMIMultiplier(bmi);
-            const bmiWarning = getBMIWarning(bmi);
+            // Calculate age factors if provided
             const ageMultiplier = getAgeMultiplier(age);
             const ageWarning = getAgeWarning(age);
+
+            // Duration-based adjustments for better experience
+            const durationMultiplier = {
+                'short': 1.0,   // Standard dose for shorter experience
+                'medium': 1.1,  // Slightly higher for full experience
+                'long': 1.2     // Higher dose for extended experience
+            };
 
             // Enhanced dosage calculation based on research
             const intensityDoses = {
@@ -3819,8 +3888,8 @@
             let maxDose = weight * intensityDoses[intensity].max;
 
             // Apply multipliers
-            baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting] * bmiMultiplier * ageMultiplier;
-            maxDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting] * bmiMultiplier * ageMultiplier;
+            baseDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting] * ageMultiplier * durationMultiplier[duration];
+            maxDose *= experienceMultiplier[experience] * genderMultiplier[gender] * settingMultiplier[setting] * ageMultiplier * durationMultiplier[duration];
 
             // Tolerance factor based on time since last use
             let toleranceFactor = 1.0;
@@ -3883,13 +3952,28 @@
             const redose = Math.round(safeDose * 0.4); // 40% of initial dose
             const totalSessionDose = safeDose + redose;
 
-            // Duration and timeline information
-            const timeline = {
-                onset: '30-60 minutes',
-                peak: '1.5-2.5 hours after onset',
-                duration: '4-6 hours total',
-                redoseWindow: '1.5-2 hours after initial dose'
+            // Duration and timeline information based on selection
+            const durationTimelines = {
+                'short': {
+                    onset: '30-60 minutes',
+                    peak: '1.5-2.5 hours after onset',
+                    duration: '3-4 hours total',
+                    redoseWindow: '1.5-2 hours after initial dose'
+                },
+                'medium': {
+                    onset: '30-60 minutes',
+                    peak: '1.5-2.5 hours after onset',
+                    duration: '4-6 hours total',
+                    redoseWindow: '1.5-2 hours after initial dose'
+                },
+                'long': {
+                    onset: '30-60 minutes',
+                    peak: '2-3 hours after onset',
+                    duration: '6-8 hours total',
+                    redoseWindow: '2-2.5 hours after initial dose'
+                }
             };
+            const timeline = durationTimelines[duration];
 
             // Get emergency protocols
             const emergencyInfo = getEmergencyProtocols('mdma');
@@ -3983,14 +4067,18 @@
                     • Experience adjustment: ${(experienceMultiplier[experience] * 100).toFixed(0)}% of standard dose<br>
                     • Gender metabolic factor: ${(genderMultiplier[gender] * 100).toFixed(0)}% adjustment<br>
                     • Setting safety factor: ${(settingMultiplier[setting] * 100).toFixed(0)}% adjustment<br>
-                    ${bmi ? `• BMI safety factor: ${(bmiMultiplier * 100).toFixed(0)}% adjustment (BMI: ${bmi.toFixed(1)})<br>` : ''}
+                    • Duration preference: ${(durationMultiplier[duration] * 100).toFixed(0)}% adjustment (${duration} experience)<br>
                     ${age ? `• Age safety factor: ${(ageMultiplier * 100).toFixed(0)}% adjustment (Age: ${age})<br>` : ''}
                     • Tolerance consideration: ${(toleranceFactor * 100).toFixed(0)}% increase (${lastUse} days since last use)<br>
                     • Risk level: <strong style="color: ${riskColors[riskLevel]}">${riskLevel.toUpperCase()}</strong>
                 </div>
                 
+                <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%); border: 1px solid var(--primary-color); border-radius: var(--radius-lg); padding: 1.5rem; margin: 1rem 0;">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⏱️ Expected Duration: ${timeline.duration}</h4>
+                    <p style="color: var(--text-secondary); margin: 0;">This duration is based on your selected preference and typical MDMA pharmacokinetics. Individual experiences may vary based on metabolism, tolerance, and environmental factors.</p>
+                </div>
+                
                 ${warnings}
-                ${bmiWarning}
                 ${ageWarning}
             `;
             resultDiv.style.display = 'block';
@@ -4005,12 +4093,13 @@
                 const intensity = document.getElementById('lsd-intensity').value;
                 const lastPsychedelic = parseFloat(document.getElementById('lsd-last-psychedelic').value) || 14;
                 const setting = document.getElementById('lsd-setting').value;
+                const duration = document.getElementById('lsd-duration').value;
                 
                 const resultValue = document.getElementById('lsd-result-value');
                 const resultDetails = document.getElementById('lsd-details');
                 const resultDiv = document.getElementById('lsd-result');
 
-                if (!validateWeight(weight) || !gender || !experience || !intensity || !setting) {
+                if (!validateWeight(weight) || !gender || !experience || !intensity || !setting || !duration) {
                     resultValue.innerHTML = 'Please fill in all fields with valid values.';
                     resultDetails.innerHTML = '';
                     resultDiv.style.display = 'block';
@@ -4049,12 +4138,20 @@
 
                 // Apply setting safety multiplier
                 const settingMultiplier = {
+                    'home': 1.0,
+                    'nature': 1.0,
                     'controlled': 1.0,
-                    'festival': 0.85,
-                    'public': 0.7,
-                    'unknown': 0.6
+                    'festival': 0.85
                 };
-                calculatedDose *= settingMultiplier[setting];
+                calculatedDose *= settingMultiplier[setting] || 1.0;
+
+                // Duration-based adjustments for better experience
+                const durationMultiplier = {
+                    'short': 0.9,   // Lower dose for shorter experience
+                    'medium': 1.0,  // Standard dose
+                    'long': 1.1     // Slightly higher for extended experience
+                };
+                calculatedDose *= durationMultiplier[duration];
 
                 // Calculate age multiplier (simplified)
                 let ageMultiplier = 1.0;
@@ -4136,9 +4233,18 @@
                         • Experience adjustment: ${(experienceMultiplier[experience] * 100).toFixed(0)}% of standard dose<br>
                         • Gender metabolic factor: ${(genderMultiplier[gender] * 100).toFixed(0)}% adjustment<br>
                         • Setting safety factor: ${(settingMultiplier[setting] * 100).toFixed(0)}% adjustment<br>
-                        ${false ? `• Age safety factor: ${(ageMultiplier * 100).toFixed(0)}% adjustment (Age: N/A)<br>` : ''}
+                        • Duration preference: ${(durationMultiplier[duration] * 100).toFixed(0)}% adjustment (${duration} experience)<br>
                         • Tolerance consideration: ${(toleranceFactor * 100).toFixed(0)}% increase (${lastPsychedelic} days since last psychedelic)<br>
                         • Risk level: <strong style="color: ${riskColors[riskLevel]}">${riskLevel.toUpperCase()}</strong>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%); border: 1px solid #8b5cf6; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1rem 0;">
+                        <h4 style="color: #8b5cf6; margin-bottom: 1rem;">⏱️ Expected Duration</h4>
+                        <p style="color: var(--text-secondary); margin: 0;">
+                            ${duration === 'short' ? 'Short experience (6-8 hours): Faster onset, more manageable duration for beginners' : 
+                              duration === 'medium' ? 'Medium experience (8-12 hours): Standard full LSD experience' : 
+                              'Long experience (12-16 hours): Extended journey, ensure adequate time and preparation'}
+                        </p>
                     </div>
                     
                     ${warnings}
@@ -4405,11 +4511,12 @@
             const lastUse = parseFloat(document.getElementById('ket-last-use').value) || 7;
             const setting = document.getElementById('ket-setting').value;
             const toleranceHistory = document.getElementById('ket-tolerance-history').value;
+            const duration = document.getElementById('ket-duration').value;
             const resultValue = document.getElementById('ket-result-value');
             const resultDetails = document.getElementById('ket-details');
             const resultDiv = document.getElementById('ketamine-result');
 
-            if (!validateWeight(weight) || !gender || !experience || !route || !intensity || !setting || !toleranceHistory) {
+            if (!validateWeight(weight) || !gender || !experience || !route || !intensity || !setting || !toleranceHistory || !duration) {
                 resultValue.innerHTML = 'Please fill in all fields with valid values.';
                 resultDetails.innerHTML = '';
                 resultDiv.style.display = 'block';
