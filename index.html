@@ -5884,9 +5884,8 @@
                     activeMenuItem.classList.add('active');
                 }
             } else if (calculatorId === 'drug-info') {
-                // Activate both general info and drug specific toggles for drug info section
-                generalInfoToggle.classList.add('active');
-                drugSpecificToggle.classList.add('active');
+                // Dropdown button activation will be handled by showDrugInfoSection function
+                // based on the specific section being shown
             }
             
             // Close all menus if open
@@ -6104,6 +6103,25 @@
             // Close any open dropdown menus
             closeGeneralInfoMenu();
             closeDrugSpecificMenu();
+            
+            // Determine which dropdown button should be active based on section type
+            const generalInfoToggle = document.getElementById('general-info-btn');
+            const drugSpecificToggle = document.getElementById('drug-specific-btn');
+            
+            // Remove active class from both buttons first
+            generalInfoToggle.classList.remove('active');
+            drugSpecificToggle.classList.remove('active');
+            
+            // Define which sections belong to which dropdown
+            const generalInfoSections = ['overview', 'first-time', 'redosing', 'dos-donts', 'emergency', 'tripsitting', 'harm-reduction'];
+            const drugSpecificSections = ['mdma-info', 'lsd-info', 'ketamine-info', 'ghb-info', 'amphetamines-info', 'cocaine-info', '4mmc-info', '2mmc-info'];
+            
+            // Activate the appropriate dropdown button
+            if (generalInfoSections.includes(sectionId)) {
+                generalInfoToggle.classList.add('active');
+            } else if (drugSpecificSections.includes(sectionId)) {
+                drugSpecificToggle.classList.add('active');
+            }
             
             // Hide all drug info content sections
             const contentSections = document.querySelectorAll('.drug-info-content');
