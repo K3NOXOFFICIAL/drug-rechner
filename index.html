@@ -1083,6 +1083,7 @@
                         <div class="dose-category-title">💊 Entactogens/Empathogens</div>
                         <button class="dose-menu-item" onclick="selectDoseCalculator('mdma')">💊 MDMA (Ecstasy/Molly)</button>
                         <button class="dose-menu-item" onclick="selectDoseCalculator('4mmc')">🔥 4-MMC (Mephedrone)</button>
+                        <button class="dose-menu-item" onclick="selectDoseCalculator('2mmc')">⚡ 2-MMC (2-Methylmethcathinone)</button>
                     </div>
                     <div class="dose-category">
                         <div class="dose-category-title">🌈 Psychedelics</div>
@@ -2017,6 +2018,177 @@
             </div>
         </div>
 
+        <!-- 2-MMC Calculator -->
+        <div id="2mmc" class="calculator-section">
+            <h2>⚡ 2-MMC (2-Methylmethcathinone) Calculator</h2>
+            <p>Advanced dosage calculator for 2-MMC with comprehensive safety factors and health warnings</p>
+            
+            <div class="safety-warning" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 20px; margin: 20px 0;">
+                <h3 style="color: #ef4444; margin-bottom: 15px;">⚠️ CRITICAL SAFETY WARNING</h3>
+                <div style="display: grid; gap: 10px;">
+                    <p style="margin: 0; font-weight: 600;">🚨 2-MMC is a synthetic cathinone with EXTREME addiction potential and significant health risks:</p>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li><strong>Extremely high addiction risk</strong> - can develop after just a few uses</li>
+                        <li><strong>Severe cardiovascular stress</strong> - risk of heart attack and stroke</li>
+                        <li><strong>Hyperthermia danger</strong> - potentially fatal overheating</li>
+                        <li><strong>Compulsive redosing</strong> - very difficult to control intake</li>
+                        <li><strong>Limited research</strong> - unknown long-term effects</li>
+                    </ul>
+                    <p style="margin: 0; font-weight: 600; color: #dc2626;">This calculator is for harm reduction only. We strongly advise against using 2-MMC.</p>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <div class="input-group">
+                    <label for="2mmc-weight">Body Weight (kg):</label>
+                    <input type="number" id="2mmc-weight" placeholder="Enter weight in kg" min="30" max="200" step="0.1">
+                </div>
+
+                <div class="input-group">
+                    <label for="2mmc-experience">Experience Level:</label>
+                    <select id="2mmc-experience">
+                        <option value="">Select Experience</option>
+                        <option value="first-time">First Time User</option>
+                        <option value="inexperienced">Inexperienced (1-3 times)</option>
+                        <option value="experienced">Experienced (4+ times)</option>
+                        <option value="very-experienced">Very Experienced (10+ times)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="2mmc-route">Route of Administration:</label>
+                    <select id="2mmc-route">
+                        <option value="">Select Route</option>
+                        <option value="oral">Oral (Recommended - Safer)</option>
+                        <option value="nasal">Nasal (Higher Risk - Tissue Damage)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="2mmc-last-use">Time Since Last 2-MMC Use:</label>
+                    <select id="2mmc-last-use">
+                        <option value="">Select Time Frame</option>
+                        <option value="never">Never used before</option>
+                        <option value="1-week">1 week or more</option>
+                        <option value="3-days">3-6 days ago</option>
+                        <option value="1-day">1-2 days ago (HIGH TOLERANCE)</option>
+                        <option value="same-day">Same day (DANGEROUS - DO NOT USE)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="2mmc-setting">Environment/Setting:</label>
+                    <select id="2mmc-setting">
+                        <option value="">Select Setting</option>
+                        <option value="home">At home (Safe, controlled)</option>
+                        <option value="private">Private party (Familiar people)</option>
+                        <option value="public">Public venue/club (Higher risk)</option>
+                        <option value="outdoor">Outdoor event (Variable conditions)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="2mmc-temperature">Temperature Control:</label>
+                    <select id="2mmc-temperature">
+                        <option value="">Select Environment</option>
+                        <option value="cool">Cool environment (Good ventilation)</option>
+                        <option value="warm">Warm environment (Limited ventilation)</option>
+                        <option value="hot">Hot environment (Poor ventilation/crowds)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="2mmc-serotonin">Recent Serotonergic Drug Use:</label>
+                    <select id="2mmc-serotonin">
+                        <option value="">Select Recent Use</option>
+                        <option value="none">None in past 2 weeks</option>
+                        <option value="mdma">MDMA in past week (DANGEROUS COMBINATION)</option>
+                        <option value="ssri">On SSRI medication (DANGEROUS COMBINATION)</option>
+                        <option value="other-stim">Other stimulants recently (HIGH RISK)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="2mmc-medical">Medical Conditions:</label>
+                    <select id="2mmc-medical">
+                        <option value="">Select Condition</option>
+                        <option value="none">No relevant conditions</option>
+                        <option value="cardiac">Heart condition (DO NOT USE)</option>
+                        <option value="hypertension">High blood pressure (DO NOT USE)</option>
+                        <option value="mental-health">Mental health condition (HIGH RISK)</option>
+                        <option value="medication">On medication (CHECK INTERACTIONS)</option>
+                    </select>
+                </div>
+
+                <button onclick="calculate2MMC()" class="calculate-btn">Calculate 2-MMC Dosage</button>
+
+                <div id="2mmc-results" class="results-container" style="display: none;">
+                    <div class="results-header">
+                        <h3>📊 2-MMC Dosage Recommendations</h3>
+                    </div>
+                    <div class="results-content">
+                        <div class="dosage-card" id="2mmc-threshold">
+                            <h4>🌱 Threshold Dose</h4>
+                            <p class="dose-amount" id="2mmc-threshold-dose">-</p>
+                            <p class="dose-description">Minimal effects, good for testing sensitivity</p>
+                        </div>
+                        <div class="dosage-card" id="2mmc-light">
+                            <h4>✨ Light Dose</h4>
+                            <p class="dose-amount" id="2mmc-light-dose">-</p>
+                            <p class="dose-description">Mild stimulation and mood enhancement</p>
+                        </div>
+                        <div class="dosage-card" id="2mmc-common">
+                            <h4>🌟 Common Dose</h4>
+                            <p class="dose-amount" id="2mmc-common-dose">-</p>
+                            <p class="dose-description">Full effects, recommended maximum</p>
+                        </div>
+                        <div class="dosage-card danger" id="2mmc-danger">
+                            <h4>⚠️ Dangerous Territory</h4>
+                            <p class="dose-amount" id="2mmc-danger-dose">-</p>
+                            <p class="dose-description">HIGH RISK - Avoid these doses</p>
+                        </div>
+                    </div>
+                    
+                    <div class="safety-recommendations" id="2mmc-safety">
+                        <h4>🛡️ Safety Recommendations</h4>
+                        <div id="2mmc-safety-content"></div>
+                    </div>
+                    
+                    <div class="timeline-info">
+                        <h4>⏱️ 2-MMC Timeline</h4>
+                        <div class="timeline-grid">
+                            <div class="timeline-item">
+                                <strong>Onset (Oral):</strong> 20-45 minutes<br>
+                                <strong>Onset (Nasal):</strong> 5-15 minutes
+                            </div>
+                            <div class="timeline-item">
+                                <strong>Peak:</strong> 1-3 hours<br>
+                                <strong>Duration:</strong> 3-6 hours
+                            </div>
+                            <div class="timeline-item">
+                                <strong>Come-down:</strong> 2-4 hours<br>
+                                <strong>After-effects:</strong> 6-24 hours
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="emergency-info">
+                        <h4 style="color: #ef4444;">🚨 Emergency Information</h4>
+                        <p><strong>Call 112/911 if experiencing:</strong></p>
+                        <ul>
+                            <li>Chest pain or heart palpitations</li>
+                            <li>Difficulty breathing</li>
+                            <li>Extreme overheating</li>
+                            <li>Seizures or convulsions</li>
+                            <li>Loss of consciousness</li>
+                            <li>Severe anxiety or panic</li>
+                        </ul>
+                        <p><strong>Tell medical professionals exactly what was taken and when.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Drug Information/Wiki Section -->
         <div id="drug-info" class="calculator-section">
             <h2>📚 Drug Information & Harm Reduction Wiki</h2>
@@ -2044,6 +2216,7 @@
                 <button class="drug-info-tab" onclick="showDrugInfoSection('amphetamines-info')" data-section="amphetamines-info">⚡ Amphetamines</button>
                 <button class="drug-info-tab" onclick="showDrugInfoSection('cocaine-info')" data-section="cocaine-info">❄️ Cocaine</button>
                 <button class="drug-info-tab" onclick="showDrugInfoSection('4mmc-info')" data-section="4mmc-info">🔥 4-MMC</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('2mmc-info')" data-section="2mmc-info">⚡ 2-MMC</button>
             </div>
 
             <!-- Overview Section -->
@@ -4633,6 +4806,364 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 2-MMC Information Page -->
+            <div id="drug-info-2mmc-info" class="drug-info-content">
+                <h3>⚡ 2-MMC (2-Methylmethcathinone) - Complete Information Guide</h3>
+                
+                <!-- Overview Section -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🧬 What is 2-MMC?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Chemical Information</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Chemical name:</strong> 2-Methylmethcathinone</li>
+                                <li><strong>Street names:</strong> 2-MMC, Ortomephedrone</li>
+                                <li><strong>Class:</strong> Synthetic cathinone (bath salt)</li>
+                                <li><strong>Schedule:</strong> Class B/Schedule I (illegal)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Mechanism of Action</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Dopamine and norepinephrine reuptake inhibitor</li>
+                                <li>Moderate serotonin activity</li>
+                                <li>CNS stimulant properties</li>
+                                <li>Similar to but distinct from 4-MMC</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>⚠️ Warning:</strong> 2-MMC is a relatively new synthetic cathinone with limited research. It carries significant risks including cardiovascular complications, hyperthermia, and extremely high addiction potential.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dosage Information -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⚖️ Dosage Guidelines</h4>
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📋 Oral Dosages (Recommended Route)</h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(34, 197, 94, 0.3);">
+                                <h6 style="color: #22c55e; margin-bottom: 0.5rem;">🌱 Threshold (15-30mg)</h6>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Minimal effects, good for sensitivity testing</p>
+                            </div>
+                            <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                                <h6 style="color: #3b82f6; margin-bottom: 0.5rem;">✨ Light (30-60mg)</h6>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Clear stimulation, enhanced mood</p>
+                            </div>
+                            <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.3);">
+                                <h6 style="color: #10b981; margin-bottom: 0.5rem;">🌟 Common (60-100mg)</h6>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Full effects, recommended maximum</p>
+                            </div>
+                            <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <h6 style="color: #f59e0b; margin-bottom: 0.5rem;">⚠️ Strong (100-150mg)</h6>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Intense effects, high risk territory</p>
+                            </div>
+                            <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                                <h6 style="color: #ef4444; margin-bottom: 0.5rem;">🚨 Heavy (150mg+)</h6>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Dangerous, high overdose risk</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">💨 Nasal Dosages (Not Recommended)</h5>
+                        <div style="padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                            <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                                <strong>⚠️ Nasal route strongly discouraged:</strong> 2-MMC is highly caustic and causes severe damage to nasal tissues. If insufflated, doses should be approximately 60-70% of oral doses, but the tissue damage is extensive and potentially permanent.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline and Effects -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⏱️ Timeline and Effects (Oral)</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📈 Come-up (20-45 minutes)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Initial alertness and energy increase</li>
+                                <li>Mood elevation beginning</li>
+                                <li>Slight increase in heart rate</li>
+                                <li>Enhanced focus emerging</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌟 Peak (1-3 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Strong stimulation and euphoria</li>
+                                <li>Enhanced sociability and confidence</li>
+                                <li>Increased music appreciation</li>
+                                <li>Physical stimulation and energy</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📉 Come-down (3-6 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Gradual reduction in effects</li>
+                                <li>Strong urge to redose</li>
+                                <li>Possible anxiety or irritability</li>
+                                <li>Beginning of crash symptoms</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">💤 After-effects (6-24 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Depression and dysphoria</li>
+                                <li>Mental and physical fatigue</li>
+                                <li>Sleep difficulties</li>
+                                <li>Possible anxiety and paranoia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Effects Profile -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">🌀 Effects Profile</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">✨ Positive Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Euphoria and well-being</li>
+                                <li>Increased energy and alertness</li>
+                                <li>Enhanced confidence and sociability</li>
+                                <li>Improved focus and motivation</li>
+                                <li>Enhanced music and sensory appreciation</li>
+                                <li>Mood elevation</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Negative Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Increased heart rate and blood pressure</li>
+                                <li>Hyperthermia (overheating)</li>
+                                <li>Jaw clenching and teeth grinding</li>
+                                <li>Anxiety and restlessness</li>
+                                <li>Insomnia and sleep disruption</li>
+                                <li>Compulsive redosing urges</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extreme Addiction Risk -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🔄 Extreme Addiction Risk</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚡ Addiction Characteristics</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Extremely high psychological dependence</li>
+                                <li>Rapid tolerance development</li>
+                                <li>Compulsive redosing during sessions</li>
+                                <li>Strong cravings between uses</li>
+                                <li>Difficult to control or moderate use</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📉 Withdrawal Symptoms</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Severe depression lasting days to weeks</li>
+                                <li>Extreme fatigue and hypersomnia</li>
+                                <li>Anhedonia (inability to feel pleasure)</li>
+                                <li>Intense cravings and obsessive thoughts</li>
+                                <li>Cognitive impairment and brain fog</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>🚨 Critical Warning:</strong> 2-MMC has one of the highest addiction potentials among recreational drugs. Many users report losing control after just a few uses, with binge patterns developing rapidly. The compulsive redosing is extremely difficult to resist.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Health Risks -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">⚠️ Health Risks</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">❤️ Cardiovascular</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Rapid heartbeat and palpitations</li>
+                                <li>Dangerous blood pressure elevation</li>
+                                <li>Risk of heart attack and stroke</li>
+                                <li>Arrhythmias (irregular heartbeat)</li>
+                                <li>Cardiovascular collapse at high doses</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌡️ Hyperthermia</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Dangerous body temperature elevation</li>
+                                <li>Excessive sweating and dehydration</li>
+                                <li>Heat stroke risk in warm environments</li>
+                                <li>Multi-organ failure from overheating</li>
+                                <li>Death from hyperthermia</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🧠 Neurological</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Potential neurotoxicity (unknown extent)</li>
+                                <li>Seizures at high doses</li>
+                                <li>Memory and cognitive problems</li>
+                                <li>Mood disorders and depression</li>
+                                <li>Possible long-term brain changes</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">👃 Physical Damage</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Severe nasal damage if snorted</li>
+                                <li>Nasal septum perforation</li>
+                                <li>Chronic sinusitis and infections</li>
+                                <li>Loss of smell and taste</li>
+                                <li>Dental problems from bruxism</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dangerous Combinations -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">⚠️ Dangerous Combinations</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🚫 Extremely Dangerous</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>MAOIs:</strong> Risk of hypertensive crisis and death</li>
+                                <li><strong>MDMA/SSRIs:</strong> Serotonin syndrome risk</li>
+                                <li><strong>Other stimulants:</strong> Compounded cardiovascular risk</li>
+                                <li><strong>Tramadol:</strong> Lowered seizure threshold</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ High Risk</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Alcohol:</strong> Increased dehydration, masked intoxication</li>
+                                <li><strong>Depressants:</strong> Dangerous during comedown</li>
+                                <li><strong>Psychedelics:</strong> Increased anxiety and paranoia</li>
+                                <li><strong>Any combination increases all risks</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Critical Harm Reduction -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--warning-color); margin-bottom: 1rem;">🛡️ Critical Harm Reduction</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚖️ Dosage Control</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Pre-measure single dose before starting</li>
+                                <li>Give remaining supply to trusted friend</li>
+                                <li>Set strict time and dose limits</li>
+                                <li>Never redose within 4+ hours</li>
+                                <li>Use precise milligram scales only</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌡️ Temperature Management</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Stay in cool, well-ventilated areas</li>
+                                <li>Take regular cooling breaks</li>
+                                <li>Monitor body temperature frequently</li>
+                                <li>Avoid physical exertion and dancing</li>
+                                <li>Remove layers if feeling warm</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">💧 Hydration and Safety</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Sip water regularly (don't overhydrate)</li>
+                                <li>Include electrolyte replacement</li>
+                                <li>Eat before use for slower absorption</li>
+                                <li>Have sober trip-sitter present</li>
+                                <li>Know emergency contacts and procedures</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Status -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--accent-color); margin-bottom: 1rem;">🔬 Research Status and Unknown Risks</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📊 Limited Research</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Very few human studies available</li>
+                                <li>Long-term effects completely unknown</li>
+                                <li>Neurotoxicity potential unclear</li>
+                                <li>Metabolite toxicity unknown</li>
+                                <li>Drug interaction profile incomplete</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Unknown Risks</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Potential for unique toxicities</li>
+                                <li>Unknown cancer risk</li>
+                                <li>Reproductive health effects unclear</li>
+                                <li>Cognitive impairment extent unknown</li>
+                                <li>New health risks may be discovered</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(245, 158, 11, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>🔬 Scientific Note:</strong> 2-MMC is part of the "novel psychoactive substances" (NPS) category. Users are essentially participating in uncontrolled human experiments with unknown long-term consequences.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Emergency Information -->
+                <div class="emergency-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 2rem; margin: 2rem 0;">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🚨 2-MMC Emergency Protocols</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Call 112/911 If:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Hyperthermia (very high body temperature)</li>
+                                <li>Chest pain or heart problems</li>
+                                <li>Seizures or convulsions</li>
+                                <li>Loss of consciousness</li>
+                                <li>Extreme agitation or psychosis</li>
+                                <li>Difficulty breathing</li>
+                                <li>Stroke-like symptoms</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏥 Medical Treatment</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Aggressive cooling for hyperthermia</li>
+                                <li>Benzodiazepines for agitation/seizures</li>
+                                <li>IV fluids and electrolyte monitoring</li>
+                                <li>Cardiac monitoring and support</li>
+                                <li>Symptom-based supportive care</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🤝 First Aid</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Move to cool, quiet environment</li>
+                                <li>Remove excess clothing</li>
+                                <li>Apply cool water to wrists/neck</li>
+                                <li>Keep calm and provide reassurance</li>
+                                <li>Be completely honest with medical staff</li>
+                                <li>Monitor breathing and consciousness</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -5308,7 +5839,7 @@
             }
             
             // Set active states based on calculator type
-            const doseCalculators = ['mdma', 'lsd', 'ketamine', 'ghb', 'amphetamines', 'cocaine', '4mmc'];
+            const doseCalculators = ['mdma', 'lsd', 'ketamine', 'ghb', 'amphetamines', 'cocaine', '4mmc', '2mmc'];
             
             if (calculatorId === 'liquid') {
                 // Activate liquid dosage tab
@@ -7966,6 +8497,182 @@
                 ${warnings}
             `;
             resultDiv.style.display = 'block';
+        }
+
+        // Enhanced 2-MMC calculator with comprehensive safety factors
+        function calculate2MMC() {
+            const weight = parseFloat(document.getElementById('2mmc-weight').value);
+            const experience = document.getElementById('2mmc-experience').value;
+            const route = document.getElementById('2mmc-route').value;
+            const lastUse = document.getElementById('2mmc-last-use').value;
+            const setting = document.getElementById('2mmc-setting').value;
+            const temperature = document.getElementById('2mmc-temperature').value;
+            const serotonin = document.getElementById('2mmc-serotonin').value;
+            const medical = document.getElementById('2mmc-medical').value;
+
+            // Validation
+            if (!weight || weight < 30 || weight > 200) {
+                alert('Please enter a valid weight between 30-200 kg');
+                return;
+            }
+
+            if (!experience || !route || !lastUse || !setting || !temperature || !serotonin || !medical) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Safety checks - absolute contraindications
+            if (medical === 'cardiac' || medical === 'hypertension') {
+                document.getElementById('2mmc-results').innerHTML = `
+                    <div class="safety-warning" style="background: #fef2f2; border: 2px solid #ef4444; padding: 20px; border-radius: 12px;">
+                        <h3 style="color: #ef4444;">🚨 ABSOLUTE CONTRAINDICATION</h3>
+                        <p><strong>2-MMC is extremely dangerous with your medical condition.</strong></p>
+                        <p>Cardiac conditions and hypertension are absolute contraindications for stimulant use. 2-MMC can cause:</p>
+                        <ul>
+                            <li>Heart attack or cardiac arrest</li>
+                            <li>Dangerous blood pressure spikes</li>
+                            <li>Stroke</li>
+                            <li>Fatal arrhythmias</li>
+                        </ul>
+                        <p><strong>Please do not use 2-MMC. Consider speaking with a healthcare provider about harm reduction.</strong></p>
+                    </div>
+                `;
+                document.getElementById('2mmc-results').style.display = 'block';
+                return;
+            }
+
+            if (serotonin === 'mdma' || serotonin === 'ssri') {
+                document.getElementById('2mmc-results').innerHTML = `
+                    <div class="safety-warning" style="background: #fef2f2; border: 2px solid #ef4444; padding: 20px; border-radius: 12px;">
+                        <h3 style="color: #ef4444;">🚨 DANGEROUS DRUG INTERACTION</h3>
+                        <p><strong>Combining 2-MMC with recent MDMA use or SSRI medication is extremely dangerous.</strong></p>
+                        <p>This combination can cause life-threatening serotonin syndrome with symptoms including:</p>
+                        <ul>
+                            <li>Hyperthermia (dangerous overheating)</li>
+                            <li>Seizures</li>
+                            <li>Coma</li>
+                            <li>Death</li>
+                        </ul>
+                        <p><strong>Wait at least 2 weeks after MDMA or consult your doctor about SSRI interactions.</strong></p>
+                    </div>
+                `;
+                document.getElementById('2mmc-results').style.display = 'block';
+                return;
+            }
+
+            if (lastUse === 'same-day') {
+                document.getElementById('2mmc-results').innerHTML = `
+                    <div class="safety-warning" style="background: #fef2f2; border: 2px solid #ef4444; padding: 20px; border-radius: 12px;">
+                        <h3 style="color: #ef4444;">🚨 DANGEROUS TOLERANCE SITUATION</h3>
+                        <p><strong>Using 2-MMC multiple times in one day is extremely dangerous.</strong></p>
+                        <p>Same-day redosing leads to:</p>
+                        <ul>
+                            <li>Exponentially increased overdose risk</li>
+                            <li>Severe cardiovascular stress</li>
+                            <li>Hyperthermia and dehydration</li>
+                            <li>Rapid addiction development</li>
+                        </ul>
+                        <p><strong>Please wait at least 3-7 days between uses. Consider seeking help if you're struggling with compulsive use.</strong></p>
+                    </div>
+                `;
+                document.getElementById('2mmc-results').style.display = 'block';
+                return;
+            }
+
+            // Base dosages (mg/kg) - 2-MMC is similar potency to 4-MMC
+            const baseDosages = {
+                'oral': {
+                    'threshold': 0.5,
+                    'light': 0.8,
+                    'common': 1.2,
+                    'danger': 2.0
+                },
+                'nasal': {
+                    'threshold': 0.3,
+                    'light': 0.6,
+                    'common': 0.9,
+                    'danger': 1.4
+                }
+            };
+
+            // Safety multipliers
+            const experienceMultipliers = {
+                'first-time': 0.5,
+                'inexperienced': 0.7,
+                'experienced': 0.9,
+                'very-experienced': 1.0
+            };
+
+            const settingMultipliers = {
+                'home': 1.0,
+                'private': 0.9,
+                'public': 0.7,
+                'outdoor': 0.8
+            };
+
+            const temperatureMultipliers = {
+                'cool': 1.0,
+                'warm': 0.8,
+                'hot': 0.6
+            };
+
+            const toleranceMultipliers = {
+                'never': 1.0,
+                '1-week': 1.0,
+                '3-days': 0.7,
+                '1-day': 0.5
+            };
+
+            // Calculate doses
+            const baseRoute = baseDosages[route];
+            const expMult = experienceMultipliers[experience];
+            const setMult = settingMultipliers[setting];
+            const tempMult = temperatureMultipliers[temperature];
+            const tolMult = toleranceMultipliers[lastUse];
+
+            const safetyFactor = expMult * setMult * tempMult * tolMult;
+
+            const thresholdDose = Math.round(baseRoute.threshold * weight * safetyFactor);
+            const lightDose = Math.round(baseRoute.light * weight * safetyFactor);
+            const commonDose = Math.round(baseRoute.common * weight * safetyFactor);
+            const dangerDose = Math.round(baseRoute.danger * weight * safetyFactor);
+
+            // Update results
+            document.getElementById('2mmc-threshold-dose').textContent = `${thresholdDose}mg`;
+            document.getElementById('2mmc-light-dose').textContent = `${lightDose}mg`;
+            document.getElementById('2mmc-common-dose').textContent = `${commonDose}mg`;
+            document.getElementById('2mmc-danger-dose').textContent = `${dangerDose}mg+`;
+
+            // Safety recommendations
+            let safetyContent = '<ul>';
+            
+            if (experience === 'first-time') {
+                safetyContent += '<li><strong>First-time use:</strong> Start with threshold dose only. Wait full duration before considering more.</li>';
+            }
+            
+            if (route === 'nasal') {
+                safetyContent += '<li><strong>Nasal route:</strong> Extremely caustic - expect severe nasal damage. Consider switching to oral.</li>';
+            }
+            
+            if (temperature === 'hot') {
+                safetyContent += '<li><strong>Hot environment:</strong> High hyperthermia risk. Take frequent cooling breaks, stay hydrated.</li>';
+            }
+            
+            if (setting === 'public') {
+                safetyContent += '<li><strong>Public setting:</strong> Increased risks due to crowds, heat, and potential for dangerous situations.</li>';
+            }
+
+            safetyContent += '<li><strong>Never redose:</strong> 2-MMC has extreme compulsive redosing potential. Pre-measure dose and hide the rest.</li>';
+            safetyContent += '<li><strong>Temperature monitoring:</strong> Check body temperature regularly. Seek cooling if overheating.</li>';
+            safetyContent += '<li><strong>Hydration:</strong> Sip water regularly but don\'t overhydrate. Electrolytes important.</li>';
+            safetyContent += '<li><strong>Have a sitter:</strong> Someone sober should monitor your condition throughout.</li>';
+            safetyContent += '<li><strong>Emergency plan:</strong> Know the signs of overdose and have emergency contacts ready.</li>';
+            safetyContent += '</ul>';
+
+            document.getElementById('2mmc-safety-content').innerHTML = safetyContent;
+
+            // Show results
+            document.getElementById('2mmc-results').style.display = 'block';
         }
 
         // General tolerance calculator
