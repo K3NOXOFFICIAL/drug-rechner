@@ -2023,7 +2023,8 @@
             <p>Comprehensive information for harm reduction, first-time use, emergency protocols, and trip-sitting</p>
 
             <!-- Drug Information Navigation -->
-            <div class="drug-info-nav" style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; justify-content: center;">
+            <div class="drug-info-nav" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; justify-content: center;">
+                <!-- General Information Tabs -->
                 <button class="drug-info-tab active" onclick="showDrugInfoSection('overview')" data-section="overview">🏠 Overview</button>
                 <button class="drug-info-tab" onclick="showDrugInfoSection('first-time')" data-section="first-time">🌱 First Time Use</button>
                 <button class="drug-info-tab" onclick="showDrugInfoSection('redosing')" data-section="redosing">⏰ Redosing Guide</button>
@@ -2031,6 +2032,18 @@
                 <button class="drug-info-tab" onclick="showDrugInfoSection('emergency')" data-section="emergency">🚨 Emergency Info</button>
                 <button class="drug-info-tab" onclick="showDrugInfoSection('tripsitting')" data-section="tripsitting">🤝 Trip-Sitting</button>
                 <button class="drug-info-tab" onclick="showDrugInfoSection('harm-reduction')" data-section="harm-reduction">🛡️ Harm Reduction</button>
+                
+                <!-- Separator -->
+                <div style="width: 100%; height: 1px; background: var(--border-color); margin: 0.5rem 0;"></div>
+                
+                <!-- Individual Drug Information Tabs -->
+                <button class="drug-info-tab" onclick="showDrugInfoSection('mdma-info')" data-section="mdma-info">💊 MDMA</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('lsd-info')" data-section="lsd-info">🌈 LSD</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('ketamine-info')" data-section="ketamine-info">🧠 Ketamine</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('ghb-info')" data-section="ghb-info">🥤 GHB/GBL</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('amphetamines-info')" data-section="amphetamines-info">⚡ Amphetamines</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('cocaine-info')" data-section="cocaine-info">❄️ Cocaine</button>
+                <button class="drug-info-tab" onclick="showDrugInfoSection('4mmc-info')" data-section="4mmc-info">🔥 4-MMC</button>
             </div>
 
             <!-- Overview Section -->
@@ -2457,6 +2470,2164 @@
                                 <li><strong>The Loop:</strong> wearetheloop.org</li>
                                 <li><strong>Erowid:</strong> erowid.org</li>
                                 <li><strong>PsychonautWiki:</strong> psychonautwiki.org</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MDMA Information Page -->
+            <div id="drug-info-mdma-info" class="drug-info-content">
+                <h3>💊 MDMA (Ecstasy/Molly) - Complete Information Guide</h3>
+                
+                <!-- Overview Section -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🧬 What is MDMA?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Chemical Information</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Chemical name:</strong> 3,4-Methylenedioxymethamphetamine</li>
+                                <li><strong>Street names:</strong> Ecstasy, Molly, E, X, Pills</li>
+                                <li><strong>Class:</strong> Empathogen-entactogen</li>
+                                <li><strong>Schedule:</strong> Class A/Schedule I (illegal)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Mechanism of Action</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Increases serotonin, dopamine, and norepinephrine</li>
+                                <li>Blocks reuptake and promotes release</li>
+                                <li>Primary effects through serotonin system</li>
+                                <li>Creates empathy and emotional openness</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dosage Information -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⚖️ Dosage Guidelines</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <h5 style="color: #10b981; margin-bottom: 0.5rem;">💚 Threshold (60-80mg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Minimal effects, slight mood lift, increased sociability</p>
+                        </div>
+                        <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                            <h5 style="color: #3b82f6; margin-bottom: 0.5rem;">💙 Light (80-110mg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Clear empathogenic effects, enhanced mood, mild euphoria</p>
+                        </div>
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.3);">
+                            <h5 style="color: #f59e0b; margin-bottom: 0.5rem;">🧡 Common (110-140mg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Full MDMA experience, strong empathy, euphoria, energy</p>
+                        </div>
+                        <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                            <h5 style="color: #ef4444; margin-bottom: 0.5rem;">❤️ Strong (140-180mg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Intense effects, increased risks, not recommended</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <h5 style="color: #ef4444; margin-bottom: 0.5rem;">⚠️ Important Dosage Notes</h5>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                            <li><strong>Weight-based dosing:</strong> 1.5-2mg/kg for optimal experience</li>
+                            <li><strong>Never exceed 200mg:</strong> Higher doses increase toxicity without improving effects</li>
+                            <li><strong>Redosing is dangerous:</strong> Can lead to overheating and neurotoxicity</li>
+                            <li><strong>Pills vs. crystal:</strong> Pills often contain unknown substances - test first</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Timeline and Effects -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⏱️ Timeline and Effects</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📈 Come-up (30-60 minutes)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Initial nausea or anxiety</li>
+                                <li>Slight jaw clenching</li>
+                                <li>Increased heart rate</li>
+                                <li>First waves of euphoria</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌟 Peak (1-3 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Intense euphoria and empathy</li>
+                                <li>Enhanced music appreciation</li>
+                                <li>Increased tactile sensations</li>
+                                <li>Desire to connect with others</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📉 Come-down (3-6 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Gradual decrease in effects</li>
+                                <li>Possible mild sadness</li>
+                                <li>Fatigue and dehydration</li>
+                                <li>Difficulty sleeping</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">😴 After-effects (1-7 days)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Serotonin depletion ("Suicide Tuesday")</li>
+                                <li>Mood fluctuations</li>
+                                <li>Increased need for sleep</li>
+                                <li>Temporary depression possible</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety and Harm Reduction -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">🛡️ Safety Guidelines</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Before Use</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Test your substance with reagents</li>
+                                <li>Eat a light meal 2-3 hours prior</li>
+                                <li>Get adequate sleep</li>
+                                <li>Check medication interactions</li>
+                                <li>Plan for 24+ hours of recovery</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">During Use</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Stay hydrated (but don't overdrink)</li>
+                                <li>Take breaks in cool areas</li>
+                                <li>Have a trusted friend present</li>
+                                <li>Monitor body temperature</li>
+                                <li>Avoid alcohol and other drugs</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">After Use</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Get plenty of rest</li>
+                                <li>Eat nutritious foods</li>
+                                <li>Consider 5-HTP supplementation</li>
+                                <li>Wait minimum 3 months before next use</li>
+                                <li>Practice self-care and integration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dangerous Combinations -->
+                <div class="warning danger" style="margin: 2rem 0;">
+                    <h4>⚠️ DANGEROUS COMBINATIONS - NEVER MIX MDMA WITH:</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div>
+                            <h5 style="color: var(--danger-color); margin-bottom: 0.5rem;">🚫 Antidepressants</h5>
+                            <p style="font-size: 0.9rem; margin: 0;">SSRIs, SNRIs, MAOIs can cause serotonin syndrome - potentially fatal</p>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--danger-color); margin-bottom: 0.5rem;">🚫 Tramadol</h5>
+                            <p style="font-size: 0.9rem; margin: 0;">High risk of serotonin syndrome and seizures</p>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--danger-color); margin-bottom: 0.5rem;">🚫 DXM</h5>
+                            <p style="font-size: 0.9rem; margin: 0;">Increased neurotoxicity and serotonin syndrome risk</p>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--danger-color); margin-bottom: 0.5rem;">🚫 Lithium</h5>
+                            <p style="font-size: 0.9rem; margin: 0;">Greatly increased seizure risk</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testing Information -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--accent-color); margin-bottom: 1rem;">🧪 Testing Your MDMA</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Reagent Tests</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Marquis:</strong> Purple/Black for MDMA</li>
+                                <li><strong>Mecke:</strong> Blue/Black confirmation</li>
+                                <li><strong>Mandelin:</strong> Blue/Black secondary test</li>
+                                <li><strong>Simon's A&B:</strong> Blue for MDMA (not MDA)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Common Adulterants</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Caffeine:</strong> Stimulant filler</li>
+                                <li><strong>MDA:</strong> Similar effects, more visual</li>
+                                <li><strong>Methylone:</strong> Shorter duration, less empathy</li>
+                                <li><strong>PMMA/PMA:</strong> Dangerous, can be fatal</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>💡 Testing Tip:</strong> Always use multiple reagent tests and consider fentanyl test strips. If your substance doesn't react as expected, don't use it.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Frequency and Tolerance -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--warning-color); margin-bottom: 1rem;">📅 Frequency Guidelines</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: var(--radius-md);">
+                            <h5 style="color: #10b981; margin-bottom: 0.5rem;">✅ Recommended</h5>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);">
+                                <strong>3+ months between uses</strong><br>
+                                Allows full serotonin recovery and maintains magical effects
+                            </p>
+                        </div>
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: var(--radius-md);">
+                            <h5 style="color: #f59e0b; margin-bottom: 0.5rem;">⚠️ Risky</h5>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);">
+                                <strong>1-3 months between uses</strong><br>
+                                Increased neurotoxicity risk, tolerance, and reduced effects
+                            </p>
+                        </div>
+                        <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: var(--radius-md);">
+                            <h5 style="color: #ef4444; margin-bottom: 0.5rem;">🚫 Dangerous</h5>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);">
+                                <strong>Less than 1 month</strong><br>
+                                High neurotoxicity, loss of magic, depression, cognitive damage
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Information -->
+                <div class="emergency-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 2rem; margin: 2rem 0;">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🚨 MDMA Emergency Protocols</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Warning Signs</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Body temperature >39°C (102°F)</li>
+                                <li>Rapid or irregular heartbeat</li>
+                                <li>Confusion or agitation</li>
+                                <li>Seizures or muscle rigidity</li>
+                                <li>Nausea and vomiting</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏥 Immediate Actions</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Call emergency services (112/911)</li>
+                                <li>Cool the person down immediately</li>
+                                <li>Remove excess clothing</li>
+                                <li>Apply cool water to skin</li>
+                                <li>Be honest with medical staff</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">❌ DO NOT</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Give ice baths (too cold too fast)</li>
+                                <li>Give more stimulants</li>
+                                <li>Leave person alone</li>
+                                <li>Wait - act immediately</li>
+                                <li>Give alcohol or depressants</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LSD Information Page -->
+            <div id="drug-info-lsd-info" class="drug-info-content">
+                <h3>🌈 LSD (Lysergic Acid Diethylamide) - Complete Information Guide</h3>
+                
+                <!-- Overview Section -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🧬 What is LSD?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Chemical Information</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Chemical name:</strong> Lysergic Acid Diethylamide</li>
+                                <li><strong>Street names:</strong> Acid, Tabs, Trips, L, Lucy</li>
+                                <li><strong>Class:</strong> Classical psychedelic</li>
+                                <li><strong>Schedule:</strong> Class A/Schedule I (illegal)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Mechanism of Action</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>5-HT2A receptor partial agonist</li>
+                                <li>Affects glutamate and dopamine systems</li>
+                                <li>Disrupts default mode network</li>
+                                <li>Creates altered perception and consciousness</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dosage Information -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⚖️ Dosage Guidelines (in micrograms)</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(34, 197, 94, 0.3);">
+                            <h5 style="color: #22c55e; margin-bottom: 0.5rem;">🌱 Microdose (5-15μg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Sub-perceptual effects, enhanced creativity and mood</p>
+                        </div>
+                        <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                            <h5 style="color: #3b82f6; margin-bottom: 0.5rem;">🌊 Threshold (15-30μg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Barely perceptible effects, slight visual changes</p>
+                        </div>
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <h5 style="color: #10b981; margin-bottom: 0.5rem;">✨ Light (30-75μg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Clear psychedelic effects, mild visuals, enhanced cognition</p>
+                        </div>
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.3);">
+                            <h5 style="color: #f59e0b; margin-bottom: 0.5rem;">🌟 Common (75-150μg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Full psychedelic experience, strong visuals, ego softening</p>
+                        </div>
+                        <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                            <h5 style="color: #ef4444; margin-bottom: 0.5rem;">🔥 Strong (150-300μg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Intense experience, ego dissolution, reality distortion</p>
+                        </div>
+                        <div style="background: rgba(139, 69, 19, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(139, 69, 19, 0.3);">
+                            <h5 style="color: #8b4513; margin-bottom: 0.5rem;">⚠️ Heavy (300μg+)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Overwhelming intensity, high risk of difficult experience</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline and Effects -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⏱️ Timeline and Effects</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📈 Come-up (30-90 minutes)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Initial body sensations</li>
+                                <li>Slight nausea or anxiety</li>
+                                <li>First visual distortions</li>
+                                <li>Heightened awareness</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌟 Peak (2-6 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Intense visual and auditory effects</li>
+                                <li>Altered time perception</li>
+                                <li>Deep introspection</li>
+                                <li>Possible ego dissolution</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📉 Come-down (6-10 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Gradual return to baseline</li>
+                                <li>Continued mild visuals</li>
+                                <li>Mental clarity returning</li>
+                                <li>Possible emotional sensitivity</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌅 Afterglow (1-3 days)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Enhanced mood and clarity</li>
+                                <li>Increased creativity</li>
+                                <li>Better emotional processing</li>
+                                <li>Integration of insights</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Set and Setting -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">🧠 Set and Setting - Critical for LSD</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🧠 Set (Your Mental State)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Positive mindset:</strong> Optimistic and curious</li>
+                                <li><strong>Emotional stability:</strong> Not depressed or anxious</li>
+                                <li><strong>Clear intentions:</strong> Know why you're using LSD</li>
+                                <li><strong>Physical health:</strong> Well-rested and healthy</li>
+                                <li><strong>Mental preparation:</strong> Ready for 8-12 hours</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏠 Setting (Your Environment)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Safe location:</strong> Private, familiar space</li>
+                                <li><strong>Trusted company:</strong> Experienced trip-sitter</li>
+                                <li><strong>Comfortable temperature:</strong> Not too hot/cold</li>
+                                <li><strong>Minimal distractions:</strong> Phone off, no obligations</li>
+                                <li><strong>Nature access:</strong> Outdoor space if possible</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <h5 style="color: #ef4444; margin-bottom: 0.5rem;">🚫 Avoid LSD If:</h5>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                            <li>Personal/family history of psychosis or schizophrenia</li>
+                            <li>Currently taking lithium (seizure risk)</li>
+                            <li>Severe depression or suicidal thoughts</li>
+                            <li>In an unsafe or unfamiliar environment</li>
+                            <li>Under 25 years old (brain development)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Testing Information -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--accent-color); margin-bottom: 1rem;">🧪 Testing Your LSD</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Essential Tests</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Ehrlich:</strong> Purple/Pink for LSD</li>
+                                <li><strong>Hofmann:</strong> Blue confirms LSD vs analogs</li>
+                                <li><strong>UV light:</strong> Real LSD glows under blacklight</li>
+                                <li><strong>Taste test:</strong> LSD is tasteless and odorless</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Dangerous Imposters</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>25I-NBOMe:</strong> Bitter, metallic taste - can be fatal</li>
+                                <li><strong>DOB/DOC:</strong> 12+ hour effects, very intense</li>
+                                <li><strong>Bromo-DragonFLY:</strong> Extremely long duration</li>
+                                <li><strong>If bitter, it's a spitter!</strong> Real LSD has no taste</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>⚠️ CRITICAL:</strong> NBOMe compounds have caused deaths at doses that would be safe for LSD. ALWAYS test your tabs and remember: "If it's bitter, it's a spitter!"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tolerance and Frequency -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--warning-color); margin-bottom: 1rem;">📅 Tolerance and Frequency</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚡ Rapid Tolerance Development</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Tolerance peaks after 1-3 days</li>
+                                <li>Returns to baseline after ~14 days</li>
+                                <li>Cross-tolerance with other psychedelics</li>
+                                <li>Redosing during trip is ineffective</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📆 Recommended Spacing</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>2+ weeks minimum</strong> between trips</li>
+                                <li><strong>1+ months optimal</strong> for full reset</li>
+                                <li>More spacing = more meaningful experiences</li>
+                                <li>Allows time for integration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety Guidelines -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">🛡️ Safety Guidelines</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Preparation</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Clear your entire day (12+ hours)</li>
+                                <li>Have experienced trip-sitter present</li>
+                                <li>Test your substance thoroughly</li>
+                                <li>Prepare calming music playlist</li>
+                                <li>Stock water and light snacks</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">During the Trip</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Stay hydrated (normal amounts)</li>
+                                <li>Change setting if uncomfortable</li>
+                                <li>Remember: "This too shall pass"</li>
+                                <li>Avoid driving or dangerous activities</li>
+                                <li>Don't make major life decisions</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Integration</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Journal your experience</li>
+                                <li>Discuss insights with trusted friends</li>
+                                <li>Take time to process emotions</li>
+                                <li>Consider therapy for difficult experiences</li>
+                                <li>Wait before next psychedelic use</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Managing Difficult Experiences -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--warning-color); margin-bottom: 1rem;">🌪️ Managing Difficult Experiences</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">✅ What Helps</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Change your environment</li>
+                                <li>Listen to calming music</li>
+                                <li>Focus on your breathing</li>
+                                <li>Remember it's temporary</li>
+                                <li>Talk to your trip-sitter</li>
+                                <li>Go outside if safe</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">❌ What Doesn't Help</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Fighting the experience</li>
+                                <li>Trying to think your way out</li>
+                                <li>Using alcohol or other drugs</li>
+                                <li>Being around negative people</li>
+                                <li>Watching disturbing content</li>
+                                <li>Being in crowded places</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>💡 Remember:</strong> Difficult experiences often lead to the most growth. Surrender to the experience rather than fighting it, and remind yourself that it will end.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Emergency Information -->
+                <div class="emergency-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 2rem; margin: 2rem 0;">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🚨 LSD Emergency Protocols</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Call 112/911 If:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Seizures or convulsions</li>
+                                <li>Extremely high fever</li>
+                                <li>Self-harm or violence</li>
+                                <li>Medical emergency symptoms</li>
+                                <li>Complete loss of reality contact</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏥 Medical Treatment</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Be honest about substance use</li>
+                                <li>Benzodiazepines may be given</li>
+                                <li>Antipsychotics usually avoided</li>
+                                <li>Supportive care and monitoring</li>
+                                <li>Most resolve without treatment</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🤝 Trip-Sitter Role</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Stay calm and reassuring</li>
+                                <li>Remind them it's temporary</li>
+                                <li>Keep them safe from harm</li>
+                                <li>Change environment if needed</li>
+                                <li>Don't leave them alone</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ketamine Information Page -->
+            <div id="drug-info-ketamine-info" class="drug-info-content">
+                <h3>💎 Ketamine - Complete Information Guide</h3>
+                
+                <!-- Overview Section -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🧬 What is Ketamine?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Chemical Information</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Chemical name:</strong> Ketamine hydrochloride</li>
+                                <li><strong>Street names:</strong> Ket, K, Special K, Cat Tranquilizer</li>
+                                <li><strong>Class:</strong> Dissociative anesthetic</li>
+                                <li><strong>Schedule:</strong> Class B/Schedule III (controlled)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Mechanism of Action</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>NMDA receptor antagonist</li>
+                                <li>Blocks glutamate transmission</li>
+                                <li>Creates dissociative state</li>
+                                <li>Anesthetic and analgesic properties</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dosage Information -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⚖️ Dosage Guidelines (Nasal/Oral)</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(34, 197, 94, 0.3);">
+                            <h5 style="color: #22c55e; margin-bottom: 0.5rem;">🌱 Threshold (5-15mg nasal)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Mild dissociative effects, slight confusion</p>
+                        </div>
+                        <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                            <h5 style="color: #3b82f6; margin-bottom: 0.5rem;">✨ Light (15-30mg nasal)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Clear dissociation, motor impairment, euphoria</p>
+                        </div>
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <h5 style="color: #10b981; margin-bottom: 0.5rem;">🌟 Common (30-75mg nasal)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Strong dissociation, difficulty walking, visual effects</p>
+                        </div>
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.3);">
+                            <h5 style="color: #f59e0b; margin-bottom: 0.5rem;">🔥 Strong (75-150mg nasal)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Intense dissociation, near-immobilization, hallucinations</p>
+                        </div>
+                        <div style="background: rgba(139, 69, 19, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(139, 69, 19, 0.3);">
+                            <h5 style="color: #8b4513; margin-bottom: 0.5rem;">⚠️ K-Hole (150mg+ nasal)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Complete dissociation, out-of-body experience, immobilization</p>
+                        </div>
+                        <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                            <h5 style="color: #ef4444; margin-bottom: 0.5rem;">🚫 Anesthetic (200mg+ nasal)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Dangerous anesthetic doses, respiratory depression risk</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>📝 Note:</strong> Oral doses are typically 3-4x higher than nasal. IM/IV doses are much lower and extremely dangerous without medical supervision.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline and Effects -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⏱️ Timeline and Effects</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📈 Onset (Nasal: 5-15 min)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Rapid onset of effects</li>
+                                <li>Numbing sensations</li>
+                                <li>Initial disorientation</li>
+                                <li>Loss of coordination</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌟 Peak (30-60 minutes)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Full dissociative effects</li>
+                                <li>Visual and auditory distortions</li>
+                                <li>Out-of-body sensations</li>
+                                <li>Time distortion</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📉 Come-down (1-2 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Gradual return of coordination</li>
+                                <li>Residual confusion</li>
+                                <li>Possible nausea</li>
+                                <li>Emotional sensitivity</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌅 After-effects (2-4 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Return to baseline</li>
+                                <li>Possible mood enhancement</li>
+                                <li>Memory gaps from peak</li>
+                                <li>Fatigue or stimulation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Effects Profile -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">🌀 Effects Profile</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">✨ Positive Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Euphoria and wellbeing</li>
+                                <li>Pain relief (analgesic)</li>
+                                <li>Spiritual/mystical experiences</li>
+                                <li>Ego dissolution</li>
+                                <li>Antidepressant effects</li>
+                                <li>Dream-like states</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Neutral/Negative Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Motor impairment and clumsiness</li>
+                                <li>Confusion and disorientation</li>
+                                <li>Memory suppression</li>
+                                <li>Nausea and vomiting</li>
+                                <li>Increased heart rate</li>
+                                <li>Potential for falls/injury</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety and Harm Reduction -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--warning-color); margin-bottom: 1rem;">🛡️ Safety and Harm Reduction</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏠 Set and Setting</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Safe, familiar environment</li>
+                                <li>Sober trip-sitter present</li>
+                                <li>Soft surfaces (risk of falling)</li>
+                                <li>Remove sharp objects nearby</li>
+                                <li>Easy access to bathroom</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚖️ Dosage Safety</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Start with small doses</li>
+                                <li>Wait 2+ hours before redosing</li>
+                                <li>Use precise milligram scale</li>
+                                <li>Account for tolerance buildup</li>
+                                <li>Never mix with alcohol</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🚫 Avoid Combinations</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Alcohol:</strong> Dangerous respiratory depression</li>
+                                <li><strong>Opioids:</strong> Increased risk of unconsciousness</li>
+                                <li><strong>Benzodiazepines:</strong> Enhanced sedation</li>
+                                <li><strong>MAOIs:</strong> Potential dangerous interactions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Long-term Risks -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">⚠️ Long-term Risks and Addiction</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🧠 Cognitive Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Memory problems with chronic use</li>
+                                <li>Attention and concentration issues</li>
+                                <li>Potential for psychological dependence</li>
+                                <li>Tolerance develops quickly</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🫀 Physical Health</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Bladder damage:</strong> K-cramps, frequent urination</li>
+                                <li><strong>Kidney problems:</strong> Potential long-term damage</li>
+                                <li><strong>Nasal damage:</strong> From insufflation</li>
+                                <li><strong>Liver toxicity:</strong> Rare but possible</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <h5 style="color: #ef4444; margin-bottom: 0.5rem;">🚨 K-Cramps Warning</h5>
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            Frequent ketamine use can cause severe abdominal pain ("K-cramps") and bladder damage. If you experience persistent stomach pain or urinary problems, seek medical attention immediately.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Therapeutic Use -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--accent-color); margin-bottom: 1rem;">🏥 Medical and Therapeutic Use</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Medical Applications</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Anesthesia (especially pediatric)</li>
+                                <li>Treatment-resistant depression</li>
+                                <li>Chronic pain management</li>
+                                <li>PTSD therapy (clinical trials)</li>
+                                <li>Emergency sedation</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Ketamine-Assisted Therapy</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>FDA-approved nasal spray (Spravato)</li>
+                                <li>IV ketamine clinics</li>
+                                <li>Supervised therapeutic settings</li>
+                                <li>Integration with psychotherapy</li>
+                                <li>Promising results for depression</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Information -->
+                <div class="emergency-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 2rem; margin: 2rem 0;">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🚨 Ketamine Emergency Protocols</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Call 112/911 If:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Difficulty breathing or shallow breathing</li>
+                                <li>Unconsciousness with slow/no breathing</li>
+                                <li>Severe confusion lasting hours</li>
+                                <li>Signs of physical injury from falls</li>
+                                <li>Persistent vomiting with dehydration</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏥 Medical Treatment</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Supportive care and monitoring</li>
+                                <li>IV fluids for dehydration</li>
+                                <li>Airway management if needed</li>
+                                <li>Recovery position if unconscious</li>
+                                <li>Usually resolves within hours</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🤝 First Aid</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Keep person in recovery position</li>
+                                <li>Monitor breathing regularly</li>
+                                <li>Protect from injury during confusion</li>
+                                <li>Don't leave alone if heavily dissociated</li>
+                                <li>Keep calm and provide reassurance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GHB/GBL Information Page -->
+            <div id="drug-info-ghb-info" class="drug-info-content">
+                <h3>🧪 GHB/GBL - Complete Information Guide</h3>
+                
+                <!-- Overview Section -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🧬 What are GHB and GBL?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">GHB (Gamma-Hydroxybutyric Acid)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Street names:</strong> G, Liquid Ecstasy, GBH</li>
+                                <li><strong>Class:</strong> CNS depressant</li>
+                                <li><strong>Schedule:</strong> Class B/Schedule I</li>
+                                <li><strong>Form:</strong> Clear liquid or white powder</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">GBL (Gamma-Butyrolactone)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Street names:</strong> Blue Nitro, GBL</li>
+                                <li><strong>Class:</strong> GHB prodrug (converts to GHB)</li>
+                                <li><strong>Schedule:</strong> Class B/Controlled</li>
+                                <li><strong>Form:</strong> Clear liquid, industrial solvent</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>🔄 Important:</strong> GBL is a prodrug that converts to GHB in the body. Effects are nearly identical, but GBL is approximately 1.5-2x more potent than GHB.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Critical Dosage Warning -->
+                <div class="emergency-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.4); border-radius: var(--radius-lg); padding: 2rem; margin: 2rem 0;">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">⚠️ CRITICAL DOSAGE WARNING</h4>
+                    <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1rem;">
+                        <strong>GHB/GBL has an extremely narrow margin between recreational and dangerous doses. The difference between euphoria and overdose can be less than 1ml.</strong>
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🚨 Never:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Eyeball or guess dosages</li>
+                                <li>Redose within 3 hours</li>
+                                <li>Mix with alcohol or other depressants</li>
+                                <li>Use if you haven't eaten recently</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">✅ Always:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Use precise measuring tools (1ml syringe)</li>
+                                <li>Start with lowest possible dose</li>
+                                <li>Have a sober trip-sitter present</li>
+                                <li>Keep detailed dose logs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dosage Information -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⚖️ Dosage Guidelines (Oral)</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(34, 197, 94, 0.3);">
+                            <h5 style="color: #22c55e; margin-bottom: 0.5rem;">🌱 Threshold</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><strong>GHB:</strong> 0.5-1.0g | <strong>GBL:</strong> 0.3-0.7ml</p>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.5rem 0 0 0;">Mild relaxation, slight disinhibition</p>
+                        </div>
+                        <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                            <h5 style="color: #3b82f6; margin-bottom: 0.5rem;">✨ Light</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><strong>GHB:</strong> 1.0-1.5g | <strong>GBL:</strong> 0.7-1.0ml</p>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.5rem 0 0 0;">Clear euphoria, sociability, mild sedation</p>
+                        </div>
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <h5 style="color: #10b981; margin-bottom: 0.5rem;">🌟 Common</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><strong>GHB:</strong> 1.5-2.5g | <strong>GBL:</strong> 1.0-1.5ml</p>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.5rem 0 0 0;">Strong euphoria, empathy, moderate sedation</p>
+                        </div>
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.3);">
+                            <h5 style="color: #f59e0b; margin-bottom: 0.5rem;">⚠️ Strong</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><strong>GHB:</strong> 2.5-3.0g | <strong>GBL:</strong> 1.5-2.0ml</p>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.5rem 0 0 0;">Heavy sedation, memory impairment, risk zone</p>
+                        </div>
+                        <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                            <h5 style="color: #ef4444; margin-bottom: 0.5rem;">🚨 Dangerous</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><strong>GHB:</strong> 3.0g+ | <strong>GBL:</strong> 2.0ml+</p>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0.5rem 0 0 0;">Unconsciousness, respiratory depression, overdose risk</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>⚠️ CRITICAL:</strong> These dosages are approximate and vary greatly between individuals. Factors like body weight, tolerance, food intake, and individual sensitivity can dramatically affect response.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline and Effects -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⏱️ Timeline and Effects</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📈 Onset (15-45 minutes)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Initial relaxation</li>
+                                <li>Mild dizziness</li>
+                                <li>Increased sociability</li>
+                                <li>First signs of disinhibition</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌟 Peak (1-2 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Maximum euphoria and empathy</li>
+                                <li>Strong sedation</li>
+                                <li>Possible memory impairment</li>
+                                <li>Risk of unconsciousness</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📉 Come-down (2-4 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Gradual return of alertness</li>
+                                <li>Possible grogginess</li>
+                                <li>Return of normal coordination</li>
+                                <li>Mild rebound anxiety possible</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌅 After-effects (4-8 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Complete return to baseline</li>
+                                <li>Possible refreshed feeling</li>
+                                <li>Memory gaps from peak</li>
+                                <li>Normal sleep patterns resume</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Effects Profile -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">🌀 Effects Profile</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">✨ Positive Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Euphoria and wellbeing</li>
+                                <li>Enhanced empathy and sociability</li>
+                                <li>Relaxation and stress relief</li>
+                                <li>Increased confidence</li>
+                                <li>Enhanced sensory perception</li>
+                                <li>Mood enhancement</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Negative Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Dizziness and confusion</li>
+                                <li>Memory impairment</li>
+                                <li>Motor impairment</li>
+                                <li>Nausea and vomiting</li>
+                                <li>Unconsciousness (at higher doses)</li>
+                                <li>Respiratory depression</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Critical Safety Information -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🚨 Critical Safety Information</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🍷 Alcohol Interaction</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>NEVER mix with alcohol</strong></li>
+                                <li>Both are CNS depressants</li>
+                                <li>Dramatically increases overdose risk</li>
+                                <li>Can cause fatal respiratory depression</li>
+                                <li>Wait 24+ hours after drinking</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⏰ Redosing Dangers</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Never redose within 3 hours</li>
+                                <li>Effects can stack dangerously</li>
+                                <li>Easy to accidentally overdose</li>
+                                <li>Tolerance builds rapidly</li>
+                                <li>"Less is more" philosophy essential</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🎯 Measurement Critical</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Use 1ml oral syringes only</li>
+                                <li>Milligram scale for powder</li>
+                                <li>Never estimate or eyeball doses</li>
+                                <li>Account for concentration differences</li>
+                                <li>Keep detailed dose logs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Addiction and Withdrawal -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--warning-color); margin-bottom: 1rem;">🔄 Addiction and Withdrawal</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚡ Addiction Potential</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Moderate to high addiction potential</li>
+                                <li>Tolerance develops rapidly</li>
+                                <li>Physical dependence possible</li>
+                                <li>Compulsive redosing common</li>
+                                <li>Around-the-clock use patterns</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🚨 Withdrawal Symptoms</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Severe anxiety and panic attacks</li>
+                                <li>Insomnia lasting days/weeks</li>
+                                <li>Tremors and sweating</li>
+                                <li>Potentially dangerous seizures</li>
+                                <li>Requires medical supervision</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>⚠️ Medical Note:</strong> GHB withdrawal can be life-threatening and may require hospitalization. Never attempt to detox from chronic GHB use without medical supervision.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Legal and Social Risks -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--accent-color); margin-bottom: 1rem;">⚖️ Legal and Social Risks</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🚨 Legal Status</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Class B/Schedule I controlled substance</li>
+                                <li>Serious penalties for possession</li>
+                                <li>Manufacturing/dealing severe charges</li>
+                                <li>Associated with "date rape" offenses</li>
+                                <li>Zero tolerance in most jurisdictions</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">👥 Social Risks</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Memory blackouts and vulnerability</li>
+                                <li>Impaired judgment and consent</li>
+                                <li>Risk of sexual assault (victim or accused)</li>
+                                <li>Social stigma and reputation damage</li>
+                                <li>Relationship and family impacts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Information -->
+                <div class="emergency-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 2rem; margin: 2rem 0;">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🚨 GHB/GBL Emergency Protocols</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Call 112/911 If:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Unconsciousness with slow/irregular breathing</li>
+                                <li>Blue lips or fingernails (cyanosis)</li>
+                                <li>Vomiting while unconscious</li>
+                                <li>Cannot be roused by loud noises/pain</li>
+                                <li>Seizures or convulsions</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🚑 First Aid</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Place in recovery position</li>
+                                <li>Clear airway of vomit</li>
+                                <li>Monitor breathing constantly</li>
+                                <li>Perform rescue breathing if needed</li>
+                                <li>Keep warm but not overheated</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏥 Medical Information</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Tell medical staff exact substance used</li>
+                                <li>Provide dosage and timing if known</li>
+                                <li>Mention any alcohol or other drug use</li>
+                                <li>Most recover within 2-6 hours</li>
+                                <li>Supportive care typically sufficient</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Amphetamines Information Page -->
+            <div id="drug-info-amphetamines-info" class="drug-info-content">
+                <h3>⚡ Amphetamines - Complete Information Guide</h3>
+                
+                <!-- Overview Section -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🧬 What are Amphetamines?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Chemical Information</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Chemical name:</strong> Amphetamine sulfate</li>
+                                <li><strong>Street names:</strong> Speed, Whizz, Billy, Paste</li>
+                                <li><strong>Class:</strong> CNS stimulant</li>
+                                <li><strong>Schedule:</strong> Class B/Schedule II (controlled)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Mechanism of Action</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Dopamine and norepinephrine reuptake inhibitor</li>
+                                <li>Increases neurotransmitter release</li>
+                                <li>CNS stimulation and alertness</li>
+                                <li>Affects reward and motivation pathways</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>📝 Note:</strong> This information covers racemic amphetamine. Dextroamphetamine (Adderall) and methamphetamine have different potencies and risk profiles.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dosage Information -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⚖️ Dosage Guidelines (Oral)</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(34, 197, 94, 0.3);">
+                            <h5 style="color: #22c55e; margin-bottom: 0.5rem;">🌱 Threshold (2.5-5mg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Mild alertness, slight focus enhancement</p>
+                        </div>
+                        <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                            <h5 style="color: #3b82f6; margin-bottom: 0.5rem;">✨ Light (5-15mg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Clear stimulation, enhanced focus and energy</p>
+                        </div>
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <h5 style="color: #10b981; margin-bottom: 0.5rem;">🌟 Common (15-30mg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Strong stimulation, euphoria, significant effects</p>
+                        </div>
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.3);">
+                            <h5 style="color: #f59e0b; margin-bottom: 0.5rem;">🔥 Strong (30-50mg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Intense stimulation, increased side effects</p>
+                        </div>
+                        <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                            <h5 style="color: #ef4444; margin-bottom: 0.5rem;">⚠️ Heavy (50mg+)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">High risk of adverse effects, cardiovascular stress</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(245, 158, 11, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.3);">
+                        <h5 style="color: #f59e0b; margin-bottom: 0.5rem;">📏 Dosage by Route</h5>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem; margin: 0;">
+                            <li><strong>Oral:</strong> Baseline doses (safer, longer duration)</li>
+                            <li><strong>Nasal:</strong> ~70% of oral dose (faster onset, shorter duration)</li>
+                            <li><strong>IV/IM:</strong> NOT RECOMMENDED (extreme risk, addiction potential)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Timeline and Effects -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⏱️ Timeline and Effects</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📈 Come-up (Oral: 30-90 min)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Increased alertness</li>
+                                <li>Rising energy levels</li>
+                                <li>Enhanced focus</li>
+                                <li>Mild euphoria beginning</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌟 Peak (2-4 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Maximum stimulation</li>
+                                <li>Euphoria and confidence</li>
+                                <li>Hyperfocus on tasks</li>
+                                <li>Decreased appetite</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📉 Come-down (4-8 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Gradual reduction in effects</li>
+                                <li>Return of appetite</li>
+                                <li>Possible mild depression</li>
+                                <li>Fatigue as effects wear off</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">💤 After-effects (8-24 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Sleep deprivation effects</li>
+                                <li>Appetite returning</li>
+                                <li>Possible rebound depression</li>
+                                <li>Mental fatigue</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Effects Profile -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">⚡ Effects Profile</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">✨ Positive Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Enhanced focus and concentration</li>
+                                <li>Increased energy and alertness</li>
+                                <li>Euphoria and confidence</li>
+                                <li>Improved motivation</li>
+                                <li>Enhanced cognitive performance</li>
+                                <li>Increased sociability</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Negative Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Increased heart rate and blood pressure</li>
+                                <li>Insomnia and sleep disruption</li>
+                                <li>Appetite suppression</li>
+                                <li>Anxiety and restlessness</li>
+                                <li>Jaw clenching (bruxism)</li>
+                                <li>Potential for hyperfocus on trivial tasks</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medical Uses -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--accent-color); margin-bottom: 1rem;">🏥 Medical Uses</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Prescription Uses</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>ADHD:</strong> Core treatment medication</li>
+                                <li><strong>Narcolepsy:</strong> Excessive daytime sleepiness</li>
+                                <li><strong>Treatment-resistant depression</strong> (rare)</li>
+                                <li><strong>Binge eating disorder</strong> (lisdexamfetamine)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Therapeutic Benefits</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Improved attention span</li>
+                                <li>Reduced hyperactivity</li>
+                                <li>Enhanced executive function</li>
+                                <li>Better impulse control</li>
+                                <li>Mood stabilization in ADHD</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety and Harm Reduction -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--warning-color); margin-bottom: 1rem;">🛡️ Safety and Harm Reduction</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏃 Physical Health</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Monitor heart rate and blood pressure</li>
+                                <li>Stay hydrated (avoid overhydration)</li>
+                                <li>Take breaks from activity</li>
+                                <li>Maintain electrolyte balance</li>
+                                <li>Avoid in hot environments</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🧠 Mental Health</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Avoid if anxiety/panic prone</li>
+                                <li>Don't use to manage depression</li>
+                                <li>Take tolerance breaks</li>
+                                <li>Manage sleep schedule</li>
+                                <li>Watch for dependence signs</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚖️ Dosage Safety</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Start low, increase gradually</li>
+                                <li>Avoid redosing to extend effects</li>
+                                <li>Use precise measuring tools</li>
+                                <li>Account for tolerance</li>
+                                <li>Avoid binge patterns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Addiction and Tolerance -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🔄 Addiction and Tolerance</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚡ Addiction Risk</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Moderate to high addiction potential</li>
+                                <li>Psychological dependence common</li>
+                                <li>Compulsive redosing patterns</li>
+                                <li>Tolerance develops quickly</li>
+                                <li>Withdrawal can be difficult</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📉 Withdrawal Symptoms</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Severe fatigue and hypersomnia</li>
+                                <li>Depression and dysphoria</li>
+                                <li>Increased appetite</li>
+                                <li>Cognitive impairment</li>
+                                <li>Strong cravings</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🔄 Tolerance Management</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Take regular breaks (drug holidays)</li>
+                                <li>Avoid daily use</li>
+                                <li>Rotate with other stimulants carefully</li>
+                                <li>Monitor dose escalation</li>
+                                <li>Seek help if losing control</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dangerous Combinations -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">⚠️ Dangerous Combinations</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🚫 High Risk</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>MAOIs:</strong> Dangerous blood pressure spikes</li>
+                                <li><strong>Other stimulants:</strong> Increased cardiovascular risk</li>
+                                <li><strong>Hallucinogens:</strong> Increased anxiety/psychosis risk</li>
+                                <li><strong>Tramadol:</strong> Lowered seizure threshold</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Moderate Risk</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Alcohol:</strong> Masks intoxication, dehydration</li>
+                                <li><strong>Cannabis:</strong> Can increase anxiety</li>
+                                <li><strong>Caffeine:</strong> Enhanced jitteriness</li>
+                                <li><strong>Nicotine:</strong> Increased cardiovascular stress</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Information -->
+                <div class="emergency-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 2rem; margin: 2rem 0;">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🚨 Amphetamine Emergency Protocols</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Call 112/911 If:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Chest pain or irregular heartbeat</li>
+                                <li>Extremely high blood pressure</li>
+                                <li>Hyperthermia (overheating)</li>
+                                <li>Seizures or convulsions</li>
+                                <li>Psychotic symptoms or paranoia</li>
+                                <li>Stroke-like symptoms</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏥 Medical Treatment</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Benzodiazepines for agitation</li>
+                                <li>Cooling measures for hyperthermia</li>
+                                <li>IV fluids and electrolyte monitoring</li>
+                                <li>Cardiac monitoring</li>
+                                <li>Antipsychotics for severe psychosis</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🤝 First Aid</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Move to cool, quiet environment</li>
+                                <li>Remove excess clothing</li>
+                                <li>Offer small sips of water</li>
+                                <li>Calm reassurance for anxiety</li>
+                                <li>Monitor vital signs if possible</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cocaine Information Page -->
+            <div id="drug-info-cocaine-info" class="drug-info-content">
+                <h3>❄️ Cocaine - Complete Information Guide</h3>
+                
+                <!-- Overview Section -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🧬 What is Cocaine?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Chemical Information</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Chemical name:</strong> Cocaine hydrochloride</li>
+                                <li><strong>Street names:</strong> Coke, Snow, Blow, Charlie, Powder</li>
+                                <li><strong>Class:</strong> CNS stimulant, local anesthetic</li>
+                                <li><strong>Schedule:</strong> Class A/Schedule II (high control)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Mechanism of Action</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Blocks dopamine reuptake transporter</li>
+                                <li>Also affects serotonin and norepinephrine</li>
+                                <li>Sodium channel blocker (anesthetic effect)</li>
+                                <li>Intense but short-lived effects</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>⚠️ Warning:</strong> Cocaine is highly addictive and associated with significant cardiovascular, neurological, and psychological risks. No amount of cocaine use can be considered "safe."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Forms and Routes -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">📋 Forms and Routes of Administration</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">💨 Insufflation (Snorting)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Onset:</strong> 1-3 minutes</li>
+                                <li><strong>Duration:</strong> 15-30 minutes</li>
+                                <li><strong>Bioavailability:</strong> ~60%</li>
+                                <li><strong>Risks:</strong> Nasal damage, septum perforation</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">💊 Oral</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Onset:</strong> 10-30 minutes</li>
+                                <li><strong>Duration:</strong> 30-90 minutes</li>
+                                <li><strong>Bioavailability:</strong> ~30%</li>
+                                <li><strong>Notes:</strong> Longer lasting, less intense</li>
+                            </ul>
+                        </div>
+                        <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                            <h5 style="color: #ef4444; margin-bottom: 0.5rem;">🚫 High-Risk Routes</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>IV/IM:</strong> Extremely dangerous, high overdose risk</li>
+                                <li><strong>Smoking (Crack):</strong> Highly addictive, rapid dependence</li>
+                                <li><strong>We strongly advise against these routes</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dosage Information -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⚖️ Dosage Guidelines (Nasal)</h4>
+                    <div class="emergency-card" style="background: rgba(239, 68, 68, 0.1); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem;">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>⚠️ CRITICAL:</strong> Street cocaine purity varies dramatically (10-90%). These dosages assume pure cocaine - actual street doses may be much higher due to adulterants and low purity.
+                        </p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(34, 197, 94, 0.3);">
+                            <h5 style="color: #22c55e; margin-bottom: 0.5rem;">🌱 Threshold (10-20mg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Mild stimulation, slight mood elevation</p>
+                        </div>
+                        <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                            <h5 style="color: #3b82f6; margin-bottom: 0.5rem;">✨ Light (20-40mg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Clear stimulation, confidence, talkativeness</p>
+                        </div>
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <h5 style="color: #10b981; margin-bottom: 0.5rem;">🌟 Common (40-80mg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Strong euphoria, high energy, possible anxiety</p>
+                        </div>
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.3);">
+                            <h5 style="color: #f59e0b; margin-bottom: 0.5rem;">⚠️ Strong (80-120mg)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Intense effects, high risk of adverse reactions</p>
+                        </div>
+                        <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                            <h5 style="color: #ef4444; margin-bottom: 0.5rem;">🚨 Dangerous (120mg+)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">High overdose risk, cardiac complications</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Effects Profile -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">⚡ Effects Profile</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">✨ Positive Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Intense euphoria and well-being</li>
+                                <li>Increased confidence and self-esteem</li>
+                                <li>Enhanced energy and alertness</li>
+                                <li>Heightened focus and mental clarity</li>
+                                <li>Increased sociability and talkativeness</li>
+                                <li>Decreased appetite</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Negative Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Increased heart rate and blood pressure</li>
+                                <li>Anxiety, restlessness, paranoia</li>
+                                <li>Insomnia and sleep disruption</li>
+                                <li>Jaw clenching and teeth grinding</li>
+                                <li>Hyperthermia (overheating)</li>
+                                <li>Crash and depression after use</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⏱️ Timeline (Nasal Route)</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📈 Onset (1-3 minutes)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Immediate nasal numbing</li>
+                                <li>First wave of stimulation</li>
+                                <li>Increased alertness</li>
+                                <li>Beginning of euphoria</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌟 Peak (5-10 minutes)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Maximum euphoria</li>
+                                <li>Peak stimulation</li>
+                                <li>Heightened confidence</li>
+                                <li>Strong urge to redose begins</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📉 Come-down (15-30 minutes)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Rapid decline in effects</li>
+                                <li>Strong cravings for more</li>
+                                <li>Initial crash symptoms</li>
+                                <li>Agitation and restlessness</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">💤 After-effects (1-3 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Depression and dysphoria</li>
+                                <li>Mental fatigue</li>
+                                <li>Anxiety and irritability</li>
+                                <li>Sleep difficulties</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Addiction and Dependence -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🔄 Addiction and Dependence</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚡ High Addiction Potential</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Extremely high psychological dependence risk</li>
+                                <li>Rapid development of tolerance</li>
+                                <li>Compulsive redosing patterns</li>
+                                <li>Strong cravings even after single use</li>
+                                <li>Difficult to moderate use</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📉 Withdrawal Symptoms</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Severe depression and dysphoria</li>
+                                <li>Intense cravings</li>
+                                <li>Extreme fatigue and hypersomnia</li>
+                                <li>Anhedonia (inability to feel pleasure)</li>
+                                <li>Cognitive impairment</li>
+                                <li>Increased appetite</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>🚨 Warning:</strong> Cocaine addiction can develop rapidly, sometimes after just a few uses. The short duration and intense crash create a powerful cycle of compulsive redosing.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Health Risks -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">⚠️ Health Risks</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">❤️ Cardiovascular</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Heart attack (even with small doses)</li>
+                                <li>Irregular heartbeat (arrhythmias)</li>
+                                <li>High blood pressure</li>
+                                <li>Stroke risk</li>
+                                <li>Sudden cardiac death</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🧠 Neurological</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Stroke and brain hemorrhage</li>
+                                <li>Seizures</li>
+                                <li>Cognitive impairment</li>
+                                <li>Memory problems</li>
+                                <li>Movement disorders</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">👃 Nasal/Respiratory</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Nasal septum perforation</li>
+                                <li>Chronic sinusitis</li>
+                                <li>Loss of smell</li>
+                                <li>Respiratory problems</li>
+                                <li>Lung damage (if smoked)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🧠 Psychological</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Paranoia and psychosis</li>
+                                <li>Anxiety and panic disorders</li>
+                                <li>Depression</li>
+                                <li>Violent or erratic behavior</li>
+                                <li>Suicidal ideation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dangerous Combinations -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">⚠️ Extremely Dangerous Combinations</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🍷 Alcohol (Cocaethylene)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Forms toxic metabolite cocaethylene</li>
+                                <li>20x more likely to cause sudden death</li>
+                                <li>Increased cardiotoxicity</li>
+                                <li>Longer elimination time</li>
+                                <li><strong>Never mix these substances</strong></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🚫 Other High-Risk Combinations</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>MAOIs:</strong> Dangerous blood pressure spikes</li>
+                                <li><strong>Other stimulants:</strong> Increased overdose risk</li>
+                                <li><strong>Depressants:</strong> Masked intoxication</li>
+                                <li><strong>Any combination increases risks</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Harm Reduction -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--warning-color); margin-bottom: 1rem;">🛡️ Harm Reduction (If Use Occurs)</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📏 Dosage and Purity</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Test for adulterants if possible</li>
+                                <li>Use precise milligram scales</li>
+                                <li>Start with smallest possible amount</li>
+                                <li>Avoid redosing within 2+ hours</li>
+                                <li>Set strict limits beforehand</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏥 Safety Measures</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Never use alone</li>
+                                <li>Use clean, personal equipment</li>
+                                <li>Stay hydrated (small amounts)</li>
+                                <li>Monitor heart rate and temperature</li>
+                                <li>Take breaks in cool environment</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🧠 Mental Health</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Avoid if prone to paranoia/anxiety</li>
+                                <li>Don't use to treat depression</li>
+                                <li>Plan for post-use depression</li>
+                                <li>Have support system available</li>
+                                <li>Consider professional help early</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Information -->
+                <div class="emergency-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 2rem; margin: 2rem 0;">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🚨 Cocaine Emergency Protocols</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Call 112/911 If:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Chest pain or heart palpitations</li>
+                                <li>Difficulty breathing</li>
+                                <li>Severe headache or stroke symptoms</li>
+                                <li>Seizures or convulsions</li>
+                                <li>Hyperthermia (overheating)</li>
+                                <li>Psychotic or violent behavior</li>
+                                <li>Loss of consciousness</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏥 Medical Treatment</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Benzodiazepines for agitation/seizures</li>
+                                <li>Cooling measures for hyperthermia</li>
+                                <li>Cardiac monitoring and treatment</li>
+                                <li>Blood pressure management</li>
+                                <li>IV fluids and supportive care</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🤝 First Aid</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Keep person calm and cool</li>
+                                <li>Remove to quiet environment</li>
+                                <li>Monitor breathing and pulse</li>
+                                <li>Don't leave alone if agitated</li>
+                                <li>Be honest with medical personnel</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4-MMC Information Page -->
+            <div id="drug-info-4mmc-info" class="drug-info-content">
+                <h3>💊 4-MMC (Mephedrone) - Complete Information Guide</h3>
+                
+                <!-- Overview Section -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🧬 What is 4-MMC?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Chemical Information</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Chemical name:</strong> 4-Methylmethcathinone</li>
+                                <li><strong>Street names:</strong> Mephedrone, M-Cat, Meow Meow, 4-MMC</li>
+                                <li><strong>Class:</strong> Synthetic cathinone (bath salt)</li>
+                                <li><strong>Schedule:</strong> Class B/Schedule I (illegal)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Mechanism of Action</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Triple reuptake inhibitor (dopamine, serotonin, norepinephrine)</li>
+                                <li>Also acts as a releasing agent</li>
+                                <li>MDMA-like empathogenic effects</li>
+                                <li>Stimulant properties similar to amphetamines</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>⚠️ Warning:</strong> 4-MMC is a relatively new synthetic drug with limited research on long-term effects. It carries significant risks including cardiovascular complications and high addiction potential.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dosage Information -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⚖️ Dosage Guidelines</h4>
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📋 Oral Dosages</h5>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(34, 197, 94, 0.3);">
+                                <h6 style="color: #22c55e; margin-bottom: 0.5rem;">🌱 Threshold (15-30mg)</h6>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Mild stimulation, slight mood lift</p>
+                            </div>
+                            <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.3);">
+                                <h6 style="color: #3b82f6; margin-bottom: 0.5rem;">✨ Light (30-75mg)</h6>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Clear stimulation, enhanced sociability</p>
+                            </div>
+                            <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.3);">
+                                <h6 style="color: #10b981; margin-bottom: 0.5rem;">🌟 Common (75-125mg)</h6>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Strong empathy, euphoria</p>
+                            </div>
+                            <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <h6 style="color: #f59e0b; margin-bottom: 0.5rem;">⚠️ Strong (125-175mg)</h6>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Intense effects, increased risks</p>
+                            </div>
+                            <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                                <h6 style="color: #ef4444; margin-bottom: 0.5rem;">🚨 Heavy (175mg+)</h6>
+                                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">High risk, dangerous territory</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">💨 Nasal Dosages (Not Recommended)</h5>
+                        <div style="padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                            <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                                <strong>⚠️ Nasal use not recommended:</strong> Extremely caustic to nasal tissues, causes severe damage to nasal cavity and sinuses. If insufflated, doses are typically 25-50% of oral doses, but the damage is severe.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline and Effects -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⏱️ Timeline and Effects (Oral)</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📈 Come-up (20-40 minutes)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Initial alertness and energy</li>
+                                <li>Mood elevation beginning</li>
+                                <li>Slight increase in heart rate</li>
+                                <li>Enhanced sociability emerging</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌟 Peak (1-3 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Strong euphoria and empathy</li>
+                                <li>Enhanced music appreciation</li>
+                                <li>Increased confidence and talkativeness</li>
+                                <li>Physical stimulation</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📉 Come-down (3-6 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Gradual reduction in euphoria</li>
+                                <li>Possible anxiety or restlessness</li>
+                                <li>Strong urge to redose</li>
+                                <li>Beginning of crash symptoms</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">💤 After-effects (6-24 hours)</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Depression and dysphoria</li>
+                                <li>Mental and physical fatigue</li>
+                                <li>Sleep difficulties</li>
+                                <li>Possible anxiety and paranoia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Effects Profile -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--success-color); margin-bottom: 1rem;">🌀 Effects Profile</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">✨ Positive Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Intense euphoria and well-being</li>
+                                <li>Enhanced empathy and emotional connection</li>
+                                <li>Increased energy and alertness</li>
+                                <li>Enhanced music and sensory appreciation</li>
+                                <li>Increased confidence and sociability</li>
+                                <li>Lowered inhibitions</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Negative Effects</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Increased heart rate and blood pressure</li>
+                                <li>Hyperthermia (overheating)</li>
+                                <li>Jaw clenching and teeth grinding</li>
+                                <li>Anxiety and paranoia</li>
+                                <li>Insomnia and sleep disruption</li>
+                                <li>Compulsive redosing urges</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- High Addiction Risk -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🔄 Extremely High Addiction Risk</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚡ Addiction Characteristics</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Extremely high psychological dependence</li>
+                                <li>Rapid tolerance development</li>
+                                <li>Compulsive redosing during sessions</li>
+                                <li>Strong cravings between uses</li>
+                                <li>Difficult to control intake</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">📉 Withdrawal and Crash</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Severe depression lasting days</li>
+                                <li>Extreme fatigue and hypersomnia</li>
+                                <li>Anhedonia (inability to feel pleasure)</li>
+                                <li>Intense cravings</li>
+                                <li>Cognitive impairment</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>🚨 Critical Warning:</strong> 4-MMC has one of the highest addiction potentials among recreational drugs. Many users report losing control after just a few uses. Binge patterns are extremely common.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Health Risks -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">⚠️ Health Risks</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">❤️ Cardiovascular</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Rapid heartbeat and palpitations</li>
+                                <li>High blood pressure</li>
+                                <li>Risk of heart attack</li>
+                                <li>Arrhythmias (irregular heartbeat)</li>
+                                <li>Cardiovascular collapse</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌡️ Hyperthermia</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Dangerous overheating</li>
+                                <li>Excessive sweating</li>
+                                <li>Heat stroke risk</li>
+                                <li>Dehydration</li>
+                                <li>Multi-organ failure</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🧠 Neurological</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Serotonin syndrome risk</li>
+                                <li>Potential neurotoxicity</li>
+                                <li>Seizures (especially with high doses)</li>
+                                <li>Memory and cognitive problems</li>
+                                <li>Mood disorders</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">👃 Physical Damage</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Severe nasal damage (if snorted)</li>
+                                <li>Nasal septum perforation</li>
+                                <li>Chronic sinusitis</li>
+                                <li>Loss of smell and taste</li>
+                                <li>Oral health problems</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dangerous Combinations -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">⚠️ Dangerous Combinations</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🚫 Extremely Dangerous</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>MAOIs:</strong> Life-threatening serotonin syndrome</li>
+                                <li><strong>MDMA/SSRIs:</strong> Serotonin syndrome risk</li>
+                                <li><strong>Other cathinones:</strong> Compounded toxicity</li>
+                                <li><strong>Stimulants:</strong> Increased cardiovascular risk</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ High Risk</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li><strong>Alcohol:</strong> Masks intoxication, dehydration</li>
+                                <li><strong>Depressants:</strong> Dangerous with comedown</li>
+                                <li><strong>Psychedelics:</strong> Increased anxiety/paranoia</li>
+                                <li><strong>Any combination increases risks</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Harm Reduction -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--warning-color); margin-bottom: 1rem;">🛡️ Critical Harm Reduction</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚖️ Dosage Control</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Pre-measure doses before starting</li>
+                                <li>Hide or give away extra supply</li>
+                                <li>Set strict time limits</li>
+                                <li>Never redose within 2+ hours</li>
+                                <li>Use precise milligram scales</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🌡️ Temperature Management</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Stay in cool environment</li>
+                                <li>Take regular cooling breaks</li>
+                                <li>Monitor body temperature</li>
+                                <li>Avoid excessive physical activity</li>
+                                <li>Remove layers if overheating</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">💧 Hydration and Nutrition</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Sip water regularly (don't overhydrate)</li>
+                                <li>Electrolyte replacement important</li>
+                                <li>Eat before use (absorption)</li>
+                                <li>Have nutritious food for recovery</li>
+                                <li>Avoid alcohol completely</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recovery and Aftercare -->
+                <div class="info-section" style="background: var(--background-secondary); border-radius: var(--radius-lg); padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--accent-color); margin-bottom: 1rem;">🌅 Recovery and Aftercare</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">💤 Sleep and Rest</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Plan for 1-3 days of recovery</li>
+                                <li>Create sleep-conducive environment</li>
+                                <li>Consider natural sleep aids</li>
+                                <li>Avoid screens before sleep attempts</li>
+                                <li>Don't force sleep immediately</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🧠 Mental Health Support</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Have trusted friends available</li>
+                                <li>Plan engaging but low-key activities</li>
+                                <li>Practice self-compassion</li>
+                                <li>Consider therapy if struggling</li>
+                                <li>Join support groups if needed</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🥗 Nutritional Recovery</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Focus on nutrient-dense foods</li>
+                                <li>B-vitamins and magnesium supplements</li>
+                                <li>Antioxidant-rich fruits and vegetables</li>
+                                <li>Stay hydrated throughout recovery</li>
+                                <li>Avoid excessive caffeine</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Information -->
+                <div class="emergency-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-lg); padding: 2rem; margin: 2rem 0;">
+                    <h4 style="color: var(--danger-color); margin-bottom: 1rem;">🚨 4-MMC Emergency Protocols</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">⚠️ Call 112/911 If:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Hyperthermia (very high body temperature)</li>
+                                <li>Chest pain or heart problems</li>
+                                <li>Seizures or convulsions</li>
+                                <li>Loss of consciousness</li>
+                                <li>Extreme agitation or psychosis</li>
+                                <li>Difficulty breathing</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🏥 Medical Treatment</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Cooling measures for hyperthermia</li>
+                                <li>Benzodiazepines for agitation</li>
+                                <li>IV fluids and electrolyte monitoring</li>
+                                <li>Cardiac monitoring</li>
+                                <li>Serotonin syndrome treatment if needed</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">🤝 First Aid</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem; font-size: 0.9rem;">
+                                <li>Move to cool, quiet environment</li>
+                                <li>Remove excess clothing</li>
+                                <li>Cool water on wrists/neck</li>
+                                <li>Keep calm and provide reassurance</li>
+                                <li>Be completely honest with medical staff</li>
                             </ul>
                         </div>
                     </div>
