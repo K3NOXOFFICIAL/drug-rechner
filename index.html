@@ -1106,11 +1106,46 @@
             </div>
             
             <button class="tab-btn" onclick="showCalculator('tolerance')" role="tab" aria-selected="false" aria-controls="tolerance" id="tolerance-tab" tabindex="0">⚖️ Tolerance Calculator</button>
-            <button class="tab-btn" onclick="showCalculator('drug-info')" role="tab" aria-selected="false" aria-controls="drug-info" id="drug-info-tab" tabindex="0">📚 Drug Information</button>
+            
+            <div class="dose-calculators">
+                <button class="dose-toggle" id="general-info-btn" onclick="toggleGeneralInfoMenu()">
+                    📚 General Info 
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="dose-menu" id="general-info-menu">
+                    <div class="dose-category">
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('overview')">🏠 Overview</button>
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('first-time')">🌱 First Time Use</button>
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('redosing')">⏰ Redosing Guide</button>
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('dos-donts')">✅ Dos & Don'ts</button>
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('emergency')">🚨 Emergency Info</button>
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('tripsitting')">🤝 Trip-Sitting</button>
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('harm-reduction')">🛡️ Harm Reduction</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dose-calculators">
+                <button class="dose-toggle" id="drug-specific-btn" onclick="toggleDrugSpecificMenu()">
+                    💊 Drug Info 
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="dose-menu" id="drug-specific-menu">
+                    <div class="dose-category">
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('mdma-info')">💊 MDMA</button>
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('lsd-info')">🌈 LSD</button>
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('ketamine-info')">🧠 Ketamine</button>
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('ghb-info')">🥤 GHB/GBL</button>
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('amphetamines-info')">⚡ Amphetamines</button>
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('cocaine-info')">❄️ Cocaine</button>
+                        <button class="dose-menu-item" onclick="showDrugInfoSection('4mmc-info')">🔥 4-MMC</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Mobile overlay -->
-        <div class="mobile-overlay" id="mobile-overlay" onclick="closeDoseMenu()"></div>
+        <div class="mobile-overlay" id="mobile-overlay" onclick="closeAllMenus()"></div>
 
         <!-- Liquid Dosage Calculator -->
         <div id="liquid" class="calculator-section active">
@@ -5940,6 +5975,101 @@
             closeDoseMenu();
         }
         
+        // Variables for new dropdown menus
+        let isGeneralInfoMenuOpen = false;
+        let isDrugSpecificMenuOpen = false;
+        
+        // Toggle General Info menu
+        function toggleGeneralInfoMenu() {
+            const generalInfoMenu = document.getElementById('general-info-menu');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            const generalInfoCalculators = document.getElementById('general-info-btn').parentNode;
+            
+            if (isGeneralInfoMenuOpen) {
+                closeGeneralInfoMenu();
+            } else {
+                // Close other menus first
+                closeDoseMenu();
+                closeDrugSpecificMenu();
+                
+                generalInfoMenu.classList.add('show');
+                generalInfoCalculators.classList.add('open');
+                
+                if (window.innerWidth <= 768) {
+                    mobileOverlay.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                }
+                
+                isGeneralInfoMenuOpen = true;
+            }
+        }
+        
+        // Close General Info menu
+        function closeGeneralInfoMenu() {
+            const generalInfoMenu = document.getElementById('general-info-menu');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            const generalInfoCalculators = document.getElementById('general-info-btn').parentNode;
+            
+            generalInfoMenu.classList.remove('show');
+            generalInfoCalculators.classList.remove('open');
+            
+            if (!isDoseMenuOpen && !isDrugSpecificMenuOpen) {
+                mobileOverlay.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+            
+            isGeneralInfoMenuOpen = false;
+        }
+        
+        // Toggle Drug Specific menu
+        function toggleDrugSpecificMenu() {
+            const drugSpecificMenu = document.getElementById('drug-specific-menu');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            const drugSpecificCalculators = document.getElementById('drug-specific-btn').parentNode;
+            
+            if (isDrugSpecificMenuOpen) {
+                closeDrugSpecificMenu();
+            } else {
+                // Close other menus first
+                closeDoseMenu();
+                closeGeneralInfoMenu();
+                
+                drugSpecificMenu.classList.add('show');
+                drugSpecificCalculators.classList.add('open');
+                
+                if (window.innerWidth <= 768) {
+                    mobileOverlay.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                }
+                
+                isDrugSpecificMenuOpen = true;
+            }
+        }
+        
+        // Close Drug Specific menu
+        function closeDrugSpecificMenu() {
+            const drugSpecificMenu = document.getElementById('drug-specific-menu');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            const drugSpecificCalculators = document.getElementById('drug-specific-btn').parentNode;
+            
+            drugSpecificMenu.classList.remove('show');
+            drugSpecificCalculators.classList.remove('open');
+            
+            if (!isDoseMenuOpen && !isGeneralInfoMenuOpen) {
+                mobileOverlay.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+            
+            isDrugSpecificMenuOpen = false;
+        }
+        
+        // Close all menus (for mobile overlay)
+        function closeAllMenus() {
+            closeDoseMenu();
+            closeGeneralInfoMenu();
+            closeDrugSpecificMenu();
+        }
+        
         // Close menu when clicking outside (for desktop)
         document.addEventListener('click', function(event) {
             const doseCalculators = document.querySelector('.dose-calculators');
@@ -5948,22 +6078,42 @@
             if (!isClickInside && isDoseMenuOpen && window.innerWidth > 768) {
                 closeDoseMenu();
             }
+            
+            // Check for General Info menu
+            const generalInfoCalculators = document.getElementById('general-info-btn')?.parentNode;
+            const isClickInsideGeneralInfo = generalInfoCalculators?.contains(event.target);
+            
+            if (!isClickInsideGeneralInfo && isGeneralInfoMenuOpen && window.innerWidth > 768) {
+                closeGeneralInfoMenu();
+            }
+            
+            // Check for Drug Specific menu
+            const drugSpecificCalculators = document.getElementById('drug-specific-btn')?.parentNode;
+            const isClickInsideDrugSpecific = drugSpecificCalculators?.contains(event.target);
+            
+            if (!isClickInsideDrugSpecific && isDrugSpecificMenuOpen && window.innerWidth > 768) {
+                closeDrugSpecificMenu();
+            }
         });
         
         // Handle escape key
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && isDoseMenuOpen) {
-                closeDoseMenu();
+            if (event.key === 'Escape') {
+                if (isDoseMenuOpen) closeDoseMenu();
+                if (isGeneralInfoMenuOpen) closeGeneralInfoMenu();
+                if (isDrugSpecificMenuOpen) closeDrugSpecificMenu();
             }
         });
         
         // Handle window resize
         window.addEventListener('resize', function() {
-            if (window.innerWidth > 768 && isDoseMenuOpen) {
+            if (window.innerWidth > 768) {
                 // Remove mobile overlay if window becomes larger
                 const mobileOverlay = document.getElementById('mobile-overlay');
-                mobileOverlay.classList.remove('show');
-                document.body.style.overflow = '';
+                if (isDoseMenuOpen || isGeneralInfoMenuOpen || isDrugSpecificMenuOpen) {
+                    mobileOverlay.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
             }
         });
 
